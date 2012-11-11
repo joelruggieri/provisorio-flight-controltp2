@@ -112,6 +112,10 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 		
 	}
 	
+	public boolean aterrizo(){		
+		return this.aterrizado;		
+	}
+	
 	private boolean validarBordes (Posicion posicion){
 		/* Devuelve si una posicion toca un borde o no */
 		/* pre: Se debe ingresar una posicion */
