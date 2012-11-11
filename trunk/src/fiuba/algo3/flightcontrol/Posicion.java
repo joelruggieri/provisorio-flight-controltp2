@@ -112,4 +112,14 @@ public class Posicion {
 			this.y = this.getPosicionY() / (Math.abs(getPosicionY()));
 		}
 	}
+	
+	public void imprimirPosicion (){
+
+		int x = this.x;
+		int y = this.y;
+		String mostrar = "(";
+		mostrar = mostrar + x + "," + y + ")";
+
+		System.out.println(mostrar);
+		}
 }
