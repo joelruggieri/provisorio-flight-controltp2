@@ -16,9 +16,9 @@ public class Helicoptero extends ObjetoVolador{
 		
 		this.plano.posicionQuedaVacio(posicionActual);
 		
-		if (this.trayectoria.getPrimerPosicion() != null){
+		if (this.trayectoria.getProximaPosicion(posicionActual) != null){
 			
-			this.trayectoria.calcularProximaPosicion(posicionActual);
+			//this.trayectoria.calcularProximaPosicion(posicionActual);
 			
 		}
 		
