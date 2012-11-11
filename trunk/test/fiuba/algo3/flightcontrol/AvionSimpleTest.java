@@ -1,5 +1,6 @@
 package fiuba.algo3.flightcontrol;
 import junit.framework.TestCase;
+import java.util.ArrayList;
 
 
 public class AvionSimpleTest extends TestCase {
@@ -12,9 +13,23 @@ public class AvionSimpleTest extends TestCase {
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		velocidad = 2;
+		velocidad = 1;
 		limite = 768;
 		avion = new AvionSimple(velocidad,limite,plano);
+	}
+	
+	public void testCrearUnAvionSimpleYQueDeUnPasoAUnaPosicionVecinaDeberiaMoverseCorrectamente(){
+		//arrange
+			Posicion posicionFinal = new Posicion(0,1);
+			ArrayList<Posicion> unaTrayectoria = new ArrayList<Posicion>();
+		//act
+			avion.crearTrayectoria(unaTrayectoria);
+			avion.moverse();
+			Posicion posicionActualAvion = avion.getPosicion();
+			
+		//assert
+			assertTrue (posicionActualAvion.equals(posicionFinal));	
+			
 	}
 	
 	public void testAvionVolarCuandoNoHayTrayectoriaMarcadaDeberiaActualizarSuPosicionDependiendoDeSuVelocidadYDeLaDireccionQueTraia(){

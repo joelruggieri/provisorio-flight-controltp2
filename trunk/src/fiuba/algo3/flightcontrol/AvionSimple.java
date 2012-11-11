@@ -10,13 +10,14 @@ public class AvionSimple extends ObjetoVolador {
 		
 	}
 	
-	public void moverse() {
+	
+	//public void moverse() {
 		/* Mueve el objeto volador siguiendo la trayectoria o en el sentido de la direccion si no hay trayectoria definida */
 		/* post: cambia el valor de la posicion actual, buscando el movimiento mas optimo posible */
-		
+	/*	
 		this.plano.posicionQuedaVacio(posicionActual);
 		
-		if (this.trayectoria.getPrimerPosicion() == null){
+		if (this.trayectoria.getProximaPosicion(posicionActual) == null){
 			
 			this.posicionActual = this.posicionActual.sumar(this.direccion);
 			
@@ -28,5 +29,6 @@ public class AvionSimple extends ObjetoVolador {
 		
 			this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
 		}
-	}
+	*/
+}
 

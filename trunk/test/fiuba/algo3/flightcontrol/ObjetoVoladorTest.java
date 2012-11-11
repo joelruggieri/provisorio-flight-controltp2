@@ -16,6 +16,7 @@ public class ObjetoVoladorTest extends TestCase {
 		velocidad = 1;
 		limite = 768;
 		unAvion = new AvionSimple(velocidad,limite,plano);
+		plano = new Escenario(limite);
 		
 		primeraTrayectoria = new ArrayList<Posicion>();
 		segundaTrayectoria = new ArrayList<Posicion>();
