@@ -33,4 +33,23 @@ public class ArrayListTest extends TestCase {
 		assertTrue(todosIguales);
 	}
 	
+	public void testCuandoBorroUnDatoElProximoDeberiaQuedarEnLaPosicionCero(){
+		
+		ArrayList<Integer> unaLista = new ArrayList<Integer>();
+		
+		unaLista.add(0);
+		unaLista.add(1);
+		unaLista.add(2);
+				
+		unaLista.remove(0);
+		int dato1 = unaLista.get(0);
+		
+		unaLista.remove(0);
+		
+		int dato2 = unaLista.get(0);
+		
+		
+		assertTrue(dato1 == 1 && dato2 == 2);
+	}
+	
 }

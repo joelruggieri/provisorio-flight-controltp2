@@ -8,7 +8,7 @@ public class AvionSimpleTest extends TestCase {
 	private int velocidad,limite;
 	private ArrayList<Posicion> unaTrayectoria;
 	private Escenario plano;
-	Posicion actual,destino;
+	private Posicion destino;
 	
 	protected void setUp () throws Exception {
 		super.setUp();
