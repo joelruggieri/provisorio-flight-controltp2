@@ -7,7 +7,6 @@ public class Helicoptero extends ObjetoVolador{
 		
 		super (velocidadInicial, limite, unPlano);
 		
-		this.tipoDeObjetoVolador = "helicoptero" ;
 	}
 	
 	public void moverse(){
