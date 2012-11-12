@@ -17,85 +17,83 @@ public class PosicionTest extends TestCase {
 	
 	public void testConstructorDeUnaPosicionDeberiaSetearSusCoordenadas(){		
 		
-		//arrange
-		int coordenadaX = 1;
-		int coordenadaY = 2;
-		
-		//act
+		//arrange and act
+			int coordenadaX = 1;
+			int coordenadaY = 2;
 		
 		//assert
-		assertTrue ( coordenadaX == unaPosicion.getPosicionX() && coordenadaY == unaPosicion.getPosicionY());
+			assertTrue ( coordenadaX == unaPosicion.getPosicionX() && coordenadaY == unaPosicion.getPosicionY());
 	
 	}
    
 	public void testDeDosPosicionesIgualesEqualsDeberiaDarVerdadero () {		
 		
 		//arrange
-		boolean sonIguales;
+			boolean sonIguales;
 		
-		Posicion posicion = new Posicion (1,2);
+			Posicion posicion = new Posicion (1,2);
 		
 		//act
-		sonIguales = unaPosicion.equals(posicion);
+			sonIguales = unaPosicion.equals(posicion);
 		
 		//assert
-		assertTrue (sonIguales);
+			assertTrue (sonIguales);
 		
 	}
    
 	public void testDeDosPosicionesDistintasEqualsDeberiaDarFalso () {		
 		
 		//arrange
-		boolean sonIguales;
+			boolean sonIguales;
 		
 		//act
-		sonIguales = unaPosicion.equals(otraPosicion);
+			sonIguales = unaPosicion.equals(otraPosicion);
 		
 		//assert
-		assertFalse (sonIguales);
+			assertFalse (sonIguales);
 		
 	}
   
 	public void testSumarDosPosicionesDeberiaDarLaSuma (){
 		
 		//arange
-		Posicion adicion = new Posicion (5,9);
-		Posicion suma;
+			Posicion adicion = new Posicion (5,9);
+			Posicion suma;
 		
 		//act
-		suma = unaPosicion.sumar (otraPosicion);
+			suma = unaPosicion.sumar (otraPosicion);
 		
 		//assert
-		assertTrue (suma.equals(adicion));
+			assertTrue (suma.equals(adicion));
 		
 	}
 	
 	public void testRestarDosPosicionesDeberiaDarLaResta (){
 		
 		//arange
-		Posicion sustraccion = new Posicion (-3,-5);
-		Posicion resta;
+			Posicion sustraccion = new Posicion (-3,-5);
+			Posicion resta;
 		
 		//act
-		resta = unaPosicion.restar (otraPosicion);
+			resta = unaPosicion.restar (otraPosicion);
 		
 		//assert
-		assertTrue (resta.equals(sustraccion));
+			assertTrue (resta.equals(sustraccion));
 
 	}
 	
 	public void testMultiplicarUnNumeroPorUnVectorDeberiaRealizarElProductoEscalar (){
 		
 		//arrange
-		int escalar = 3;
-		Posicion productoFinal = new Posicion (3,6);
-		Posicion producto;
+			int escalar = 3;
+			Posicion productoFinal = new Posicion (3,6);
+			Posicion producto;
 		
 		//act
-		producto = unaPosicion.multiplicar(escalar);
+			producto = unaPosicion.multiplicar(escalar);
 		
 		//assert
-		assertTrue (producto.equals(productoFinal));
+			assertTrue (producto.equals(productoFinal));
 	}
 	
 }

@@ -43,7 +43,7 @@ public class PistaDobleEntrada extends Pista {
 	
 	public boolean validarEntradaYDireccion(ObjetoVolador avion){
 		
-		return this.validarPrimeraEntradaYDireccion(avion) || this.validarSegundaEntradaYDireccion(avion);
+		return (this.validarPrimeraEntradaYDireccion(avion) || this.validarSegundaEntradaYDireccion(avion));
 	}
 	
 	
