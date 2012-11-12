@@ -106,5 +106,29 @@ public class TrayectoriaTest extends TestCase {
 		assertTrue (proximoPaso == null);
 		
 	}
+	
+	public void testCuandoNoHayPuntosASeguirDeberiaDevolverQueNoHayTrayectoria (){
+		
+		//arrange
+		trayectoria = new Trayectoria (puntos);
+		
+		//act
+		
+		//assert
+		assertFalse (trayectoria.hayTrayectoria());
+	}
+	
+	public void testCuandoHayPuntosASeguirDeberiaDevolverQueHayTrayectoria (){
+		
+		//arrange
+		destino = new Posicion (5,2);
+		puntos.add(destino);
+		trayectoria = new Trayectoria (puntos);
+		
+		//act
+		
+		//assert
+		assertTrue (trayectoria.hayTrayectoria());
+	}
 
 }
