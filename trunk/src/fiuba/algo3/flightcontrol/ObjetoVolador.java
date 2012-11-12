@@ -21,18 +21,18 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 	public ObjetoVolador(int velocidad, int limite, Escenario unPlano){
 		/* Constructor del Objeto volador */
 		
-		int valorDeSalidaX = 1;
-		int valorDeSalidaY = 1;
-		ArrayList<Posicion> trayectoriaVacia = new ArrayList<Posicion>();
+		int valorDeSalidaX = 0;
+		int valorDeSalidaY = 0;
+		//ArrayList<Posicion> trayectoriaVacia = new ArrayList<Posicion>();
 		
 		this.plano = unPlano;
 		this.posicionActual = new Posicion(valorDeSalidaX, valorDeSalidaY);
 		
 		this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
 		
-		this.direccion = new Posicion (10,-5);
+		this.direccion = new Posicion (1,1);
 		this.aterrizado = false;
-		this.trayectoria = new Trayectoria(trayectoriaVacia);
+		//this.trayectoria = new Trayectoria(trayectoriaVacia);
 		this.velocidad = velocidad;
 		
 	}
@@ -73,7 +73,7 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 		boolean tocaUnBorde;
 		
 		siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
-				
+		
 		for (int i=0; i < this.velocidad; i++){
 						
 			this.actualizarDireccion (this.trayectoria.getVectorDirector(posicionActual));
@@ -86,6 +86,7 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 			}
 			
 			this.posicionActual = siguientePosicion;
+			
 		}
 		
 	}
