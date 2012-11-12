@@ -4,45 +4,35 @@ import java.util.ArrayList;
 
 public class AvionSimple extends ObjetoVolador {	
 	
+	private ArrayList<Posicion> listaDePosiciones;
+	
 	public AvionSimple(int velocidadInicial, int limite, Escenario unPlano){
-		/* Constructor de una avion simle */
+		/* Constructor de una avion simple */
 		super (velocidadInicial, limite, unPlano);
-		
+		listaDePosiciones  = new ArrayList<Posicion>();
+		this.crearTrayectoria (listaDePosiciones);
 		
 	}
 	
-	
-	//public void moverse() {
+	public void moverse() {
 		/* Mueve el objeto volador siguiendo la trayectoria o en el sentido de la direccion si no hay trayectoria definida */
 		/* post: cambia el valor de la posicion actual, buscando el movimiento mas optimo posible */
 		
-		/*if (siguientePosicion == null){
-			
-			System.out.println("ACA ESTRA SI NO EXISTE TRAYECTORIA PREDEFINIDA");
-			
+		if (!this.trayectoria.hayTrayectoria()){
+					
 			direccion = this.getDireccion();
-			posicionLimite = direccion.multiplicar(this.plano.getDimension());
+			Posicion posicionSiguiente = direccion.sumar(this.posicionActual);
 			
-			trayectoriaNueva = new ArrayList <Posicion> ();
-			trayectoriaNueva.add(posicionLimite);
+			listaDePosiciones = new ArrayList <Posicion> ();
+			listaDePosiciones.add(posicionSiguiente);
 			
-			this.crearTrayectoria(trayectoriaNueva);
+			this.crearTrayectoria(listaDePosiciones);
 	
 		}
-		this.plano.posicionQuedaVacio(posicionActual);
 		
-		if (this.trayectoria.getProximaPosicion(posicionActual) == null){
-			
-			this.posicionActual = this.posicionActual.sumar(this.direccion);
-			
-		}else{
-			
-			this.trayectoria.getProximaPosicion(posicionActual);
-			
-		}
+		super.moverse();
+	}
 		
-			this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
-		}*/
 	
 }
 

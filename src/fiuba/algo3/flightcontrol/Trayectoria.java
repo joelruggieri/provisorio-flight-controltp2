@@ -83,5 +83,9 @@ public class Trayectoria {
 		
 		return direccion;
 	}
-		
+	
+	public boolean hayTrayectoria (){
+		/* Devuelve si la trayectoria tiene alguna posicion siguiente para seguir */
+		return (!this.listaDePosiciones.isEmpty());
+	}
 }
