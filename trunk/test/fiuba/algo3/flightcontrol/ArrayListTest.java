@@ -7,49 +7,56 @@ public class ArrayListTest extends TestCase {
 
 	public void testElMetodoSizeEnUnArrayVacioDeberiaDarCero(){
 		
-		ArrayList<Integer> unaLista = new ArrayList<Integer>();
+		//arrange and act
+			ArrayList<Integer> unaLista = new ArrayList<Integer>();
 		
-		assertEquals(unaLista.size(), 0);
+		//assert
+			assertEquals(unaLista.size(), 0);
 	}
 	
 	public void testCargarValoresYRecorrerElArrayListDeberiaDevolvermelos(){
 		
-		ArrayList<Integer> unaLista = new ArrayList<Integer>();
-		
-		unaLista.add(0);
-		unaLista.add(1);
-		unaLista.add(2);
-		unaLista.add(3);
-		
-		boolean todosIguales = true;
-		int i=0;
-		
-		while(unaLista.size()>i && todosIguales){
+		//arrange
+			ArrayList<Integer> unaLista = new ArrayList<Integer>();
 			
-			todosIguales = (unaLista.get(i) == i);
-			i++;
-		}
+		//act	
+			unaLista.add(0);
+			unaLista.add(1);
+			unaLista.add(2);
+			unaLista.add(3);
+			
+			boolean todosIguales = true;
+			int i=0;
+			
+			while(unaLista.size()>i && todosIguales){
+				
+				todosIguales = (unaLista.get(i) == i);
+				i++;
+			}
 		
-		assertTrue(todosIguales);
+		//assert
+			assertTrue(todosIguales);
 	}
 	
 	public void testCuandoBorroUnDatoElProximoDeberiaQuedarEnLaPosicionCero(){
 		
-		ArrayList<Integer> unaLista = new ArrayList<Integer>();
+		//arrange
+			ArrayList<Integer> unaLista = new ArrayList<Integer>();
 		
-		unaLista.add(0);
-		unaLista.add(1);
-		unaLista.add(2);
-				
-		unaLista.remove(0);
-		int dato1 = unaLista.get(0);
-		
-		unaLista.remove(0);
-		
-		int dato2 = unaLista.get(0);
-		
-		
-		assertTrue(dato1 == 1 && dato2 == 2);
+		//act
+			unaLista.add(0);
+			unaLista.add(1);
+			unaLista.add(2);
+					
+			unaLista.remove(0);
+			int dato1 = unaLista.get(0);
+			
+			unaLista.remove(0);
+			
+			int dato2 = unaLista.get(0);
+			
+		//assert
+			assertTrue(dato1 == 1 && dato2 == 2);
 	}
 	
 }
