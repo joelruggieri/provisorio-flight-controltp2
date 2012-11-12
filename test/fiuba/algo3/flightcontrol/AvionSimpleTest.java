@@ -1,53 +1,399 @@
 package fiuba.algo3.flightcontrol;
-import junit.framework.TestCase;
 import java.util.ArrayList;
-
+import junit.framework.TestCase;
 
 public class AvionSimpleTest extends TestCase {
 	
-	private AvionSimple avion;
-	private int velocidad;
-	private int limite;
+	private AvionSimple unAvion;
+	private int velocidad,limite;
+	private ArrayList<Posicion> unaTrayectoria;
 	private Escenario plano;
+	Posicion actual,destino;
 	
 	protected void setUp () throws Exception {
 		super.setUp();
 		
 		velocidad = 1;
 		limite = 768;
-		avion = new AvionSimple(velocidad,limite,plano);
+		plano = new Escenario (limite);
+		unAvion = new AvionSimple (velocidad,limite,plano);
+		unaTrayectoria = new ArrayList<Posicion>();
+		
 	}
 	
-	public void testCrearUnAvionSimpleYQueDeUnPasoAUnaPosicionVecinaDeberiaMoverseCorrectamente(){
+	private void moverAvion (ObjetoVolador unAvion, Posicion destino){
+		/* Mueve un avion hasta el destino */
+		/* pre: Se debe ingresar el avion a mover y una posicion */
+		/* post: El avion se movio */
+		
+		unaTrayectoria.add(destino);
+		unAvion.crearTrayectoria (unaTrayectoria);
+		//destino.imprimirPosicion();
+		while (!unAvion.getPosicion().equals(destino)){
+			unAvion.moverse();
+			//unAvion.getPosicion().imprimirPosicion();
+		}
+		
+	}
+
+	
+	public void testMoverseDeberiaMoverseALaPosicionIndicada (){
+		
 		//arrange
-			Posicion posicionFinal = new Posicion(0,1);
-			ArrayList<Posicion> unaTrayectoria = new ArrayList<Posicion>();
+		destino = new Posicion (4,5);
+		Posicion posicionFinal;
+				
 		//act
-			avion.crearTrayectoria(unaTrayectoria);
-			avion.moverse();
-			Posicion posicionActualAvion = avion.getPosicion();
-			
+		this.moverAvion(unAvion, destino);
+		posicionFinal = unAvion.getPosicion();
+		
 		//assert
-			assertTrue (posicionActualAvion.equals(posicionFinal));	
-			
+		assertTrue (destino.equals(posicionFinal));		
+		
+	}
+
+
+	public void testVolarEnDiagonalArribaUnaPosicionLateralDerechaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite - 2, limite - 2);		
+		Posicion segundaPosicion = new Posicion (limite -4, limite);
+		
+		Posicion direccionNueva = new Posicion (-1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);		
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 1");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 	}
 	
-	public void testAvionVolarCuandoNoHayTrayectoriaMarcadaDeberiaActualizarSuPosicionDependiendoDeSuVelocidadYDeLaDireccionQueTraia(){
-		
+
+	public void testVolarEnDiagonalAbajoAUnaPosicionLateralDerechaFueraDelLimiteDeberiaRebotarCorrectamente (){
+	
 		//arrange
+		Posicion primeraPosicion = new Posicion (limite / 2, limite - 2);		
+		Posicion segundaPosicion = new Posicion ((limite / 2) + 2, limite);
 		
-		Posicion direccion, posicionFinal;
-		Posicion inicial = avion.getPosicion();
+		Posicion direccionNueva = new Posicion (1,-1);
+		Posicion direccionDespuesDeMoverse;
 		
 		//act
-		avion.moverse();
-		direccion = avion.getDireccion();
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
 		
-		Posicion posicionActualAvion = avion.getPosicion();
-		posicionFinal = inicial.sumar(direccion.multiplicar(velocidad));
+		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (posicionActualAvion.equals(posicionFinal));		
-	}
+		System.out.println("TERMINO 2");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
+	}
+
+	
+	public void testVolarEnDiagonalAbajoAUnaPosicionLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (2, limite / 2);		
+		Posicion segundaPosicion = new Posicion (0, (limite / 2) + 2);
+		
+		Posicion direccionNueva = new Posicion (1,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 3");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+	}
+
+	public void testVolarEnDiagonalArribaAUnaPosicionLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (2, limite / 2);		
+		Posicion segundaPosicion = new Posicion (0, (limite / 2) - 2);
+		
+		Posicion direccionNueva = new Posicion (1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		//System.out.println("Segundo movimiento");
+		
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+				
+		//assert
+		System.out.println("TERMINO 4");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarEnDiagonalDerechaAUnaPosicionLateralArribaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,2);		
+		Posicion segundaPosicion = new Posicion ((limite/2) + 2,0);
+		
+		Posicion direccionNueva = new Posicion (1,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 5");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarEnDiagonalIzquierdaAUnaPosicionLateralArribaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,2);		
+		Posicion segundaPosicion = new Posicion ((limite/2) - 2,0);
+		
+		Posicion direccionNueva = new Posicion (-1,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 6");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+	
+	public void testVolarEnDiagonalDerechaAUnaPosicionLateralAbajoFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,limite-2);		
+		Posicion segundaPosicion = new Posicion ((limite/2) + 2,limite);
+		
+		Posicion direccionNueva = new Posicion (1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 7");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+	
+
+	public void testVolarEnDiagonalIzquierdaaAUnaPosicionLateralAbajoFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,limite-2);		
+		Posicion segundaPosicion = new Posicion ((limite/2) - 2,limite);
+		
+		Posicion direccionNueva = new Posicion (-1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 8");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+	
+	public void testVolarHorizontalAUnaPosicionLateralDerechaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,limite-2);		
+		Posicion segundaPosicion = new Posicion (limite/2,limite);
+		
+		Posicion direccionNueva = new Posicion (0,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+				
+		//assert
+		System.out.println("TERMINO 13");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+
+
+	public void testVolarHorizontalAUnaPosicionLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (2,limite/2);		
+		Posicion segundaPosicion = new Posicion (0,limite/2);
+		
+		Posicion direccionNueva = new Posicion (1,0);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO X");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarVerticalAUnaPosicionLateralArribaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,2);		
+		Posicion segundaPosicion = new Posicion (limite/2,0);
+		
+		Posicion direccionNueva = new Posicion (0,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO X");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	
+	public void testVolarVerticalAUnaPosicionLateralAbajoFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite/2,limite-2);		
+		Posicion segundaPosicion = new Posicion (limite/2,limite);
+		
+		Posicion direccionNueva = new Posicion (0,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO X");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarDiagonalAUnaPosicionEsquinaArribaDerechaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite-2,2);		
+		Posicion segundaPosicion = new Posicion (limite,0);
+		
+		Posicion direccionNueva = new Posicion (-1,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 9");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarDiagonalAUnaPosicionEsquinaArribaIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (2,2);		
+		Posicion segundaPosicion = new Posicion (0,0);
+		
+		Posicion direccionNueva = new Posicion (1,1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 10");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+
+	public void testVolarDiagonalAUnaPosicionEsquinaAbajoDerechaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (limite-2,limite-2);		
+		Posicion segundaPosicion = new Posicion (limite,limite);
+		
+		Posicion direccionNueva = new Posicion (-1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 11");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
+	
+
+
+	public void testVolarDiagonalAUnaPosicionEsquinaAbajoIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
+		
+		//arrange
+		Posicion primeraPosicion = new Posicion (2,limite-2);		
+		Posicion segundaPosicion = new Posicion (0,limite);
+		
+		Posicion direccionNueva = new Posicion (1,-1);
+		Posicion direccionDespuesDeMoverse;
+		
+		//act
+		this.moverAvion (unAvion, primeraPosicion);
+		this.moverAvion (unAvion, segundaPosicion);
+		
+		direccionDespuesDeMoverse = unAvion.getDireccion();
+		
+		//assert
+		System.out.println("TERMINO 12");
+		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
+		
+	}
 }
