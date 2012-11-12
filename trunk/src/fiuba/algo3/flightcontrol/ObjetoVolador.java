@@ -69,50 +69,29 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 	public void moverse(){
 		/* Mueve al avion siguiendo su trayectoria */
 		
-		Posicion siguientePosicion,posicionLimite;
-		ArrayList <Posicion> trayectoriaNueva;
+		Posicion siguientePosicion;
 		boolean tocaUnBorde;
 		
 		siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
-		
-		siguientePosicion.imprimirPosicion();
-		if (siguientePosicion == null){
-			
-			System.out.println("ACA ESTRA SI NO EXISTE TRAYECTORIA PREDEFINIDA");
-			
-			direccion = this.getDireccion();
-			posicionLimite = direccion.multiplicar(this.plano.getDimension());
-			
-			trayectoriaNueva = new ArrayList <Posicion> ();
-			trayectoriaNueva.add(posicionLimite);
-			
-			this.crearTrayectoria(trayectoriaNueva);
-	
-		}
-		
+				
 		for (int i=0; i < this.velocidad; i++){
 						
 			this.actualizarDireccion (this.trayectoria.getVectorDirector(posicionActual));
-			//this.direccion.imprimirPosicion();
+			
 			//Validar bordes.
 			tocaUnBorde = this.validarBordes (siguientePosicion);
 			
 			if (tocaUnBorde){
-				//System.out.println("TOCO BORDE");
 				this.invertirTrayectoria(siguientePosicion);
-				
-				//siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
-				//System.out.println("fffE");
-				//siguientePosicion.imprimirPosicion();
 			}
-				
-			//this.posicionActual.imprimirPosicion();
+			
 			this.posicionActual = siguientePosicion;
 		}
 		
 	}
 	
-	public boolean aterrizo(){		
+	public boolean aterrizo(){
+		/* Devuelve si el avion aterrizo o no */
 		return this.aterrizado;		
 	}
 	
@@ -131,7 +110,7 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 		
 	private void invertirTrayectoria (Posicion posicionLimite){
 		/* Invierte la trayectoria del avion, causando un efecto rebote */
-		//System.out.println("INVERTIR TRAYECTORIA");
+		
 		Posicion nuevaDireccion;
 		int dimension = this.plano.getDimension();
 		
@@ -141,8 +120,6 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 		int sigX = posicionLimite.getPosicionX();
 		int sigY = posicionLimite.getPosicionY();
 		
-		//this.getDireccion().imprimirPosicion();
-		//posicionActual.imprimirPosicion();
 		posicionActual = posicionLimite;
 		
 		if ( sigX == 0 || sigX == dimension){
@@ -152,19 +129,13 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 			y = y*(-1);
 		}
 		
-		
 		nuevaDireccion = new Posicion (x,y);
 		this.actualizarDireccion(nuevaDireccion);
-		//nuevaDireccion.imprimirPosicion();
-										
-		//nuevaPosicion = nuevaDireccion.sumar(posicionLimite);
-				
-		//trayectoriaNueva.add(nuevaPosicion);
-		//this.crearTrayectoria(trayectoriaNueva);
-		//System.out.println("Termina invertir trayectoria");
+		
 	}
 	
 	private void actualizarDireccion (Posicion unaDireccion){
+		/* Actualiza la direccion del avion */
 		
 		if (unaDireccion != null){
 			this.direccion = unaDireccion;

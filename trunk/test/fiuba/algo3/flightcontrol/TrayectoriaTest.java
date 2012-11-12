@@ -63,34 +63,30 @@ public class TrayectoriaTest extends TestCase {
 		
 		//act
 		
-		//Primero se mueve en linea recta
+		//Luego se mueve diagonalmente
 		
-		direccion = new Posicion (1,0);
+		direccion = new Posicion (1,1);
+				
 		while (pasoCorrecto){
 			
 			proximoPaso = trayectoria.getProximaPosicion(actual);
 			actual = actual.sumar(direccion);
 			pasoCorrecto = actual.equals(proximoPaso);
-			
 		}
 		
-		//Luego se mueve diagonalmente
+		//Primero se mueve en linea recta
 		
-		direccion = new Posicion (1,1);
+		direccion = new Posicion (1,0);
 		actual = proximoPaso;
 		pasoCorrecto = actual.equals(proximoPaso);
 		
 		while (pasoCorrecto && ! proximoPaso.equals(destino)){
 			
 			proximoPaso = trayectoria.getProximaPosicion(actual);
-			
 			actual = actual.sumar(direccion);
-			
 			pasoCorrecto = actual.equals(proximoPaso);
-			
-			
 		}
-		
+				
 		//assert
 		assertTrue (pasoCorrecto);
 	}

@@ -28,15 +28,13 @@ public class ObjetoVoladorTest extends TestCase {
 		
 		unaTrayectoria.add(destino);
 		unAvion.crearTrayectoria (unaTrayectoria);
-		//destino.imprimirPosicion();
+		
 		while (!unAvion.getPosicion().equals(destino)){
 			unAvion.moverse();
-			//unAvion.getPosicion().imprimirPosicion();
 		}
 		
 	}
 
-	/*// ANDAAAAAAAAAAAAAA
 	public void testMoverseDeberiaMoverseALaPosicionIndicada (){
 		
 		//arrange
@@ -69,7 +67,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 1");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 	}
 	
@@ -90,7 +87,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 2");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -112,7 +108,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 3");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 	}
 
@@ -127,14 +122,11 @@ public class ObjetoVoladorTest extends TestCase {
 		
 		//act
 		this.moverAvion (unAvion, primeraPosicion);
-		//System.out.println("Segundo movimiento");
-		
 		this.moverAvion (unAvion, segundaPosicion);
 		
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 				
 		//assert
-		System.out.println("TERMINO 4");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -155,7 +147,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 5");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -176,7 +167,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 6");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -197,7 +187,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 7");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -219,7 +208,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 8");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -240,13 +228,10 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 				
 		//assert
-		System.out.println("TERMINO 13");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
-*/
 
-/*
 	public void testVolarHorizontalAUnaPosicionLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
 		
 		//arrange
@@ -263,11 +248,10 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO X");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
-*/
+
 	public void testVolarVerticalAUnaPosicionLateralArribaFueraDelLimiteDeberiaRebotarCorrectamente (){
 		
 		//arrange
@@ -284,12 +268,10 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO X");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
 
-	/*ANDAAAAAA
 	public void testVolarVerticalAUnaPosicionLateralAbajoFueraDelLimiteDeberiaRebotarCorrectamente (){
 		
 		//arrange
@@ -306,7 +288,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO X");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -327,7 +308,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 9");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -348,7 +328,6 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 10");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
@@ -369,13 +348,10 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 11");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
 	}
 	
-
-
 	public void testVolarDiagonalAUnaPosicionEsquinaAbajoIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
 		
 		//arrange
@@ -392,8 +368,7 @@ public class ObjetoVoladorTest extends TestCase {
 		direccionDespuesDeMoverse = unAvion.getDireccion();
 		
 		//assert
-		System.out.println("TERMINO 12");
 		assertTrue (direccionNueva.equals(direccionDespuesDeMoverse));
 		
-	}*/
+	}
 }

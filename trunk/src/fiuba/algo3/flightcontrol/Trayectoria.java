@@ -23,8 +23,7 @@ public class Trayectoria {
 		Posicion destino = this.getPrimerDestino();
 		Posicion proximaPosicion = null;
 		Posicion direccion;
-		//posicionActual.imprimirPosicion();
-		//destino.imprimirPosicion();
+		
 		if (destino != null){
 			
 			direccion = this.getVectorDirector(posicionActual);
@@ -43,7 +42,6 @@ public class Trayectoria {
 		/* post: devuelve la primer posicion, o null de no haber ningun destino definido */
 		
 		if (this.listaDePosiciones.isEmpty()){
-			System.out.println("TERMINO 2");
 			return null;
 		}
 		
@@ -57,20 +55,12 @@ public class Trayectoria {
 		int absX = Math.abs(x);
 		int absY = Math.abs(y);
 		int direccionX = 0, direccionY = 0;
-		
-		//Para conservar el signo de la direccion.
-		
+				
 		if (absX != 0){
 			direccionX = x / absX;
 		}
 		if (absY != 0){
 			direccionY = y / absY;
-		}
-		
-		if ((x < y) && (absX != absY)){
-			direccionX = 0;
-		}else if ((x > y) && (absX != absY)){
-			direccionY = 0;
 		}
 		
 		return (new Posicion (direccionX,direccionY));
