@@ -1,27 +1,24 @@
 package fiuba.algo3.flightcontrol;
 
+import java.util.ArrayList;
+
 public class Helicoptero extends ObjetoVolador{
 
 	public Helicoptero(int velocidadInicial,int limite,Escenario unPlano){
-		/* Constructor de un helicoptero */
-		
+		/* Constructor de una avion simple */
 		super (velocidadInicial, limite, unPlano);
+		listaDePosiciones  = new ArrayList<Posicion>();
+		this.crearTrayectoria (listaDePosiciones);
+		
 		
 	}
 	
 	public void moverse(){
 		/* Mueve el objeto volador siguiendo la trayectoria, y si no hay trayectoria definida se queda en el lugar */
 		/* post: cambia el valor de la posicion actual, buscando el movimiento mas optimo posible */
-		
-		this.plano.posicionQuedaVacio(posicionActual);
-		
-		if (this.trayectoria.getProximaPosicion(posicionActual) != null){
-			
-			//this.trayectoria.calcularProximaPosicion(posicionActual);
-			
+		if (this.trayectoria.hayTrayectoria()){
+			super.moverse();
 		}
-		
-		this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
 		
 	}
 	

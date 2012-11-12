@@ -9,14 +9,8 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 	protected Posicion direccion; //borre su set - Gonzalo
 	protected Trayectoria trayectoria;
 	protected Escenario plano;
-	protected String tipoDeObjetoVolador;
+	protected ArrayList<Posicion> listaDePosiciones;
 	
-	public String getTipoDeObjetoVolador(){
-		/* Devuelve el tipo de objeto volador que es */
-		
-		return this.tipoDeObjetoVolador;
-		
-	}
 	
 	public ObjetoVolador(int velocidad, int limite, Escenario unPlano){
 		/* Constructor del Objeto volador */
@@ -41,6 +35,7 @@ public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
 		/* Crea una nueva trayectoria para el objeto volador */
 		
 		this.trayectoria = new Trayectoria(unaTrayectoriaNueva);
+		this.actualizarDireccion(this.trayectoria.getVectorDirector(this.posicionActual));
 		
 	}
 	
