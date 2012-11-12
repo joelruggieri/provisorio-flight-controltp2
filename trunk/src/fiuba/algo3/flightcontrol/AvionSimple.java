@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AvionSimple extends ObjetoVolador {	
 	
-	private ArrayList<Posicion> listaDePosiciones;
+	
 	
 	public AvionSimple(int velocidadInicial, int limite, Escenario unPlano){
 		/* Constructor de una avion simple */

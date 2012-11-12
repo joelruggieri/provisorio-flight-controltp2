@@ -5,6 +5,36 @@ import java.util.ArrayList;
 
 public class PistaSimpleTest extends TestCase {
 	
+	
+	private ArrayList<Posicion> unaTrayectoria;
+	private Posicion posicion1,posicion2,posicion3;
+	
+	
+	protected void setUp () throws Exception {
+		super.setUp();
+		
+		posicion1 = new Posicion(1,1);
+		posicion2 = new Posicion(2,2);
+		posicion3 = new Posicion(1,2);
+		unaTrayectoria = new ArrayList<Posicion>();
+		
+	}
+	
+	private void moverAvion (ObjetoVolador unAvion, Posicion destino){
+		/* Mueve un avion hasta el destino */
+		/* pre: Se debe ingresar el avion a mover y una posicion */
+		/* post: El avion se movio */
+		
+		unaTrayectoria.add(destino);
+		unAvion.crearTrayectoria (unaTrayectoria);
+		
+		while (!unAvion.getPosicion().equals(destino)){
+			unAvion.moverse();
+		}
+		
+	}
+	
+	
 	public void testConstructorDeUnaPistaSimpleLasPosicionesDeLaPistaDeberianEstarOcupadasPorEsta() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 7;
@@ -108,17 +138,18 @@ public void testConstructorDeUnaPistaSimpleLaDireccionDeIngresoDeberiaQuedarDete
 		ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 		AvionSimple avion = new AvionSimple(velocidadDelAvion,dimension,unPlano);
 		
-		avion.moverse();
+		
+		this.moverAvion (avion,posicion1);
+		this.moverAvion(avion,posicion2);
 		
 		/*creo las posiciones de la pista*/
-		Posicion posicionDeEntrada = new Posicion(1,1);
-		Posicion otraPosicionDeLaPista = new Posicion(2,2);
+		
+		Posicion posicionDeEntrada = new Posicion(2,2);
 		Posicion otraPosicionDeLaPista1 = new Posicion(3,3);
 		Posicion otraPosicionDeLaPista2 = new Posicion(4,4);
 		Posicion ultimaPosicionDeLaPista = new Posicion(5,5);
 		
 		posicionesDeLaPista.add(posicionDeEntrada);
-		posicionesDeLaPista.add(otraPosicionDeLaPista);
 		posicionesDeLaPista.add(otraPosicionDeLaPista1);
 		posicionesDeLaPista.add(otraPosicionDeLaPista2);
 		posicionesDeLaPista.add(ultimaPosicionDeLaPista);
@@ -138,17 +169,17 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 		AvionSimple avion = new AvionSimple(velocidadDelAvion,dimension,unPlano);
 		
-		avion.moverse();
+		this.moverAvion(avion,posicion2);
+		this.moverAvion(avion, posicion3);
 		
 		/*creo las posiciones de la pista*/
-		Posicion posicionDeEntrada = new Posicion(1,1);
-		Posicion otraPosicionDeLaPista = new Posicion(1,2);
+		
+		Posicion posicionDeEntrada= new Posicion(1,2);
 		Posicion otraPosicionDeLaPista1 = new Posicion(1,3);
 		Posicion otraPosicionDeLaPista2 = new Posicion(1,4);
 		Posicion ultimaPosicionDeLaPista = new Posicion(1,5);
 		
 		posicionesDeLaPista.add(posicionDeEntrada);
-		posicionesDeLaPista.add(otraPosicionDeLaPista);
 		posicionesDeLaPista.add(otraPosicionDeLaPista1);
 		posicionesDeLaPista.add(otraPosicionDeLaPista2);
 		posicionesDeLaPista.add(ultimaPosicionDeLaPista);
@@ -168,7 +199,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaPosicionQueNoEsLaDeEntr
 	ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 	AvionSimple avion = new AvionSimple(velocidadDelAvion,dimension,unPlano);
 	
-	avion.moverse();
+	this.moverAvion(avion, posicion2);
 	
 	/*creo las posiciones de la pista*/
 	Posicion posicionDeEntrada = new Posicion(1,2);
@@ -199,17 +230,17 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaPosicionQueNoEsLaDeEntr
 		ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 		Helicoptero helicoptero = new Helicoptero(velocidadDelAvion,dimension,unPlano);
 	
-		helicoptero.moverse();
+		this.moverAvion(helicoptero,posicion1);
+		this.moverAvion(helicoptero, posicion2);
 	
 		/*creo las posiciones de la pista*/
-		Posicion posicionDeEntrada = new Posicion(1,1);
-		Posicion otraPosicionDeLaPista = new Posicion(2,2);
+		
+		Posicion posicionDeEntrada = new Posicion(2,2);
 		Posicion otraPosicionDeLaPista1 = new Posicion(3,3);
 		Posicion otraPosicionDeLaPista2 = new Posicion(4,4);
 		Posicion ultimaPosicionDeLaPista = new Posicion(5,5);
 	
 		posicionesDeLaPista.add(posicionDeEntrada);
-		posicionesDeLaPista.add(otraPosicionDeLaPista);
 		posicionesDeLaPista.add(otraPosicionDeLaPista1);
 		posicionesDeLaPista.add(otraPosicionDeLaPista2);
 		posicionesDeLaPista.add(ultimaPosicionDeLaPista);
@@ -229,7 +260,9 @@ public void testLlegadaDeUnAvionHelicopteroALaPistaSimpleEnUnaDireccionQueNoEsLa
 		ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 		Helicoptero helicoptero = new Helicoptero(velocidadDelAvion,dimension,unPlano);
 		
-		helicoptero.moverse();
+		this.moverAvion(helicoptero, posicion3);
+		this.moverAvion(helicoptero, posicion1);
+	
 		
 		/*creo las posiciones de la pista*/
 		Posicion posicionDeEntrada = new Posicion(1,1);
@@ -259,7 +292,7 @@ public void testLlegadaDeUnAvionHelicopteroALaPistaSimpleEnUnaPosicionQueNoEsLaD
 	ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 	Helicoptero helicoptero = new Helicoptero(velocidadDelAvion,dimension,unPlano);
 	
-	helicoptero.moverse();
+	this.moverAvion(helicoptero, posicion2);
 	
 	/*creo las posiciones de la pista*/
 	Posicion posicionDeEntrada = new Posicion(1,2);
@@ -290,17 +323,17 @@ public void testLlegadaDeUnAvionPesadoALaPistaSimpleEnUnaPosicionQueEsLaDeEntrad
 	ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 	AvionPesado avion = new AvionPesado(velocidadDelAvion,dimension,unPlano);
 
-	avion.moverse();
+	this.moverAvion(avion, posicion1);
+	this.moverAvion(avion, posicion2);
 
 	/*creo las posiciones de la pista*/
-	Posicion posicionDeEntrada = new Posicion(1,1);
-	Posicion otraPosicionDeLaPista = new Posicion(2,2);
+
+	Posicion posicionDeEntrada = new Posicion(2,2);
 	Posicion otraPosicionDeLaPista1 = new Posicion(3,3);
 	Posicion otraPosicionDeLaPista2 = new Posicion(4,4);
 	Posicion ultimaPosicionDeLaPista = new Posicion(5,5);
 
 	posicionesDeLaPista.add(posicionDeEntrada);
-	posicionesDeLaPista.add(otraPosicionDeLaPista);
 	posicionesDeLaPista.add(otraPosicionDeLaPista1);
 	posicionesDeLaPista.add(otraPosicionDeLaPista2);
 	posicionesDeLaPista.add(ultimaPosicionDeLaPista);
@@ -320,7 +353,8 @@ public void testLlegadaDeUnAvionPesadoALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 	ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 	AvionPesado avion = new AvionPesado(velocidadDelAvion,dimension,unPlano);
 	
-	avion.moverse();
+	this.moverAvion(avion, posicion3);
+	this.moverAvion(avion, posicion1);
 	
 	/*creo las posiciones de la pista*/
 	Posicion posicionDeEntrada = new Posicion(1,1);
@@ -350,7 +384,7 @@ public void testLlegadaDeUnAvionPesadoALaPistaSimpleEnUnaPosicionQueNoEsLaDeEntr
 	ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 	AvionPesado avion = new AvionPesado(velocidadDelAvion,dimension,unPlano);
 	
-	avion.moverse();
+	this.moverAvion(avion, posicion2);
 	
 	/*creo las posiciones de la pista*/
 	Posicion posicionDeEntrada = new Posicion(1,2);
