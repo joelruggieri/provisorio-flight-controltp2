@@ -49,6 +49,11 @@ public class Trayectoria {
 	}
 	
 	private Posicion canonizarDireccion (Posicion posicion){
+		/* Convierte la posicion que fue pasada por parametro a otra posicion donde
+		 * sus componentes son solo ceros, unos o unos negativos.
+		 * pre: posicion debe ser una Posicion
+		 * post: devuelve una posicion canonizada.
+		 */
 		
 		int x = posicion.getPosicionX();
 		int y = posicion.getPosicionY();
