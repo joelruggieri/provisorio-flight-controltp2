@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class PistaDobleEntradaTest extends TestCase {
 	
+		
 	public void testConstructorDeUnaPistaDobleEntradaLasPosicionesDeLaPistaDeberianEstarOcupadasPorEsta() throws PosicionFueraDeLasDimensionesEstablecidasException{
 	
 		//arrange
@@ -15,12 +16,15 @@ public class PistaDobleEntradaTest extends TestCase {
 			/*creo las posiciones de la pista*/
 			Posicion posicionDeEntrada = new Posicion(4,1);
 			Posicion otraPosicionDeLaPista = new Posicion(3,2);
+			
 		
 		//act
 			posicionesDeLaPista.add(posicionDeEntrada);
 			posicionesDeLaPista.add(otraPosicionDeLaPista);
 			
 			PistaDobleEntrada pista = new PistaDobleEntrada(unPlano,posicionesDeLaPista);
+			
+			
 		//assert	
 			assertEquals(unPlano.getPosicion(posicionDeEntrada),"pista");
 			assertEquals(unPlano.getPosicion(otraPosicionDeLaPista),"pista");
@@ -61,6 +65,8 @@ public class PistaDobleEntradaTest extends TestCase {
 			AvionSimple simple = new AvionSimple(velocidad,dimension,unPlano);
 		
 			ArrayList<Posicion> unaTrayectoria = new ArrayList<Posicion>();
+			
+			simple.setPosicion (new Posicion (0,0));
 			
 			//simple.moverse();
 	
@@ -128,6 +134,8 @@ public class PistaDobleEntradaTest extends TestCase {
 			Escenario unPlano = new Escenario(dimension);
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 			AvionSimple avion = new AvionSimple(velocidadDelAvion,dimension,unPlano);
+			
+			avion.setPosicion (new Posicion (0,0));
 		
 		//act
 			avion.moverse();
@@ -189,7 +197,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaPosicionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-			int velocidadDelAvion = 1;
+			int velocidadDelAvion = 2;
 			int dimension = 7;
 			Escenario unPlano = new Escenario(dimension);
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
@@ -229,7 +237,9 @@ public class PistaDobleEntradaTest extends TestCase {
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
 			Helicoptero helicoptero = new Helicoptero(velocidadDelAvion,dimension,unPlano);
 			ArrayList<Posicion> unaTrayectoria = new ArrayList<Posicion>();
-		
+			
+			helicoptero.setPosicion (new Posicion (0,0));
+						
 			/*creo las posiciones de la pista*/
 			Posicion posicionDeEntrada = new Posicion(1,1);
 			Posicion otraPosicionDeLaPista = new Posicion(2,2);
@@ -395,7 +405,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionPesadoALaPistaDobleEntradaeEnUnaPosicionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-			int velocidadDelAvion = 1;
+			int velocidadDelAvion = 2;
 			int dimension = 7;
 			Escenario unPlano = new Escenario(dimension);
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();

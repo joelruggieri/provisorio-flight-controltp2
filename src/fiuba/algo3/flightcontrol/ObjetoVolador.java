@@ -1,7 +1,8 @@
 package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class ObjetoVolador {
+public abstract class ObjetoVolador {
 	
 	private int velocidad;
 	protected Posicion posicionActual;
@@ -14,21 +15,41 @@ public class ObjetoVolador {
 	
 	public ObjetoVolador(int velocidad, int limite, Escenario unPlano){
 		/* Constructor del Objeto volador */
-		
-		int valorDeSalidaX = 0;
-		int valorDeSalidaY = 0;
-		//ArrayList<Posicion> trayectoriaVacia = new ArrayList<Posicion>();
-		
+				
 		this.plano = unPlano;
-		this.posicionActual = new Posicion(valorDeSalidaX, valorDeSalidaY);
-		
+		this.posicionActual = this.generarPosicionDeSalidaAleatoria(limite-1);
+		//this.posicionActual = new Posicion (0,0);
 		this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
 		
 		this.direccion = new Posicion (1,1);
 		this.aterrizado = false;
-		//this.trayectoria = new Trayectoria(trayectoriaVacia);
+		
 		this.velocidad = velocidad;
 		
+	}
+	
+	private Posicion generarPosicionDeSalidaAleatoria (int limite){
+		/* Genera una posicion random de salida de un avion */
+		/* pre: el limite debe ser un entero, que represente el limte del juego */
+		/* post: devolvio la posicion de salida random */
+		
+		Random generadorDeRandoms = new Random ();
+		
+		int pared = generadorDeRandoms.nextInt (2)*(limite);
+		int borde = generadorDeRandoms.nextInt (2);
+		int valorDeSalidaX = 0;
+		int valorDeSalidaY = 0;
+				
+		
+		if (borde == 0){
+			valorDeSalidaX = pared;
+			valorDeSalidaY = generadorDeRandoms.nextInt (limite);
+		}else{
+			valorDeSalidaX = generadorDeRandoms.nextInt (limite);;
+			valorDeSalidaY = pared;
+		}
+		
+		return (new Posicion (valorDeSalidaX,valorDeSalidaY));
 	}
 	
 	public void crearTrayectoria(ArrayList<Posicion> unaTrayectoriaNueva){
@@ -64,14 +85,14 @@ public class ObjetoVolador {
 	public void moverse(){
 		/* Mueve al avion siguiendo su trayectoria */
 		
-		Posicion siguientePosicion = this.posicionActual;
+		Posicion siguientePosicion;
 		boolean tocaUnBorde;
+		
+		siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
 		
 		for (int i=0; i < this.velocidad; i++){
 						
-			this.actualizarDireccion (this.trayectoria.getVectorDirector(siguientePosicion));
-			
-			siguientePosicion = this.trayectoria.getProximaPosicion(siguientePosicion);
+			this.actualizarDireccion (this.trayectoria.getVectorDirector(posicionActual));
 			
 			//Validar bordes.
 			tocaUnBorde = this.validarBordes (siguientePosicion);
@@ -80,9 +101,9 @@ public class ObjetoVolador {
 				this.invertirTrayectoria(siguientePosicion);
 			}
 			
+			this.posicionActual = siguientePosicion;
+			
 		}
-		
-		this.posicionActual = siguientePosicion;
 		
 	}
 	
@@ -136,6 +157,11 @@ public class ObjetoVolador {
 		if (unaDireccion != null){
 			this.direccion = unaDireccion;
 		}
+	}
+	
+	public void setPosicion (Posicion posicionNueva){
+		
+		this.posicionActual = posicionNueva;
 	}
 }
 	
