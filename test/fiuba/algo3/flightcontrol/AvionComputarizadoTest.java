@@ -24,7 +24,7 @@ public class AvionComputarizadoTest extends TestCase {
 		/* pre: Se debe ingresar el avion a mover y una posicion */
 		/* post: El avion se movio */
 		
-		while (!unAvion.getPosicion().equals(destino)){
+		while (!unAvion.getPosicion().equals(destino) || unAvion.hayTrayectoria()){
 			unAvion.moverse();
 		}
 	}
@@ -62,8 +62,6 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 			this.moverAvion(unAvionComputarizado,destino);
-			unAvionComputarizado.moverse();
-			unAvionComputarizado.moverse();
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -144,8 +142,6 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 			this.moverAvion(unAvionComputarizado,destino);
-			unAvionComputarizado.moverse();
-			unAvionComputarizado.moverse();
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -186,9 +182,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 			this.moverAvion(unAvionComputarizado,destino);
-			unAvionComputarizado.moverse();
-			unAvionComputarizado.moverse();
-			
+
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
 		//assert
