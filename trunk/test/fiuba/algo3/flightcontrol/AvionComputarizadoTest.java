@@ -19,12 +19,12 @@ public class AvionComputarizadoTest extends TestCase {
 		
 	}
 	
-	private void moverAvion (ObjetoVolador unAvion, Posicion destino){
+	private void moverAvion (ObjetoVolador unAvion){
 		/* Mueve un avion hasta el destino */
 		/* pre: Se debe ingresar el avion a mover y una posicion */
 		/* post: El avion se movio */
 		
-		while (!unAvion.getPosicion().equals(destino) || unAvion.hayTrayectoria()){
+		while ( unAvion.hayTrayectoria()){
 			unAvion.moverse();
 		}
 	}
@@ -41,7 +41,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -61,7 +61,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -81,7 +81,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -101,7 +101,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -121,7 +121,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -141,7 +141,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -161,7 +161,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 			
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
@@ -181,7 +181,7 @@ public class AvionComputarizadoTest extends TestCase {
 			unAvionComputarizado = new AvionComputarizado (velocidad,limite,escenario, unaPista);
 			
 		//act
-			this.moverAvion(unAvionComputarizado,destino);
+			this.moverAvion(unAvionComputarizado);
 
 			unaPista.llegadaDeAvionComputarizado(unAvionComputarizado);
 			
