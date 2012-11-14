@@ -20,6 +20,14 @@ public abstract class Pista{
 		}
 	}
 	
+	public Posicion direccionDeEntrada(){
+		
+		return this.direccionesDeIngreso.get(0);
+	}
+	
+	public Posicion posicionDeEntrada(){
+		return this.posiciones.get(0);
+	}
 	
 	abstract public void llegadaDeAvionSimple(AvionSimple simple);
 	
