@@ -82,30 +82,30 @@ public abstract class ObjetoVolador {
 		
 	}
 		
-	public void moverse(){
-		/* Mueve al avion siguiendo su trayectoria */
-		
-		Posicion siguientePosicion;
-		boolean tocaUnBorde;
-		
-		siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
-		
-		for (int i=0; i < this.velocidad; i++){
-						
-			this.actualizarDireccion (this.trayectoria.getVectorDirector(posicionActual));
-			
-			//Validar bordes.
-			tocaUnBorde = this.validarBordes (siguientePosicion);
-			
-			if (tocaUnBorde){
-				this.invertirTrayectoria(siguientePosicion);
-			}
-			
-			this.posicionActual = siguientePosicion;
-			
-		}
-		
-	}
+	 public void moverse(){
+		 /* Mueve al avion siguiendo su trayectoria */
+		 
+		 Posicion siguientePosicion;
+		 boolean tocaUnBorde;
+		 
+		 siguientePosicion = this.trayectoria.getProximaPosicion(this.posicionActual);
+		 
+		 for (int i=0; i < this.velocidad; i++){
+		                                 
+		         this.actualizarDireccion (this.trayectoria.getVectorDirector(posicionActual));
+		         
+		         //Validar bordes.
+		         tocaUnBorde = this.validarBordes (siguientePosicion);
+		         
+		         if (tocaUnBorde){
+		                 this.invertirTrayectoria(siguientePosicion);
+		         }
+		         
+		         this.posicionActual = siguientePosicion;
+		         
+		 }
+         
+	 }
 	
 	public boolean aterrizo(){
 		/* Devuelve si el avion aterrizo o no */
