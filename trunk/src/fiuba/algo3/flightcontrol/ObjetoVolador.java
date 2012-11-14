@@ -1,32 +1,53 @@
 package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class ObjetoVolador { //LE SAQUE EL ABSTRACT PARA PROBAR ALGO
+public abstract class ObjetoVolador {
 	
-	private int velocidad; //buscar para hacerlo atributo de clase
-	protected Posicion posicionActual;//borre su set - Gonzalo
+	private int velocidad;
+	protected Posicion posicionActual;
 	protected boolean aterrizado; 
-	protected Posicion direccion; //borre su set - Gonzalo
+	protected Posicion direccion;
 	protected Trayectoria trayectoria;
 	protected Escenario plano;
 	protected ArrayList<Posicion> listaDePosiciones;
 	
 	
-	public ObjetoVolador(int velocidad, int limite, Escenario unPlano){
-		/* Constructor del Objeto volador */
+	private Posicion generarPosicionDeSalidaAleatoria (int limite){
+		/* Genera una posicion random de salida de un avion */
+		/* pre: el limite debe ser un entero, que represente el limte del juego */
+		/* post: devolvio la posicion de salida random */
 		
+		Random generadorDeRandoms = new Random ();
+				
+		int pared = generadorDeRandoms.nextInt (2)*(limite-1);
+		int borde = generadorDeRandoms.nextInt (2);
 		int valorDeSalidaX = 0;
 		int valorDeSalidaY = 0;
-		//ArrayList<Posicion> trayectoriaVacia = new ArrayList<Posicion>();
+				
 		
+		if (borde == 0){
+			valorDeSalidaX = pared;
+			valorDeSalidaY = generadorDeRandoms.nextInt (limite);
+		}else{
+			valorDeSalidaX = generadorDeRandoms.nextInt (limite);;
+			valorDeSalidaY = pared;
+		}
+		
+		return (new Posicion (valorDeSalidaX,valorDeSalidaY));
+	}
+	
+	public ObjetoVolador(int velocidad, int limite, Escenario unPlano){
+		/* Constructor del Objeto volador */
+				
 		this.plano = unPlano;
-		this.posicionActual = new Posicion(valorDeSalidaX, valorDeSalidaY);
-		
+		this.posicionActual = this.generarPosicionDeSalidaAleatoria(limite);
+		//this.posicionActual = new Posicion (0,0);
 		this.plano.posicionOcupadaPor(posicionActual, "objetoVolador");
 		
 		this.direccion = new Posicion (1,1);
 		this.aterrizado = false;
-		//this.trayectoria = new Trayectoria(trayectoriaVacia);
+		
 		this.velocidad = velocidad;
 		
 	}
