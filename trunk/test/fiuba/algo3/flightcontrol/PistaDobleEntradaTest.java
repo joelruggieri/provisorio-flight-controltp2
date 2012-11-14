@@ -197,7 +197,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaPosicionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-			int velocidadDelAvion = 2;
+			int velocidadDelAvion = 1;
 			int dimension = 7;
 			Escenario unPlano = new Escenario(dimension);
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
@@ -405,7 +405,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionPesadoALaPistaDobleEntradaeEnUnaPosicionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-			int velocidadDelAvion = 2;
+			int velocidadDelAvion = 1;
 			int dimension = 7;
 			Escenario unPlano = new Escenario(dimension);
 			ArrayList<Posicion> posicionesDeLaPista = new ArrayList<Posicion>();
