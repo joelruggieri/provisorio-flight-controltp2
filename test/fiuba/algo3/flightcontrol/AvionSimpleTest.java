@@ -16,12 +16,11 @@ public class AvionSimpleTest extends TestCase {
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		nivel = 25;
+		nivel = 1;
 		limite = 768;
 		plano = new Escenario (limite);
 		unAvion = new AvionSimple (nivel,plano);
 		listaDePuntos = new ArrayList<Vector>();
-		
 		
 	}
 	
@@ -377,5 +376,93 @@ public class AvionSimpleTest extends TestCase {
 		//assert
 		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
+	}
+	
+	public void testVolarRecorriendoUnaTrayectoriaDeberiaObtenerTodosLosPuntosCorrectamente (){
+		
+		//arrange
+		boolean pasoCorrecto = true;
+		
+		Vector direccion, proximoPaso, actual, inicio, intermedio1, intermedio2;
+		Trayectoria otraTrayectoria;
+		List <Vector> otrosPuntos = new ArrayList <Vector>();
+		
+		inicio = new Vector (0,0);
+		intermedio1 = new Vector (7,5);
+		intermedio2 = new Vector (4,7);
+		destino = new Vector (2,5);
+				
+		otrosPuntos.add(intermedio1);
+		otrosPuntos.add(intermedio2);
+		otrosPuntos.add(destino);
+		
+		otraTrayectoria = new Trayectoria (otrosPuntos);
+		
+		//act
+		
+		//Primero se lleva al avion al (0,0)
+		
+		this.moverAvion(unAvion, inicio);
+		
+		//Se ingresa la trayectoria que se desea testear
+		
+		unAvion.setTrayectoria(otraTrayectoria);
+		proximoPaso = new Vector (1,1);
+		
+		//Primero se mueve diagonalmente
+		
+		direccion = new Vector (1,1);
+		actual = unAvion.getPosicion();
+		
+		while (pasoCorrecto){
+						
+			proximoPaso = actual.sumar(direccion);
+			unAvion.mover();
+			actual = unAvion.getPosicion();
+			pasoCorrecto = actual.equals(proximoPaso);
+		}
+		
+		//Luego se mueve en linea recta
+		
+		direccion = new Vector (1,0);
+		pasoCorrecto = true;
+		
+		while (pasoCorrecto){
+			
+			proximoPaso = actual.sumar(direccion);
+			unAvion.mover();
+			actual = unAvion.getPosicion();
+			pasoCorrecto = actual.equals(proximoPaso);
+		}
+		
+		//Luego se mueve en diagonal, hasta el intermedio2
+		
+		direccion = new Vector (-1,1);
+		pasoCorrecto = true;
+		
+		while (pasoCorrecto){
+			
+			proximoPaso = actual.sumar(direccion);
+			unAvion.mover();
+			actual = unAvion.getPosicion();
+			pasoCorrecto = actual.equals(proximoPaso);
+		}
+		
+		
+		//Luego se mueve en diagonal hasta el destino
+		
+		direccion = new Vector (-1,-1);
+		pasoCorrecto = true;
+		
+		while (pasoCorrecto && ! proximoPaso.equals(destino)){
+			
+			proximoPaso = actual.sumar(direccion);
+			unAvion.mover();
+			actual = unAvion.getPosicion();
+			pasoCorrecto = actual.equals(proximoPaso);
+		}
+		
+		//assert
+		assertTrue (pasoCorrecto);
 	}
 }

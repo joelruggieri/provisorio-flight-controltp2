@@ -5,72 +5,46 @@ import java.util.List;
 
 public class TrayectoriaTest extends TestCase {
 	
-	private Vector actual,destino,proximoPaso;
+	private Vector destino, primerPunto, segundoPunto,proximaPosicion;
 	private List<Vector> puntos;
 	private Trayectoria trayectoria;
 	
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		actual = new Vector (1, 1);
 		puntos = new ArrayList<Vector>();
-	}
-	/*
-	public void testRecorrerLaTrayectoriaDeberiaObtenerTodosLosPuntosCorrectamente (){
-		
-		//arrange
-		destino = new Vector (7,5);
-		proximoPaso = new Vector (1,1);
-		Vector direccion;
-		boolean pasoCorrecto = true;
-	
-		//act
-		puntos.add(destino);
-		trayectoria = new Trayectoria (puntos);
-	
-		//Luego se mueve diagonalmente
-	
-		direccion = new Vector (1,1);
-			
-		while (pasoCorrecto){
-		
-			proximoPaso = trayectoria.getProximaPosicion();
-			actual = actual.sumar(direccion);
-			pasoCorrecto = actual.equals(proximoPaso);
-		}
-		
-		//Primero se mueve en linea recta
-		
-		direccion = new Vector (1,0);
-		actual = proximoPaso;
-		pasoCorrecto = actual.equals(proximoPaso);
-	
-		while (pasoCorrecto && ! proximoPaso.equals(destino)){
-		
-			proximoPaso = trayectoria.getProximaPosicion();
-			actual = actual.sumar(direccion);
-			pasoCorrecto = actual.equals(proximoPaso);
-		}
-			
-		//assert
-		assertTrue (pasoCorrecto);
+		primerPunto = new Vector (3,8);
+		segundoPunto = new Vector (7,9);
 	}
 	
-	public void testDespuesDeObtenerLaUltimaPosicionDeLaTrayectoriaDeberiaDevolverNull (){
+	public void testDeberiaDevolverLaProximaPosicionCorrectamente (){
 		
 		//arrange
-		destino = new Vector (2,2);
-		puntos.add(destino);
+		puntos.add(primerPunto);
+		puntos.add(segundoPunto);
 		trayectoria = new Trayectoria (puntos);
-	
-		//act
-		proximoPaso = trayectoria.getProximaPosicion();
-		proximoPaso = trayectoria.getProximaPosicion();
-	
-		//assert
-		assertTrue (proximoPaso == null);
 		
-	}*/
+		//act
+		proximaPosicion = trayectoria.getProximaPosicion();
+		
+		//assert
+		assertTrue (proximaPosicion.equals(primerPunto));
+	}
+	
+	public void testObtenerLaProximaPosicionDespuesDeBorrarDeberiaDevolverLaSegundaPosicionDeLaTrayectoria (){
+		
+		//arrange
+		puntos.add(primerPunto);
+		puntos.add(segundoPunto);
+		trayectoria = new Trayectoria (puntos);
+		
+		//act
+		trayectoria.borrarPosicion();
+		proximaPosicion = trayectoria.getProximaPosicion();
+		
+		//assert
+		assertTrue (proximaPosicion.equals(segundoPunto));
+	}
 	
 	public void testCuandoNoHayPuntosASeguirDeberiaDevolverQueNoHayTrayectoria (){
 		

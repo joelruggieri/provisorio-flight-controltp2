@@ -71,7 +71,6 @@ public abstract class ObjetoVolador {
 	public Vector getDireccion(){
 				
 		return this.direccion;
-		
 	}
 	
     public void mover(){
@@ -84,8 +83,9 @@ public abstract class ObjetoVolador {
 	    	contadorDeTurnos = 0;
 	        		    	
 	        Vector siguientePosicion = this.getProximaPosicion();
+	        //siguientePosicion.imprimir();
 	        this.actualizarDireccion (siguientePosicion);
-	        
+	        //this.getDireccion().imprimir();
 	        //Validar bordes.
 	        tocaUnBorde = this.validarBordes (siguientePosicion);
 	               
@@ -109,8 +109,6 @@ public abstract class ObjetoVolador {
 	
 	private boolean validarBordes (Vector posicion){
 		/* Devuelve si una posicion toca un borde o no */
-		/* pre: Se debe ingresar una posicion */
-		/* post: Devuelve un booleano */
 		
 		int x = posicion.getPosicionX();
 		int y = posicion.getPosicionY();
@@ -121,7 +119,9 @@ public abstract class ObjetoVolador {
 	}
 		
 	private void invertirTrayectoria (Vector posicionLimite){
-				
+		/* Invierte la trayectoria del objeto volador,
+		 * actualizando su direccion y su posicion */
+		
 		Vector nuevaDireccion;
 		int dimension = this.plano.getDimension();
 		
@@ -155,10 +155,8 @@ public abstract class ObjetoVolador {
 	private Vector getProximaPosicion(){
 			
 		Vector destino = this.trayectoria.getProximaPosicion();
-		Vector direccion = destino.restar(this.posicionActual);
-		direccion.canonizarPosicion();
-		Vector proximaPosicion = direccion.sumar (posicionActual);
-		
+		this.actualizarDireccion(destino);
+		Vector proximaPosicion = this.direccion.sumar (posicionActual);
 		return proximaPosicion;
 		
 	}
@@ -167,6 +165,6 @@ public abstract class ObjetoVolador {
 		
 		this.trayectoria = unaTrayectoria;
 	}
-	
+		
 }
 	
