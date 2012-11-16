@@ -1,12 +1,13 @@
 package fiuba.algo3.flightcontrol;
-import java.util.ArrayList;
+
+import java.util.List;
 
 public abstract class Pista{
 
-	protected ArrayList<Posicion> posiciones;
-	protected ArrayList<Posicion> direccionesDeIngreso;
+	protected List<Vector> posiciones;
+	protected List<Vector> direccionesDeIngreso;
 	
-	public Pista(Escenario unPlano, ArrayList<Posicion> unasEntradas){
+	public Pista(Escenario unPlano, List<Vector> unasEntradas){
 		/* Constructor de una pista */
 		
 		this.posiciones = unasEntradas;
@@ -14,26 +15,27 @@ public abstract class Pista{
 		int i = 0;
 		while( posiciones.size() > i ){
 			
-			unPlano.posicionOcupadaPor(posiciones.get(i), "pista");
+			unPlano.ocuparPosicion (posiciones.get(i), "pista");
 			i++;
 			
 		}
 	}
 	
-	public Posicion direccionDeEntrada(){
+	public Vector getDireccionDeEntrada(){
 		
 		return this.direccionesDeIngreso.get(0);
 	}
 	
-	public Posicion posicionDeEntrada(){
+	public Vector getPosicionDeEntrada(){
+		
 		return this.posiciones.get(0);
 	}
 	
-	abstract public void llegadaDeAvionSimple(AvionSimple simple);
+	abstract public void recibirAterrizajeDeAvionSimple (AvionSimple simple);
 	
-	abstract public void llegadaDeAvionHelicoptero(Helicoptero helicoptero);
+	abstract public void recibirAterrizajeDeHelicoptero(Helicoptero helicoptero);
 	
-	abstract public void llegadaDeAvionComputarizado(AvionComputarizado computarizado);
+	abstract public void recibirAterrizajeDeAvionComputarizado(AvionComputarizado computarizado);
 	
-	abstract public void llegadaDeAvionPesado(AvionPesado pesado);
+	abstract public void recibirAterrizajeDeAvionPesado (AvionPesado pesado);
 }
