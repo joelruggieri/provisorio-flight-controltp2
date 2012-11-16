@@ -1,59 +1,63 @@
 package fiuba.algo3.flightcontrol;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class PistaLarga extends Pista {
 	
-	public PistaLarga(Escenario unPlano, ArrayList<Posicion> unasEntradas){
-		/* Constructor de una pista Simple */
-		
+	public PistaLarga(Escenario unPlano, List<Vector> unasEntradas){
+				
 		super(unPlano,unasEntradas);
 		
-		/*tomamos los dos extremos de la pista para conocer la direccion en que deben entrar los
+		/* Se toman los dos extremos de la pista para conocer la direccion en que deben entrar los
 		 * objetos voladores por el extremo de entrada*/
 
-		Posicion segundoExtremo = (this.posiciones).get((this.posiciones.size())-1);
-		Posicion extremoDeEntrada = (this.posiciones).get(0);
+		Vector segundoExtremo = (this.posiciones).get((this.posiciones.size())-1);
+		Vector extremoDeEntrada = (this.posiciones).get(0);
 		
-		Posicion direccionDeEntrada = segundoExtremo.restar(extremoDeEntrada);
+		Vector direccionDeEntrada = segundoExtremo.restar(extremoDeEntrada);
 		direccionDeEntrada.canonizarPosicion();
 		
-		this.direccionesDeIngreso = new ArrayList<Posicion>();
+		this.direccionesDeIngreso = new ArrayList <Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
 
 	}
 	
-	public Posicion direccionDeEntrada(){
+	public Vector getDireccionDeEntrada(){
 		
 		return this.direccionesDeIngreso.get(0);
 	}
 	
-	public Posicion posicionDeEntrada(){
+	public Vector getPosicionDeEntrada(){
+		
 		return this.posiciones.get(0);
 	}
 	
-	public void llegadaDeAvionSimple(AvionSimple simple){
-		if(simple.getPosicion().equals(this.posicionDeEntrada()) && simple.getDireccion().equals(this.direccionDeEntrada())){
+	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
+		
+		if(simple.getPosicion().equals(this.getPosicionDeEntrada()) && simple.getDireccion().equals(this.getDireccionDeEntrada())){
 			simple.aterrizar();
 		}
 		
 	}
 	
-	public void llegadaDeAvionHelicoptero(Helicoptero helicoptero){
-		if(helicoptero.getPosicion().equals(this.posicionDeEntrada()) && helicoptero.getDireccion().equals(this.direccionDeEntrada())){
+	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
+		
+		if(helicoptero.getPosicion().equals(this.getPosicionDeEntrada()) && helicoptero.getDireccion().equals(this.getDireccionDeEntrada())){
 			helicoptero.aterrizar();
 		}
 	}
 	
-	public void llegadaDeAvionComputarizado(AvionComputarizado computarizado){
-		if(computarizado.getPosicion().equals(this.posicionDeEntrada()) && computarizado.getDireccion().equals(this.direccionDeEntrada())){
+	public void recibirAterrizajeDeAvionComputarizado (AvionComputarizado computarizado){
+		
+		if(computarizado.getPosicion().equals(this.getPosicionDeEntrada()) && computarizado.getDireccion().equals(this.getDireccionDeEntrada())){
 			computarizado.aterrizar();
 		}
 		
 	}
 	
-	public void llegadaDeAvionPesado(AvionPesado pesado){
-		if(pesado.getPosicion().equals(this.posicionDeEntrada()) && pesado.getDireccion().equals(this.direccionDeEntrada())){
+	public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
+		
+		if(pesado.getPosicion().equals(this.getPosicionDeEntrada()) && pesado.getDireccion().equals(this.getDireccionDeEntrada())){
 			pesado.aterrizar();
 		}
 		

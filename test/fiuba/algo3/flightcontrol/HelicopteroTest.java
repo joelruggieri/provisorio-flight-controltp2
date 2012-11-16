@@ -1,66 +1,70 @@
 package fiuba.algo3.flightcontrol;
 import junit.framework.TestCase;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HelicopteroTest extends TestCase {
-
-	public void testCrearUnHelicopteroDeberiaAparecerEnElEscenarioEnElLugarQueFueCreado() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	
+	private Helicoptero unHelicoptero;
+	private int nivel,limite;
+	private List<Vector> posicionesDestino;
+	private Trayectoria unaTrayectoria;
+	private Escenario unEscenario;
+	private Vector posicionActual;
+	
+	protected void setUp () throws Exception {
+		super.setUp();
+		
+		nivel = 1;
+		limite = 768;
+		unEscenario = new Escenario(limite);
+		unHelicoptero = new Helicoptero(nivel, unEscenario);
+		posicionActual = unHelicoptero.getPosicion();
+		posicionesDestino = new ArrayList<Vector>();
+		unaTrayectoria = new Trayectoria (posicionesDestino);
+		
+	}
+	
+	public void testCrearUnHelicopteroDeberiaAparecerEnElEscenarioEnElLugarQueFueCreado() 
+		throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		//arrange
-		int velocidad = 1;
-		int limite = 768;
 		
-		Escenario unEscenario = new Escenario(limite);
-		Helicoptero unHelicoptero = new Helicoptero(velocidad, limite, unEscenario);
-		
-		//act
-		Posicion posicionInicial = unHelicoptero.getPosicion();
+		//act	
+		Vector posicionActual = unHelicoptero.getPosicion();
 						
 		//assert
-		assertEquals(unEscenario.getPosicion(posicionInicial),"objetoVolador");	
+		assertEquals(unEscenario.getPosicion(posicionActual),"objetoVolador");	
 	}
 	
-	public void testCrearUnHelicopteroEnUnaPosicionYNoDarleUnaTrayectoriaDeberiaDejarloQuieto() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testCrearUnHelicopteroEnUnaVectorYNoDarleUnaTrayectoriaDeberiaDejarloQuieto() 
+		throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		//arrange
-		int velocidad = 1;
-		int limite = 768;
 		
-		Escenario unEscenario = new Escenario(limite);
-		Helicoptero unHelicoptero = new Helicoptero(velocidad, limite, unEscenario);
-		Posicion posicionInicial = unHelicoptero.getPosicion();
-			
 		//act
-		unHelicoptero.moverse();
+		unHelicoptero.mover();
 			
 		//assert	
-		assertEquals(unEscenario.getPosicion(posicionInicial),"objetoVolador");
+		assertEquals(unEscenario.getPosicion(posicionActual),"objetoVolador");
 	}
 	
-	public void testMoverUnHelicopteroPor2PuntosDeberiaTerminarEnElUltimoPuntoEnAlgunMomento() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testMoverUnHelicopteroPor2PuntosDeberiaTerminarEnElUltimoPuntoEnAlgunMomento() 
+		throws PosicionFueraDeLasDimensionesEstablecidasException{
 
-		//arrange
-		int velocidad = 1;
-		int limite = 768;
+		//arrange		
+		Vector primeraPosicion = posicionActual.sumar(new Vector(0,1));
+		Vector segundaPosicion = posicionActual.sumar(new Vector(0,2));
 		
-		Escenario unEscenario = new Escenario(limite);
-		Helicoptero unHelicoptero = new Helicoptero(velocidad, limite, unEscenario);
-		Posicion posicionActual = unHelicoptero.getPosicion();
-		
-		ArrayList<Posicion> posicionesDestino = new ArrayList<Posicion>();
-		
-		Posicion primerPosicion = posicionActual.sumar(new Posicion(0,1));
-		Posicion segundaPosicion = posicionActual.sumar(new Posicion(0,2));
-		
-		posicionesDestino.add(primerPosicion);
+		posicionesDestino.add(primeraPosicion);
 		posicionesDestino.add(segundaPosicion);
 		
-		unHelicoptero.crearTrayectoria(posicionesDestino);
+		unHelicoptero.setTrayectoria(unaTrayectoria);
 			
 		//act
-		unHelicoptero.moverse();
-		unHelicoptero.moverse();
+		unHelicoptero.mover();
+		unHelicoptero.mover();
 		
 		//assert
 		assertTrue(unHelicoptero.getPosicion().equals(segundaPosicion));

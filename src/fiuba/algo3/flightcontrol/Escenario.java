@@ -6,8 +6,7 @@ public class Escenario {
 	private int dimension;
 	
 	public Escenario( int limite ){
-		/* Constructor del plano del juego */
-		
+				
 		this.dimension = limite;
 		plano = new String [limite][limite];
 		for( int i = 0 ; i < limite ; i++ ){
@@ -18,8 +17,9 @@ public class Escenario {
 		
 	}
 	
-	public String getPosicion(Posicion unaPosicion) throws PosicionFueraDeLasDimensionesEstablecidasException{
-		/* Devuelve que hay en una Posicion pedida */
+	public String getPosicion(Vector unaPosicion) 
+	throws PosicionFueraDeLasDimensionesEstablecidasException{
+		
 		if((unaPosicion.getPosicionX() > (this.dimension-1)) || (unaPosicion.getPosicionY() > (this.dimension-1))){
 			throw new PosicionFueraDeLasDimensionesEstablecidasException();
 		}
@@ -28,7 +28,7 @@ public class Escenario {
 		
 	}
 	
-	public void posicionQuedaVacio(Posicion unaPosicion){
+	public void setPosicionVacia(Vector unaPosicion){
 		/* Establece que una posicion ya no tiene nada */
 		/* pre: posicion debe estar ocupada */
 		/* post: posicion queda vacia */
@@ -37,7 +37,7 @@ public class Escenario {
 		
 	}
 	
-	public void posicionOcupadaPor(Posicion unaPosicion,String unObjeto){
+	public void ocuparPosicion (Vector unaPosicion,String unObjeto){
 		/* Establece que ahora la posicion esta ocupada por un objeto */
 		/* pre: la posicion debe estar vacia */
 		/* post: la posicion queda ocupada por un objeto */

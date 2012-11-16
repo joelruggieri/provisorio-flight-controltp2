@@ -1,24 +1,25 @@
 package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AvionComputarizado extends ObjetoVolador {
 	
-	public AvionComputarizado(int velocidadInicial, int limite, Escenario unPlano, Pista unaPista){
-		/* Constructor de una avion Computarizado*/
-
-		super (velocidadInicial, limite, unPlano);
-		this.crearTrayectoria(calcularTrayectoriaHaciaUnaPista(unaPista));
+	public AvionComputarizado(int nivel, Escenario unPlano, Pista unaPista){
+		
+		super (nivel, unPlano);
+		listaDePosiciones = this.calcularTrayectoriaHaciaUnaPista(unaPista);
+		this.trayectoria = new Trayectoria (listaDePosiciones);
 	}
 
-	private ArrayList<Posicion> calcularTrayectoriaHaciaUnaPista(Pista unaPista){
+	private List <Vector> calcularTrayectoriaHaciaUnaPista(Pista unaPista){
 		/* Determina una trayectoria de menor distancia hacia una pista */
 		
-		ArrayList<Posicion> trayectoriaDefinida = new ArrayList<Posicion>();
+		List <Vector> trayectoriaDefinida = new ArrayList <Vector>();
 		
-		Posicion posicionPreAterrizaje = ( unaPista.posicionDeEntrada().restar(unaPista.direccionDeEntrada()) );
+		Vector posicionPreAterrizaje = ( unaPista.getPosicionDeEntrada().restar(unaPista.getDireccionDeEntrada()) );
 				
 		trayectoriaDefinida.add(posicionPreAterrizaje);
-		trayectoriaDefinida.add(unaPista.posicionDeEntrada());
+		trayectoriaDefinida.add(unaPista.getPosicionDeEntrada());
 		
 		return trayectoriaDefinida;
 	}

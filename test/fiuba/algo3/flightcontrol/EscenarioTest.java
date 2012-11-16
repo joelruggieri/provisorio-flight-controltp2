@@ -21,23 +21,23 @@ public class EscenarioTest extends TestCase {
 		
 		int x = 0;
 		int y = 0;
-		Posicion posicion1 = new Posicion (x,y);
-		String valor1 = unEscenario.getPosicion(posicion1);
+		Vector Vector1 = new Vector (x,y);
+		String valor1 = unEscenario.getPosicion(Vector1);
 
 		 x = 1;
 		 y = 0;
-		Posicion posicion2 = new Posicion (x,y);
-		String valor2 = unEscenario.getPosicion(posicion2);
+		Vector Vector2 = new Vector (x,y);
+		String valor2 = unEscenario.getPosicion(Vector2);
 		
 		x = 0;
 		y = 1;
-		Posicion posicion3 = new Posicion (x,y);
-		String valor3 = unEscenario.getPosicion(posicion3);
+		Vector Vector3 = new Vector (x,y);
+		String valor3 = unEscenario.getPosicion(Vector3);
 		
 		x = 1;
 		y = 1;
-		Posicion posicion4 = new Posicion (x,y);
-		String valor4 = unEscenario.getPosicion(posicion4);
+		Vector Vector4 = new Vector (x,y);
+		String valor4 = unEscenario.getPosicion(Vector4);
 		
 		
 		assertEquals(valor1 , "vacio");
@@ -50,7 +50,7 @@ public class EscenarioTest extends TestCase {
 	
 	
 	
-	public void testDevolverUnaPosicionFueraDelRangoDelPlanoDeberiaLanzarUnaExcepcion(){
+	public void testDevolverUnaVectorFueraDelRangoDelPlanoDeberiaLanzarUnaExcepcion(){
 		
 		int dimension = 25;
 		
@@ -58,10 +58,10 @@ public class EscenarioTest extends TestCase {
 		
 		int x = 30;
 		int y = 4;
-		Posicion unaPosicion = new Posicion(x,y);
+		Vector unaVector = new Vector(x,y);
 		
 		try{
-			unEscenario.getPosicion(unaPosicion);
+			unEscenario.getPosicion(unaVector);
 		
 		}catch(PosicionFueraDeLasDimensionesEstablecidasException excepcion){
 			
@@ -69,7 +69,7 @@ public class EscenarioTest extends TestCase {
 		
 	}
 	
-	public void testPosicionQuedaOcupadaPorAvionDichaPosicionDeberiaQuedarActualzadaConAvion() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testVectorQuedaOcupadaPorAvionDichaVectorDeberiaQuedarActualzadaConAvion() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 30;
 		
@@ -77,16 +77,16 @@ public class EscenarioTest extends TestCase {
 		
 		int coordenadaX = 4;
 		int coordenadaY = 6;
-		Posicion unaPosicion = new Posicion(coordenadaX, coordenadaY);
+		Vector unaVector = new Vector(coordenadaX, coordenadaY);
 		
 		String avion = "avion";
 		
-		unEscenario.posicionOcupadaPor(unaPosicion, avion);
+		unEscenario.ocuparPosicion(unaVector, avion);
 		
-		assertEquals(unEscenario.getPosicion(unaPosicion),avion);
+		assertEquals(unEscenario.getPosicion(unaVector),avion);
 	}
 	
-	public void testPosicionQuedaOcupadaPorUnaPistaDichaPosicionDeberiaQuedarActualzadaConUnaPista() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testVectorQuedaOcupadaPorUnaPistaDichaVectorDeberiaQuedarActualzadaConUnaPista() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 30;
 		
@@ -94,16 +94,16 @@ public class EscenarioTest extends TestCase {
 		
 		int coordenadaX = 4;
 		int coordenadaY = 6;
-		Posicion unaPosicion = new Posicion(coordenadaX, coordenadaY);
+		Vector unaVector = new Vector(coordenadaX, coordenadaY);
 		
 		String unaPista = "pista";
 		
-		unEscenario.posicionOcupadaPor(unaPosicion, unaPista);
+		unEscenario.ocuparPosicion(unaVector, unaPista);
 		
-		assertEquals(unEscenario.getPosicion(unaPosicion),unaPista);
+		assertEquals(unEscenario.getPosicion(unaVector),unaPista);
 	}
 	
-	public void testPosicionQuedaVaciaDeUnaPosicionOcupadaDeberiaQuedarEnEstadoVacia() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testVectorQuedaVaciaDeUnaVectorOcupadaDeberiaQuedarEnEstadoVacia() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 30;
 		
@@ -111,18 +111,18 @@ public class EscenarioTest extends TestCase {
 		
 		int coordenadaX = 4;
 		int coordenadaY = 6;
-		Posicion unaPosicion = new Posicion(coordenadaX, coordenadaY);
+		Vector unaVector = new Vector(coordenadaX, coordenadaY);
 		
 		String avion = "avion";
-		unEscenario.posicionOcupadaPor(unaPosicion, avion);
+		unEscenario.ocuparPosicion(unaVector, avion);
 		
-		unEscenario.posicionQuedaVacio(unaPosicion);
+		unEscenario.setPosicionVacia(unaVector);
 		
-		assertEquals(unEscenario.getPosicion(unaPosicion), "vacio");
+		assertEquals(unEscenario.getPosicion(unaVector), "vacio");
 		
 	}
 	
-	public void testPosicionQuedaOcupadaPorUnaPistaCuandoYaHabiaUnAvionAlliDeberiaQuedarOcupadaPorAmbasCosas() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testVectorQuedaOcupadaPorUnaPistaCuandoYaHabiaUnAvionAlliDeberiaQuedarOcupadaPorAmbasCosas() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 30;
 		
@@ -130,20 +130,20 @@ public class EscenarioTest extends TestCase {
 		
 		int coordenadaX = 4;
 		int coordenadaY = 6;
-		Posicion unaPosicion = new Posicion(coordenadaX, coordenadaY);
+		Vector unaVector = new Vector(coordenadaX, coordenadaY);
 		
 		String avion = "avion";
 		String pista = "pista";
-		unEscenario.posicionOcupadaPor(unaPosicion, avion);
+		unEscenario.ocuparPosicion(unaVector, avion);
 		
-		unEscenario.posicionOcupadaPor(unaPosicion, pista);
+		unEscenario.ocuparPosicion(unaVector, pista);
 		
-		assertEquals(unEscenario.getPosicion(unaPosicion), "avion y pista");
+		assertEquals(unEscenario.getPosicion(unaVector), "avion y pista");
 		
 	}
 	
 	
-	public void testPosicionQuedaOcupadaPorUnAvionCuandoYaHabiaUnaPistaAlliDeberiaQuedarOcupadaPorAmbasCosas() throws PosicionFueraDeLasDimensionesEstablecidasException{
+	public void testVectorQuedaOcupadaPorUnAvionCuandoYaHabiaUnaPistaAlliDeberiaQuedarOcupadaPorAmbasCosas() throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		int dimension = 30;
 		
@@ -151,22 +151,17 @@ public class EscenarioTest extends TestCase {
 		
 		int coordenadaX = 4;
 		int coordenadaY = 6;
-		Posicion unaPosicion = new Posicion(coordenadaX, coordenadaY);
+		Vector unaVector = new Vector(coordenadaX, coordenadaY);
 		
 		String pista = "pista";
 		String avion = "avion";
 		
-		unEscenario.posicionOcupadaPor(unaPosicion, pista);
+		unEscenario.ocuparPosicion(unaVector, pista);
 		
-		unEscenario.posicionOcupadaPor(unaPosicion, avion);
+		unEscenario.ocuparPosicion(unaVector, avion);
 		
-		assertEquals(unEscenario.getPosicion(unaPosicion), "avion y pista");
+		assertEquals(unEscenario.getPosicion(unaVector), "avion y pista");
 		
 	}
-	
-		
+			
 }
-	
-		
-		
-
