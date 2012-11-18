@@ -28,7 +28,7 @@ public class AvionComputarizadoTest extends TestCase {
 		/* post: El avion se movio */
 		
 		while ( unAvion.hayTrayectoria()){
-			unAvion.mover();
+			unAvion.vivir();
 		}
 	}
 	

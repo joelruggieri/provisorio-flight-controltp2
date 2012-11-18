@@ -18,7 +18,6 @@ public abstract class ObjetoVolador {
 		this.limite = unPlano.getDimension();
 		
 		this.posicionActual = this.generarPosicionDeSalidaAleatoria(limite-1);
-		//this.posicionActual = new Posicion (0,0);
 		this.plano.ocuparPosicion(posicionActual, "objetoVolador");
 		
 		this.direccion = new Vector (1,1);
@@ -29,9 +28,14 @@ public abstract class ObjetoVolador {
 		
 	}
 	
+	public void vivir (){
+		this.mover();
+	}
+	
 	private Vector generarPosicionDeSalidaAleatoria (int limite){
-		/* Genera una posicion random de salida de un avion */
-		
+		/* Genera una posicion random de salida de un avion. 
+		 * Esta posicion se da siempre en alguno de los cuatro bordes */
+				
 		Random generadorDeRandoms = new Random ();
 		
 		int pared = generadorDeRandoms.nextInt (2)*(limite);
@@ -73,7 +77,7 @@ public abstract class ObjetoVolador {
 		return this.direccion;
 	}
 	
-    public void mover(){
+    private void mover(){
         
     	boolean tocaUnBorde;
         contadorDeTurnos ++;
@@ -83,9 +87,8 @@ public abstract class ObjetoVolador {
 	    	contadorDeTurnos = 0;
 	        		    	
 	        Vector siguientePosicion = this.getProximaPosicion();
-	        //siguientePosicion.imprimir();
 	        this.actualizarDireccion (siguientePosicion);
-	        //this.getDireccion().imprimir();
+	        
 	        //Validar bordes.
 	        tocaUnBorde = this.validarBordes (siguientePosicion);
 	               

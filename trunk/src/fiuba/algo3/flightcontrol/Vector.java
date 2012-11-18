@@ -69,15 +69,7 @@ public class Vector {
 		
 	}
 
- /*
-	public void ActualizarCoordenadas(int valorX, int valorY){
-		// Se reescriben las coordenadas de la posicion 
-		// pre: se deben ingresar dos enteros 
-		// post: la posicion cambio sus valores 
-		
-		this.x= valorX;
-		this.y= valorY;
-	}*/
+
 	public Vector InvertirDireccion(){
 		/* Invierte la posicion del avion, causando un efecto rebote */
 		
@@ -85,32 +77,18 @@ public class Vector {
 		int nuevoY = this.getPosicionY() * (-1);
 		
 		return (new Vector(nuevoX,nuevoY));
-		
-	
 	}
 	
 	public void canonizarPosicion(){
 		 /*Convierte la posicion que fue pasada por parametro a otra posicion donde
 		 sus componentes son solo ceros, unos o unos negativos */
 		 		
-		
 		if(this.getPosicionX() != 0){
 			this.x = this.getPosicionX() / (Math.abs(getPosicionX()));
 		}
 		if (this.getPosicionY() != 0){
 			this.y = this.getPosicionY() / (Math.abs(getPosicionY()));
 		}
-	}
-	
-
-	public void imprimir (){
-
-		int x = this.x;
-		int y = this.y;
-		String mostrar = "(";
-		mostrar = mostrar + x + "," + y + ")";
-
-		System.out.println(mostrar);
 	}
 	
 }

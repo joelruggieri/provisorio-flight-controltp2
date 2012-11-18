@@ -35,10 +35,31 @@ public class AvionSimpleTest extends TestCase {
 		
 		
 		while (!unAvion.getPosicion().equals(destino)){
-		//	unAvion.getPosicion().imprimir();
-			unAvion.mover();
+		
+			unAvion.vivir();
 		}
 		
+	}
+	
+	public void testCrearAvionSeDeberiaCrearEnUnaPosicionLimite (){
+		
+		//arrante
+		Vector posicionDeSalida = unAvion.getPosicion();
+		int posX = posicionDeSalida.getPosicionX();
+		int posY = posicionDeSalida.getPosicionY();
+		
+		boolean estaEnElNorte, estaEnElSur, estaEnElEste, estaEnElOeste = false;
+		boolean estaEnUnBorde;
+		
+		//act
+		estaEnElNorte = (posX == 0);
+		estaEnElSur = (posX == limite-1);
+		estaEnElOeste = (posY == 0);
+		estaEnElEste = (posY == limite-1);
+		estaEnUnBorde = (estaEnElNorte || estaEnElSur || estaEnElOeste || estaEnElEste);
+		
+		//assert
+		assertTrue (estaEnUnBorde);
 	}
 
 	public void testMoverDeberiamoverALaPosicionIndicada (){
@@ -417,7 +438,7 @@ public class AvionSimpleTest extends TestCase {
 		while (pasoCorrecto){
 						
 			proximoPaso = actual.sumar(direccion);
-			unAvion.mover();
+			unAvion.vivir();
 			actual = unAvion.getPosicion();
 			pasoCorrecto = actual.equals(proximoPaso);
 		}
@@ -430,7 +451,7 @@ public class AvionSimpleTest extends TestCase {
 		while (pasoCorrecto){
 			
 			proximoPaso = actual.sumar(direccion);
-			unAvion.mover();
+			unAvion.vivir();
 			actual = unAvion.getPosicion();
 			pasoCorrecto = actual.equals(proximoPaso);
 		}
@@ -443,7 +464,7 @@ public class AvionSimpleTest extends TestCase {
 		while (pasoCorrecto){
 			
 			proximoPaso = actual.sumar(direccion);
-			unAvion.mover();
+			unAvion.vivir();
 			actual = unAvion.getPosicion();
 			pasoCorrecto = actual.equals(proximoPaso);
 		}
@@ -457,7 +478,7 @@ public class AvionSimpleTest extends TestCase {
 		while (pasoCorrecto && ! proximoPaso.equals(destino)){
 			
 			proximoPaso = actual.sumar(direccion);
-			unAvion.mover();
+			unAvion.vivir();
 			actual = unAvion.getPosicion();
 			pasoCorrecto = actual.equals(proximoPaso);
 		}

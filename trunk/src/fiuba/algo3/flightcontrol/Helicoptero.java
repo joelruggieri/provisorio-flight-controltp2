@@ -18,7 +18,7 @@ public class Helicoptero extends ObjetoVolador{
 		 * buscando el movimiento mas optimo posible */
 		
 		if (this.trayectoria.hayTrayectoria()){
-			super.mover();
+			super.vivir();
 		}
 		
 	}
