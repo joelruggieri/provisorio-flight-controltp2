@@ -29,7 +29,7 @@ public class AvionPesado extends ObjetoVolador {
 	
 		}
 		
-		super.mover();
+		super.vivir();
 	}
 
 }

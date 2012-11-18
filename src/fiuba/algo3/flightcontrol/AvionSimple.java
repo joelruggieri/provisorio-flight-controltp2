@@ -28,7 +28,7 @@ public class AvionSimple extends ObjetoVolador {
 	
 		}
 		
-		super.mover();
+		super.vivir();
 	}
 		
 }

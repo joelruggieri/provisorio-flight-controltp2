@@ -45,7 +45,7 @@ public class PistaSimpleTest extends TestCase {
 		unAvion.setTrayectoria(unaTrayectoria);
 		
 		while (!unAvion.getPosicion().equals(destino)){
-			unAvion.mover();
+			unAvion.vivir();
 		}
 		
 	}
