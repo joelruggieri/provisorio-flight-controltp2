@@ -19,7 +19,7 @@ public class PistaDobleEntrada extends Pista {
 		/* obtengo la otra direccion en la que pueden entrar los aviones por el otro extremo de la
 		 * pista*/
 		 
-		Vector otraDireccionDeEntrada = direccionDeEntrada.InvertirDireccion();
+		Vector otraDireccionDeEntrada = direccionDeEntrada.invertirDireccion();
 		
 		this.direccionesDeIngreso = new ArrayList<Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
@@ -30,14 +30,14 @@ public class PistaDobleEntrada extends Pista {
 
 	private boolean validarPrimeraEntradaYDireccion (ObjetoVolador avion){
 		
-		return (avion.getDireccion().equals(this.direccionesDeIngreso.get(0))) &&
-				(avion.getPosicion().equals(this.posiciones.get(0)));
+		return (avion.getDireccion().esIgual(this.direccionesDeIngreso.get(0))) &&
+				(avion.getPosicion().esIgual(this.posiciones.get(0)));
 	}
 	
 	private boolean validarSegundaEntradaYDireccion (ObjetoVolador avion){
 		
-		return (avion.getDireccion().equals(this.direccionesDeIngreso.get(1))) &&
-				(avion.getPosicion().equals(this.posiciones.get(posiciones.size()-1)));
+		return (avion.getDireccion().esIgual(this.direccionesDeIngreso.get(1))) &&
+				(avion.getPosicion().esIgual(this.posiciones.get(posiciones.size()-1)));
 	}
 	
 	public boolean validarEntradaYDireccion (ObjetoVolador avion){
@@ -62,7 +62,7 @@ public class PistaDobleEntrada extends Pista {
 		
 	}
 	
-	public void recibirAterrizajeDeAvionComputarizado (AvionComputarizado computarizado){
+	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
 		
 		if(this.validarEntradaYDireccion(computarizado)){
 			computarizado.aterrizar();

@@ -4,21 +4,27 @@ import java.util.List;
 
 public class AvionComputarizado extends ObjetoVolador {
 	
-	public AvionComputarizado(int nivel, Escenario unPlano, Pista unaPista){
+	public AvionComputarizado(int nivel, Escenario plano, Pista pista) {
 		
-		super (nivel, unPlano);
-		listaDePosiciones = this.calcularTrayectoriaHaciaUnaPista(unaPista);
-		this.trayectoria = new Trayectoria (listaDePosiciones);
+		super(nivel, plano);
+		List<Vector> listaDePuntos;
+		listaDePuntos = calcularTrayectoriaHaciaUnaPista(pista);
+		this.setTrayectoria(new Trayectoria(listaDePuntos));
 	}
 
-	private List <Vector> calcularTrayectoriaHaciaUnaPista(Pista unaPista){
-		/* Determina una trayectoria de menor distancia hacia una pista */
+	private List<Vector> calcularTrayectoriaHaciaUnaPista(Pista unaPista) {
+		/* Determina una trayectoria de menor 
+		 * distancia hacia una pista */
 		
-		List <Vector> trayectoriaDefinida = new ArrayList <Vector>();
+		List<Vector> trayectoriaDefinida = new ArrayList<Vector>();
 		
-		Vector posicionPreAterrizaje = ( unaPista.getPosicionDeEntrada().restar(unaPista.getDireccionDeEntrada()) );
+		Vector posicionDeEntrada = unaPista.getPosicionDeEntrada();
+		Vector direccionDeEntrada = unaPista.getDireccionDeEntrada();
+		
+		Vector posPreAterrizaje;
+		posPreAterrizaje = posicionDeEntrada.restar(direccionDeEntrada);
 				
-		trayectoriaDefinida.add(posicionPreAterrizaje);
+		trayectoriaDefinida.add(posPreAterrizaje);
 		trayectoriaDefinida.add(unaPista.getPosicionDeEntrada());
 		
 		return trayectoriaDefinida;

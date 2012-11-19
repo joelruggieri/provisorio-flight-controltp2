@@ -67,7 +67,7 @@ public class HelicopteroTest extends TestCase {
 		unHelicoptero.mover();
 		
 		//assert
-		assertTrue(unHelicoptero.getPosicion().equals(segundaPosicion));
+		assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));
 	}
 	
 }

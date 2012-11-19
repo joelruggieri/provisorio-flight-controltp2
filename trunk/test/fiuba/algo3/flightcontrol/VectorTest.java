@@ -35,7 +35,7 @@ public class VectorTest extends TestCase {
 		Vector Vector = new Vector (1,2);
 	
 		//act
-		sonIguales = unaPosicion.equals(Vector);
+		sonIguales = unaPosicion.esIgual(Vector);
 	
 		//assert
 		assertTrue (sonIguales);
@@ -48,7 +48,7 @@ public class VectorTest extends TestCase {
 		boolean sonIguales;
 	
 		//act
-		sonIguales = unaPosicion.equals(otraPosicion);
+		sonIguales = unaPosicion.esIgual(otraPosicion);
 	
 		//assert
 		assertFalse (sonIguales);
@@ -65,7 +65,7 @@ public class VectorTest extends TestCase {
 		suma = unaPosicion.sumar (otraPosicion);
 	
 		//assert
-		assertTrue (suma.equals(adicion));
+		assertTrue (suma.esIgual(adicion));
 		
 	}
 	
@@ -79,7 +79,7 @@ public class VectorTest extends TestCase {
 		resta = unaPosicion.restar (otraPosicion);
 	
 		//assert
-		assertTrue (resta.equals(sustraccion));
+		assertTrue (resta.esIgual(sustraccion));
 
 	}
 	
@@ -94,7 +94,7 @@ public class VectorTest extends TestCase {
 		producto = unaPosicion.multiplicar(escalar);
 	
 		//assert
-		assertTrue (producto.equals(productoFinal));
+		assertTrue (producto.esIgual(productoFinal));
 	}
 	
 }

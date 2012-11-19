@@ -34,7 +34,7 @@ public class AvionSimpleTest extends TestCase {
 		unAvion.setTrayectoria(this.unaTrayectoria);
 		
 		
-		while (!unAvion.getPosicion().equals(destino)){
+		while (!unAvion.getPosicion().esIgual(destino)){
 		
 			unAvion.vivir();
 		}
@@ -73,7 +73,7 @@ public class AvionSimpleTest extends TestCase {
 		posicionFinal = unAvion.getPosicion();
 				
 		//assert
-		assertTrue (destino.equals(posicionFinal));		
+		assertTrue (destino.esIgual(posicionFinal));		
 		
 	}
 
@@ -94,7 +94,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 	}
 	
 
@@ -114,7 +114,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 			
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -135,7 +135,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 	}
 
 	public void testVolarEnDiagonalArribaAUnaVectorLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
@@ -154,7 +154,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 				
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -174,7 +174,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -194,7 +194,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 	
@@ -214,7 +214,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 	
@@ -235,7 +235,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 	
@@ -255,7 +255,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 				
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -275,7 +275,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -295,7 +295,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -315,7 +315,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 	
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -335,7 +335,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 			
 	}
 
@@ -355,7 +355,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 
@@ -375,7 +375,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 	
@@ -395,7 +395,7 @@ public class AvionSimpleTest extends TestCase {
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.equals(direccionDespuesDemover));
+		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
 		
 	}
 	
@@ -440,7 +440,7 @@ public class AvionSimpleTest extends TestCase {
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.equals(proximoPaso);
+			pasoCorrecto = actual.esIgual(proximoPaso);
 		}
 		
 		//Luego se mueve en linea recta
@@ -453,7 +453,7 @@ public class AvionSimpleTest extends TestCase {
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.equals(proximoPaso);
+			pasoCorrecto = actual.esIgual(proximoPaso);
 		}
 		
 		//Luego se mueve en diagonal, hasta el intermedio2
@@ -466,7 +466,7 @@ public class AvionSimpleTest extends TestCase {
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.equals(proximoPaso);
+			pasoCorrecto = actual.esIgual(proximoPaso);
 		}
 		
 		
@@ -475,12 +475,12 @@ public class AvionSimpleTest extends TestCase {
 		direccion = new Vector (-1,-1);
 		pasoCorrecto = true;
 		
-		while (pasoCorrecto && ! proximoPaso.equals(destino)){
+		while (pasoCorrecto && ! proximoPaso.esIgual(destino)){
 			
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.equals(proximoPaso);
+			pasoCorrecto = actual.esIgual(proximoPaso);
 		}
 		
 		//assert
