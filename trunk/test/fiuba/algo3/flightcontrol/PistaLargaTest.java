@@ -143,7 +143,7 @@ public class PistaLargaTest extends TestCase {
 	}
 	
 	
-	public void testLlegadaDeUnAvionLargaALaPistaSimpleEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -199,7 +199,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		assertTrue(!avion.aterrizo());
 	}
 
-	public void testLlegadaDeUnAvionLargaALaPistaSimpleEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 	
 		//arrange
 		
@@ -228,7 +228,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	}
 
 
-	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaNoDeberiaAterrizar(){
 		
 		//arrange
 	
@@ -253,7 +253,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		pista.recibirAterrizajeDeHelicoptero (helicoptero);
 	
 		//assert
-		assertTrue(helicoptero.aterrizo());
+		assertTrue(!helicoptero.aterrizo());
 	}
 	
 	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
