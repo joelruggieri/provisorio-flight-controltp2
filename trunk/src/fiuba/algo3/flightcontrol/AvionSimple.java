@@ -4,9 +4,9 @@ import java.util.List;
 
 public class AvionSimple extends ObjetoVolador {	
 		
-	public AvionSimple(int nivel, Escenario unPlano) {
+	public AvionSimple(int velocidad, Nivel unNivel) {
 		
-		super(nivel, unPlano);
+		super(velocidad, unNivel);
 		List<Vector> listaDePosiciones = new ArrayList<Vector>();
 		this.setTrayectoria(new Trayectoria(listaDePosiciones));
 		

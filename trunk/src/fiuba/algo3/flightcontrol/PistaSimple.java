@@ -4,9 +4,9 @@ import java.util.List;
 	public class PistaSimple extends Pista {
 		
 	
-	public PistaSimple(Escenario unPlano, List<Vector> unasEntradas) {
+	public PistaSimple(List<Vector> unasEntradas) {
 		
-		super(unPlano, unasEntradas);
+		super(unasEntradas);
 	}
 	
 }

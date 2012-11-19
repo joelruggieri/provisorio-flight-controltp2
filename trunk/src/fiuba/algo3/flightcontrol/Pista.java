@@ -8,17 +8,10 @@ public abstract class Pista {
 	private List<Vector> direccionesDeIngreso;
 
 	
-	public Pista(Escenario unPlano, List<Vector> unasEntradas) {
+	public Pista(List<Vector> unasEntradas) {
 		/* Constructor de una pista */
 		
 		this.posiciones = unasEntradas;
-		
-		int i = 0;
-		while (posiciones.size() > i) {
-			
-			unPlano.ocuparPosicion(posiciones.get(i), "pista");
-			i++;
-		}
 		
 		/* Se toman los dos extremos de la pista para conocer la 
 		 * direccion en que deben entrar los

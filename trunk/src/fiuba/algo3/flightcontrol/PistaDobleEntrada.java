@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class PistaDobleEntrada extends Pista {
 	
 		
-	public PistaDobleEntrada(Escenario unPlano, List<Vector> unasEntradas) {
+	public PistaDobleEntrada(List<Vector> unasEntradas) {
 				
-		super(unPlano, unasEntradas);
+		super(unasEntradas);
 		
 		/* obtengo la otra direccion en la que pueden entrar los
 		 * aviones por el otro extremo de la pista*/

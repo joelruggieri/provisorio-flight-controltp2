@@ -9,8 +9,8 @@ public class PistaLargaTest extends TestCase {
 	private List<Vector> listaDePuntos,posicionesDeLaPista;
 	private Trayectoria unaTrayectoria;
 	private Vector posicion1,posicion2,posicion3;
-	private int nivel,dimension;
-	private Escenario unPlano;
+	private int velocidad,dimension;
+	private Nivel unNivel;
 	private AvionSimple avion;
 	private Helicoptero helicoptero;
 	private AvionPesado avionPesado;
@@ -22,13 +22,13 @@ public class PistaLargaTest extends TestCase {
 		posicion2 = new Vector(2,2);
 		posicion3 = new Vector(1,2);
 		listaDePuntos = new ArrayList <Vector>();
-		nivel = 1;
+		velocidad = 1;
 		dimension = 768;
-		unPlano = new Escenario(dimension);
+		unNivel = new Nivel(velocidad, dimension);
 		posicionesDeLaPista = new ArrayList <Vector>();
-		avion = new AvionSimple(nivel,unPlano);
-		helicoptero = new Helicoptero(nivel,unPlano);
-		avionPesado = new AvionPesado(nivel,unPlano);
+		avion = new AvionSimple(velocidad,unNivel);
+		helicoptero = new Helicoptero(velocidad,unNivel);
+		avionPesado = new AvionPesado(velocidad,unNivel);
 	}
 	
 	private void moverAvion (ObjetoVolador unAvion, Vector destino){
@@ -45,15 +45,15 @@ public class PistaLargaTest extends TestCase {
 		}
 		
 	}
+
 	
-	
-	public void testConstructorDeUnaPistaLargaLasposicionesDeLaPistaDeberianEstarOcupadasPorEsta()
-	throws PosicionFueraDeLasDimensionesEstablecidasException{
+//	public void testConstructorDeUnaPistaLargaLasposicionesDeLaPistaDeberianEstarOcupadasPorEsta()
+//	throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		//arrange
 			
 		/*creo las Vectores de la pista*/
-		Vector VectorDeEntrada = new Vector(4,1);
+/*		Vector VectorDeEntrada = new Vector(4,1);
 		Vector otraVectorDeLaPista = new Vector(3,2);
 		
 		//act
@@ -66,7 +66,7 @@ public class PistaLargaTest extends TestCase {
 		assertEquals(unPlano.getPosicion(VectorDeEntrada),"pista");
 		assertEquals(unPlano.getPosicion(otraVectorDeLaPista),"pista");
 	}
-	
+*/	
 	public void testConstructorDeUnaPistaLargaLaDireccionDeIngresoDeberiaQuedarDeterminadaSegunLaorientacionDeLaPista(){
 		
 		//arrange
@@ -85,7 +85,7 @@ public class PistaLargaTest extends TestCase {
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 	
 		//assert	
 		assertTrue(((pista.getDireccionDeEntrada().getPosicionX()) == -1) && ((pista.getDireccionDeEntrada().getPosicionY()) == 1));
@@ -109,7 +109,7 @@ public class PistaLargaTest extends TestCase {
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		//assert	
 		assertTrue(pista.getPosicionDeEntrada() == VectorDeEntrada);
@@ -134,7 +134,7 @@ public class PistaLargaTest extends TestCase {
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		Vector direccion = new Vector(0,-1);
 	
@@ -163,7 +163,7 @@ public class PistaLargaTest extends TestCase {
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeAvionSimple (avion);
 	
@@ -191,7 +191,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeAvionSimple (avion);
 		
@@ -219,7 +219,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeAvionSimple (avion);
 	
@@ -248,7 +248,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 	
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 	
 		pista.recibirAterrizajeDeHelicoptero (helicoptero);
 	
@@ -278,7 +278,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeHelicoptero (helicoptero);
 	
@@ -306,7 +306,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeHelicoptero (helicoptero);
 	
@@ -335,7 +335,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 	
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 	
 		pista.recibirAterrizajeDeAvionPesado (avionPesado);
 	
@@ -364,7 +364,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeAvionPesado(avionPesado);
 	
@@ -392,7 +392,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 		
 		pista.recibirAterrizajeDeAvionPesado (avionPesado);
 		
@@ -420,7 +420,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 		posicionesDeLaPista.add(otraVectorDeLaPista2);
 		posicionesDeLaPista.add(ultimaVectorDeLaPista);
 	
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
+		PistaLarga pista = new PistaLarga(posicionesDeLaPista);
 	
 		pista.recibirAterrizajeDeAvionPesado (avionPesado);
 	

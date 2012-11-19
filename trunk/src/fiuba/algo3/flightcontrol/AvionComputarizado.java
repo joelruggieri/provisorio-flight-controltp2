@@ -4,11 +4,19 @@ import java.util.List;
 
 public class AvionComputarizado extends ObjetoVolador {
 	
-	public AvionComputarizado(int nivel, Escenario plano, Pista pista) {
+	public AvionComputarizado(int velocidad, Nivel unNivel) {
 		
-		super(nivel, plano);
+		super(velocidad, unNivel);
 		List<Vector> listaDePuntos;
-		listaDePuntos = calcularTrayectoriaHaciaUnaPista(pista);
+		
+		Vector posicionDePista1 = new Vector(4,3);  //todo esto es hardcodeado, el tema que falta el iterador de pistas para conseguir
+		Vector posicionDePista2 = new Vector(5,3);   // una pista del iterador
+		List<Vector> posicionesDeLaPista = new ArrayList<Vector>();  //
+		posicionesDeLaPista.add(posicionDePista1);  // 
+		posicionesDeLaPista.add(posicionDePista2);  // 
+		Pista unaPista = new PistaSimple (posicionesDeLaPista);  //
+		
+		listaDePuntos = calcularTrayectoriaHaciaUnaPista(unaPista);
 		this.setTrayectoria(new Trayectoria(listaDePuntos));
 	}
 

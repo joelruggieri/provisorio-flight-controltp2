@@ -11,19 +11,24 @@ public class Nivel {
 	private int frecuenciaDeSalida;
 	private int cantidadDeAviones;
 	private int velocidadDelNivel;
+	private int limite;
 	
 	
 	
-	public Nivel(int numeroDeNivel){
+	public Nivel(int numeroDeNivel, int limite){
 		
 		this.velocidadDelNivel = numeroDeNivel;
 		this.avionesEnJuego = new ArrayList < ObjetoVolador > ();
 		this.pistas = new ArrayList < Pista > ();
 		this.cantidadDeAviones = this.velocidadDelNivel * 10;
-		
+		this.limite = limite;
 		//faltan inicializar la frecuancia 
 	}
 	
+	public int getLimite(){
+		
+		return this.limite;
+	}
 	
 	public void generarObjetoVolador() {
 		

@@ -6,21 +6,19 @@ public abstract class ObjetoVolador {
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
 	private Trayectoria trayectoria;
-	private Escenario plano;
+	private Nivel nivel;
 	private int velocidad, contadorDeTurnos, limite;
 	
-	public ObjetoVolador(int nivel, Escenario unPlano) {
+	public ObjetoVolador(int velocidad, Nivel unNivel) {
 						
-		this.plano = unPlano;
-		this.limite = unPlano.getDimension();
-		
+		this.nivel = unNivel;
+		limite = this.nivel.getLimite();
 		posicionActual = generarPosicionDeSalidaAleatoria(limite - 1);
-		this.plano.ocuparPosicion(posicionActual, "objetoVolador");
 		
 		this.direccion = new Vector(1, 1);
 		this.aterrizado = false;
 		
-		this.velocidad = nivel;
+		this.velocidad = velocidad;
 		contadorDeTurnos = 0;
 		
 	}
@@ -61,7 +59,7 @@ public abstract class ObjetoVolador {
 	public void aterrizar() {
 				
 		this.aterrizado = true;
-		this.plano.ocuparPosicion(posicionActual, "pista");
+		
 	}
 
 	public Vector getPosicion() {
@@ -120,7 +118,7 @@ public abstract class ObjetoVolador {
 		int x = posicion.getPosicionX();
 		int y = posicion.getPosicionY();
 		
-		int limite = this.plano.getDimension();
+		int limite = this.nivel.getLimite();
 		
 		return (x == 0 || y == 0 || x == limite || y == limite);
 	}
@@ -130,7 +128,7 @@ public abstract class ObjetoVolador {
 		 * actualizando su direccion y su posicion */
 		
 		Vector nuevaDireccion;
-		int dimension = this.plano.getDimension();
+		int dimension = this.nivel.getLimite();
 		
 		int x = this.getDireccion().getPosicionX();
 		int y = this.getDireccion().getPosicionY();

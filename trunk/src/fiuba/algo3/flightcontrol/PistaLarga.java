@@ -3,9 +3,9 @@ import java.util.List;
 
 public class PistaLarga extends Pista {
 	
-	public PistaLarga(Escenario unPlano, List<Vector> unasEntradas) {
+	public PistaLarga(List<Vector> unasEntradas) {
 				
-		super(unPlano, unasEntradas);
+		super(unasEntradas);
 	}
 	
 	public void recibirAterrizajeDeAvionPesado(AvionPesado pesado) {
