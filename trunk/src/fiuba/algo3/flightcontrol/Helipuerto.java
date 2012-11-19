@@ -1,39 +1,32 @@
 package fiuba.algo3.flightcontrol;
-
 import java.util.List;
 
 public class Helipuerto extends Pista {
 	
-	public Helipuerto(Escenario unPlano, List<Vector> unasEntradas){
+	public Helipuerto(Escenario unPlano, List<Vector> unasEntradas) {
 		
-		super(unPlano,unasEntradas);
-		
+		super(unPlano, unasEntradas);
 	}
 	
-	public Vector getDireccionDeEntrada(){
+	public Vector getDireccionDeEntrada() {
 		
 		throw new NoTieneUnaDireccionDeEntradaException();
 	}
 	
-	
-	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
+	public void recibirAterrizajeDeAvionSimple(AvionSimple simple) {
 		
 	}
 	
-	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
+	public void recibirAterrizajeDeHelicoptero(Helicoptero helicoptero) {
 		
-		if(helicoptero.getPosicion().esIgual(this.getPosicionDeEntrada())){
+		if (helicoptero.getPosicion().esIgual(getPosicionDeEntrada())) {
 			
 			helicoptero.aterrizar();
 		}
 		
-		
 	}
 	
-	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
-		
-		
+	public void recibirAterrizajeDeComputarizado(AvionComputarizado avion) {
 	}
-
 
 }

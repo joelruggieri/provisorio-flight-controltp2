@@ -70,13 +70,13 @@ public class PistaDobleEntradaTest extends TestCase {
 		assertEquals(unPlano.getPosicion(VectorDeEntrada),"pista");
 		assertEquals(unPlano.getPosicion(otraVectorDeLaPista),"pista");
 	}
-
+/*
 	public void testConstructorDeUnaPistaDobleEntradaDeberianQuedarDefinidasLasDosdireccionesDeEntrada() 
 		throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
 		//arrange
 		
-		/*creo las Vectores de la pista*/
+		// creo las Vectores de la pista
 		Vector VectorDeEntrada = new Vector(4,1);
 		Vector otraVectorDeLaPista = new Vector(3,2);
 			
@@ -92,7 +92,7 @@ public class PistaDobleEntradaTest extends TestCase {
 		//assert
 		assertTrue(pista.direccionesDeIngreso.get(0).esIgual(direccionDePrimeraEntrada));
 		assertTrue(pista.direccionesDeIngreso.get(1).esIgual(direccionDeSegundaEntrada));
-	}
+	}*/
 
 	public void testValidarEntradaYDireccionDeUnAvionQueSeEncuentreEnAlgunaDeLasVectoresDeEntradaYConLaDireccionAdecuadaDeberiaDarVerdadero(){
 		

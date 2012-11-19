@@ -4,68 +4,89 @@ import java.util.ArrayList;
 
 public class PistaDobleEntrada extends Pista {
 	
-	
-	
-	public PistaDobleEntrada(Escenario unPlano, List<Vector> unasEntradas){
+		
+	public PistaDobleEntrada(Escenario unPlano, List<Vector> unasEntradas) {
 				
-		super(unPlano,unasEntradas);
+		super(unPlano, unasEntradas);
 		
-		/* Se toman los dos extremos de la pista para conocer la direccion en que deben entrar los
-		 * objetos voladores por el extremo de entrada*/
-
-		Vector segundoExtremo = (this.posiciones).get((this.posiciones.size())-1);
-		Vector extremoDeEntrada = (this.posiciones).get(0);
+		/* obtengo la otra direccion en la que pueden entrar los
+		 * aviones por el otro extremo de la pista*/
 		
-		Vector direccionDeEntrada = segundoExtremo.restar(extremoDeEntrada);
-		direccionDeEntrada.canonizarPosicion();
-		/* obtengo la otra direccion en la que pueden entrar los aviones por el otro extremo de la
-		 * pista*/
-		 
-		Vector otraDireccionDeEntrada = direccionDeEntrada.invertirDireccion();
+		List<Vector> direccionesDeIngreso;
 		
-		this.direccionesDeIngreso = new ArrayList<Vector>();
-		this.direccionesDeIngreso.add(direccionDeEntrada);
-		this.direccionesDeIngreso.add(otraDireccionDeEntrada);
-
+		Vector direccionDeEntrada = this.getDireccionDeEntrada();
+		Vector otraDireccionDeEntrada;
+		otraDireccionDeEntrada = direccionDeEntrada.invertirDireccion();
+		
+		direccionesDeIngreso = new ArrayList<Vector>();
+		direccionesDeIngreso.add(direccionDeEntrada);
+		direccionesDeIngreso.add(otraDireccionDeEntrada);
+		
+		this.agregarDireccionesDeIngreso(direccionesDeIngreso);
+	}
+	
+	private boolean validarPrimeraEntradaYDireccion(ObjetoVolador avion) {
+		
+		boolean ingresoPorDireccion, ingresoPorPosicion;
+		Vector direcDeIngreso, miDireccion;
+		Vector posDeIngreso, miPosicion;
+		
+		miPosicion = avion.getPosicion();
+		posDeIngreso = this.getListaDePosicionesDeEntrada().get(0);
+		
+		miDireccion = avion.getDireccion();
+		direcDeIngreso = this.getListaDeDireccionesDeEntrada().get(0);
+		
+		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
+		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
+		
+		return (ingresoPorPosicion && ingresoPorDireccion);
+	}
+	
+	private boolean validarSegundaEntradaYDireccion(ObjetoVolador avion) {
+		
+		boolean ingresoPorDireccion, ingresoPorPosicion;
+		Vector direcDeIngreso, miDireccion;
+		Vector posDeIngreso, miPosicion;
+		int pos = this.getListaDePosicionesDeEntrada().size() - 1;
+		
+		miPosicion = avion.getPosicion();
+		posDeIngreso = this.getListaDePosicionesDeEntrada().get(pos);
+		
+		miDireccion = avion.getDireccion();
+		direcDeIngreso = this.getListaDeDireccionesDeEntrada().get(1);
+		
+		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
+		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
+		
+		return (ingresoPorPosicion && ingresoPorDireccion);
+	}
+	
+	public boolean validarEntradaYDireccion(ObjetoVolador avion) {
+		
+		boolean hayPrimeraEntrada, haySegundaEntrada;
+		
+		hayPrimeraEntrada = this.validarPrimeraEntradaYDireccion(avion);
+		haySegundaEntrada = this.validarSegundaEntradaYDireccion(avion);
+		
+		return (hayPrimeraEntrada || haySegundaEntrada);
 	}
 	
 	
-
-	private boolean validarPrimeraEntradaYDireccion (ObjetoVolador avion){
+	public void recibirAterrizajeDeAvionSimple(AvionSimple simple) {
 		
-		return (avion.getDireccion().esIgual(this.direccionesDeIngreso.get(0))) &&
-				(avion.getPosicion().esIgual(this.posiciones.get(0)));
-	}
-	
-	private boolean validarSegundaEntradaYDireccion (ObjetoVolador avion){
-		
-		return (avion.getDireccion().esIgual(this.direccionesDeIngreso.get(1))) &&
-				(avion.getPosicion().esIgual(this.posiciones.get(posiciones.size()-1)));
-	}
-	
-	public boolean validarEntradaYDireccion (ObjetoVolador avion){
-		
-		return (this.validarPrimeraEntradaYDireccion(avion) || this.validarSegundaEntradaYDireccion(avion));
-	}
-	
-	
-	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
-		
-		if(this.validarEntradaYDireccion(simple)){
+		if (this.validarEntradaYDireccion(simple)) {
 			simple.aterrizar();
 		}
 		
 	}
-	
-	
-	
-	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
 		
-		if(this.validarEntradaYDireccion(computarizado)){
-			computarizado.aterrizar();
+	public void recibirAterrizajeDeComputarizado(AvionComputarizado avion) {
+		
+		if (this.validarEntradaYDireccion(avion)) {
+			avion.aterrizar();
 		}
 		
 	}
 	
 }
-
