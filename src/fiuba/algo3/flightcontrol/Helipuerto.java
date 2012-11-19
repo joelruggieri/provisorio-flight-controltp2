@@ -34,9 +34,6 @@ public class Helipuerto extends Pista {
 		
 		
 	}
-	
-	public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
-		
-	}
+
 
 }

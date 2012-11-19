@@ -25,27 +25,6 @@ public class PistaLarga extends Pista {
 	}
 	
 	
-	
-	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
-		
-		if(simple.getPosicion().esIgual(this.getPosicionDeEntrada()) && simple.getDireccion().esIgual(this.getDireccionDeEntrada())){
-			simple.aterrizar();
-		}
-		
-	}
-	
-	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
-		
-	}
-	
-	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
-		
-		if(computarizado.getPosicion().esIgual(this.getPosicionDeEntrada()) && computarizado.getDireccion().esIgual(this.getDireccionDeEntrada())){
-			computarizado.aterrizar();
-		}
-		
-	}
-	
 	public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
 		
 		if(pesado.getPosicion().esIgual(this.getPosicionDeEntrada()) && pesado.getDireccion().esIgual(this.getDireccionDeEntrada())){

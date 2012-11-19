@@ -34,11 +34,23 @@ public abstract class Pista{
 		return this.direccionesDeIngreso.get(0);
 	}
 	
-	abstract public void recibirAterrizajeDeAvionSimple (AvionSimple simple);
+	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
+		if(simple.getPosicion().esIgual(this.getPosicionDeEntrada()) && simple.getDireccion().esIgual(this.getDireccionDeEntrada())){
+			simple.aterrizar();
+		}
+	}
 	
-	abstract public void recibirAterrizajeDeHelicoptero(Helicoptero helicoptero);
+	 public void recibirAterrizajeDeHelicoptero(Helicoptero helicoptero){
+		 
+	 }
 	
-	abstract public void recibirAterrizajeDeComputarizado(AvionComputarizado computarizado);
+	 public void recibirAterrizajeDeComputarizado(AvionComputarizado computarizado){
+		 if(computarizado.getPosicion().esIgual(this.getPosicionDeEntrada()) && computarizado.getDireccion().esIgual(this.getDireccionDeEntrada())){
+				computarizado.aterrizar();
+			}
+	 }
 	
-	abstract public void recibirAterrizajeDeAvionPesado (AvionPesado pesado);
+	 public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
+		
+	}
 }
