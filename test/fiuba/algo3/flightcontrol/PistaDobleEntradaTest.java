@@ -44,7 +44,7 @@ public class PistaDobleEntradaTest extends TestCase {
 		unaTrayectoria = new Trayectoria (listaDePosiciones);
 		unAvion.setTrayectoria(unaTrayectoria);
 		
-		while (!unAvion.getPosicion().equals(destino)){
+		while (!unAvion.getPosicion().esIgual(destino)){
 			unAvion.vivir();
 		}
 		
@@ -90,8 +90,8 @@ public class PistaDobleEntradaTest extends TestCase {
 		Vector direccionDeSegundaEntrada = new Vector(1,-1);
 			
 		//assert
-		assertTrue(pista.direccionesDeIngreso.get(0).equals(direccionDePrimeraEntrada));
-		assertTrue(pista.direccionesDeIngreso.get(1).equals(direccionDeSegundaEntrada));
+		assertTrue(pista.direccionesDeIngreso.get(0).esIgual(direccionDePrimeraEntrada));
+		assertTrue(pista.direccionesDeIngreso.get(1).esIgual(direccionDeSegundaEntrada));
 	}
 
 	public void testValidarEntradaYDireccionDeUnAvionQueSeEncuentreEnAlgunaDeLasVectoresDeEntradaYConLaDireccionAdecuadaDeberiaDarVerdadero(){

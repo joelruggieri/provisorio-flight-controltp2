@@ -1,8 +1,9 @@
 package fiuba.algo3.flightcontrol;
 
-public class PosicionFueraDeLasDimensionesEstablecidasException extends Exception {
+public class PosicionFueraDeLasDimensionesEstablecidasException
+extends Exception {
 	
-	public PosicionFueraDeLasDimensionesEstablecidasException(){
+	public PosicionFueraDeLasDimensionesEstablecidasException() {
 		
 		super();
 	}

@@ -47,7 +47,7 @@ public class AvionComputarizadoTest extends TestCase {
 		//act
 		this.moverAvion(unAvionComputarizado);
 		
-		unaPista.recibirAterrizajeDeAvionComputarizado (unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado (unAvionComputarizado);
 		
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -67,7 +67,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -87,7 +87,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -107,7 +107,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -127,7 +127,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -147,7 +147,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -167,7 +167,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
@@ -187,7 +187,7 @@ public class AvionComputarizadoTest extends TestCase {
 			
 		//act
 		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeAvionComputarizado(unAvionComputarizado);
+		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
 			
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());

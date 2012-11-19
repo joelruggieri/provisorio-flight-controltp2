@@ -3,29 +3,27 @@ import java.util.List;
 
 public class Trayectoria {
 	
-	private List <Vector> listaDePosiciones;
+	private List<Vector> listaDePosiciones;
 	
-	public Trayectoria (List <Vector> unaListaDePosiciones){
+	public Trayectoria(List<Vector> unaListaDePosiciones) {
 		
 		this.listaDePosiciones = unaListaDePosiciones;
-		
 	}	
 	
-	public Vector getProximaPosicion (){
-				
+	public Vector getProximaPosicion() {
+		
 		return this.listaDePosiciones.get(0);
 	}
 		
-	public void borrarPosicion (){
+	public void borrarPosicion() {
 		
-		if (this.hayTrayectoria()){
+		if (this.hayTrayectoria()) {
 			this.listaDePosiciones.remove(0);
 		}
 	}
-	
-	
-	public boolean hayTrayectoria (){
-				
+		
+	public boolean hayTrayectoria() {
+		
 		return (!this.listaDePosiciones.isEmpty());
 	}
 }
