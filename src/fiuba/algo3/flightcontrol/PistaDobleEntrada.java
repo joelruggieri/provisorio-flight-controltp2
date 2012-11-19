@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class PistaDobleEntrada extends Pista {
 	
+	
+	
 	public PistaDobleEntrada(Escenario unPlano, List<Vector> unasEntradas){
 				
 		super(unPlano,unasEntradas);
@@ -19,13 +21,14 @@ public class PistaDobleEntrada extends Pista {
 		/* obtengo la otra direccion en la que pueden entrar los aviones por el otro extremo de la
 		 * pista*/
 		 
-		Vector otraDireccionDeEntrada = direccionDeEntrada.invertirDireccion();
+		Vector otraDireccionDeEntrada = direccionDeEntrada.InvertirDireccion();
 		
 		this.direccionesDeIngreso = new ArrayList<Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
 		this.direccionesDeIngreso.add(otraDireccionDeEntrada);
 
 	}
+	
 	
 
 	private boolean validarPrimeraEntradaYDireccion (ObjetoVolador avion){
@@ -56,9 +59,6 @@ public class PistaDobleEntrada extends Pista {
 	
 	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
 		
-		if(this.validarEntradaYDireccion(helicoptero)){
-			helicoptero.aterrizar();
-		}
 		
 	}
 	

@@ -1,29 +1,58 @@
 package fiuba.algo3.flightcontrol;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PistaLarga extends Pista {
 	
-	public PistaLarga(Escenario unPlano, List<Vector> unasEntradas) {
+	
+	
+	public PistaLarga(Escenario unPlano, List<Vector> unasEntradas){
 				
-		super(unPlano, unasEntradas);
-	}
+		super(unPlano,unasEntradas);
 		
-	public void recibirAterrizajeDeAvionPesado(AvionPesado pesado) {
+		/* Se toman los dos extremos de la pista para conocer la direccion en que deben entrar los
+		 * objetos voladores por el extremo de entrada*/
+
+		Vector segundoExtremo = (this.posiciones).get((this.posiciones.size())-1);
+		Vector extremoDeEntrada = (this.posiciones).get(0);
 		
-		boolean posicionesIguales, direccionesIguales;
-		Vector miEntrada, miPosicion;
+		Vector direccionDeEntrada = segundoExtremo.restar(extremoDeEntrada);
+		direccionDeEntrada.canonizarPosicion();
 		
-		miPosicion = this.getPosicionDeEntrada();
-		miEntrada = this.getDireccionDeEntrada();
-		
-		posicionesIguales = pesado.getPosicion().esIgual(miPosicion);
-		direccionesIguales = pesado.getDireccion().esIgual(miEntrada);
-		
-		if (posicionesIguales && direccionesIguales) {
-			pesado.aterrizar();
-		}
+		this.direccionesDeIngreso = new ArrayList <Vector>();
+		this.direccionesDeIngreso.add(direccionDeEntrada);
+
 	}
 	
+	
+	
+	public void recibirAterrizajeDeAvionSimple (AvionSimple simple){
+		
+		if(simple.getPosicion().esIgual(this.getPosicionDeEntrada()) && simple.getDireccion().esIgual(this.getDireccionDeEntrada())){
+			simple.aterrizar();
+		}
+		
+	}
+	
+	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
+		
+	}
+	
+	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
+		
+		if(computarizado.getPosicion().esIgual(this.getPosicionDeEntrada()) && computarizado.getDireccion().esIgual(this.getDireccionDeEntrada())){
+			computarizado.aterrizar();
+		}
+		
+	}
+	
+	public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
+		
+		if(pesado.getPosicion().esIgual(this.getPosicionDeEntrada()) && pesado.getDireccion().esIgual(this.getDireccionDeEntrada())){
+			pesado.aterrizar();
+		}
+		
+	}
 }
 
 
