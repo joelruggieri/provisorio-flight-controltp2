@@ -21,7 +21,7 @@ public class PistaDobleEntrada extends Pista {
 		/* obtengo la otra direccion en la que pueden entrar los aviones por el otro extremo de la
 		 * pista*/
 		 
-		Vector otraDireccionDeEntrada = direccionDeEntrada.InvertirDireccion();
+		Vector otraDireccionDeEntrada = direccionDeEntrada.invertirDireccion();
 		
 		this.direccionesDeIngreso = new ArrayList<Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
@@ -57,10 +57,7 @@ public class PistaDobleEntrada extends Pista {
 		
 	}
 	
-	public void recibirAterrizajeDeHelicoptero (Helicoptero helicoptero){
-		
-		
-	}
+	
 	
 	public void recibirAterrizajeDeComputarizado (AvionComputarizado computarizado){
 		
@@ -70,8 +67,5 @@ public class PistaDobleEntrada extends Pista {
 		
 	}
 	
-	public void recibirAterrizajeDeAvionPesado (AvionPesado pesado){
-		
-	}
 }
 

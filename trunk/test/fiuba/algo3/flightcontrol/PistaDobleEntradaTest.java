@@ -44,7 +44,7 @@ public class PistaDobleEntradaTest extends TestCase {
 		unaTrayectoria = new Trayectoria (listaDePosiciones);
 		unAvion.setTrayectoria(unaTrayectoria);
 		
-		while (!unAvion.getPosicion().equals(destino)){
+		while (!unAvion.getPosicion().esIgual(destino)){
 			unAvion.vivir();
 		}
 		
