@@ -7,19 +7,19 @@ import junit.framework.TestCase;
 public class AvionSimpleTest extends TestCase {
 	
 	private AvionSimple unAvion;
-	private int nivel,limite;
+	private int velocidad,limite;
 	private List<Vector> listaDePuntos;
 	private Trayectoria unaTrayectoria;
-	private Escenario plano;
+	private Nivel unNivel;
 	private Vector destino;
 	
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		nivel = 1;
+		velocidad = 1;
 		limite = 768;
-		plano = new Escenario (limite);
-		unAvion = new AvionSimple (nivel,plano);
+		unNivel = new Nivel (velocidad,limite);
+		unAvion = new AvionSimple (velocidad,unNivel);
 		listaDePuntos = new ArrayList<Vector>();
 		
 	}

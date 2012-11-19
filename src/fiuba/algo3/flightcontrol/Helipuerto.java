@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Helipuerto extends Pista {
 	
-	public Helipuerto(Escenario unPlano, List<Vector> unasEntradas) {
+	public Helipuerto(List<Vector> unasEntradas) {
 		
-		super(unPlano, unasEntradas);
+		super(unasEntradas);
 	}
 	
 	public Vector getDireccionDeEntrada() {

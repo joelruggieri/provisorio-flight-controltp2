@@ -7,37 +7,25 @@ import java.util.List;
 public class HelicopteroTest extends TestCase {
 	
 	private Helicoptero unHelicoptero;
-	private int nivel,limite;
+	private int velocidad,limite;
 	private List<Vector> posicionesDestino;
 	private Trayectoria unaTrayectoria;
-	private Escenario unEscenario;
+	private Nivel unNivel;
 	private Vector posicionActual;
 	
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		nivel = 1;
+		velocidad = 1;
 		limite = 768;
-		unEscenario = new Escenario(limite);
-		unHelicoptero = new Helicoptero(nivel, unEscenario);
+		unNivel = new Nivel(velocidad, limite);
+		unHelicoptero = new Helicoptero( velocidad, unNivel);
 		posicionActual = unHelicoptero.getPosicion();
 		posicionesDestino = new ArrayList<Vector>();
 		unaTrayectoria = new Trayectoria (posicionesDestino);
 		
 	}
-	
-	public void testCrearUnHelicopteroDeberiaAparecerEnElEscenarioEnElLugarQueFueCreado() 
-		throws PosicionFueraDeLasDimensionesEstablecidasException{
-		
-		//arrange
-		
-		//act	
-		Vector posicionActual = unHelicoptero.getPosicion();
-						
-		//assert
-		assertEquals(unEscenario.getPosicion(posicionActual),"objetoVolador");	
-	}
-	
+/*	
 	public void testCrearUnHelicopteroEnUnaVectorYNoDarleUnaTrayectoriaDeberiaDejarloQuieto() 
 		throws PosicionFueraDeLasDimensionesEstablecidasException{
 		
@@ -49,7 +37,7 @@ public class HelicopteroTest extends TestCase {
 		//assert	
 		assertEquals(unEscenario.getPosicion(posicionActual),"objetoVolador");
 	}
-	
+*/	
 	public void testMoverUnHelicopteroPor2PuntosDeberiaTerminarEnElUltimoPuntoEnAlgunMomento() 
 		throws PosicionFueraDeLasDimensionesEstablecidasException{
 

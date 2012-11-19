@@ -5,9 +5,9 @@ import java.util.List;
 
 public class AvionPesado extends ObjetoVolador {
 	
-	public AvionPesado(int nivel, Escenario unPlano) {
+	public AvionPesado(int velocidad, Nivel unNivel) {
 		
-		super(nivel, unPlano);
+		super(velocidad, unNivel);
 		List<Vector> listaDePosiciones  = new ArrayList<Vector>();
 		this.setTrayectoria(new Trayectoria(listaDePosiciones));
 	}
