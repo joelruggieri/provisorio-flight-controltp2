@@ -121,7 +121,7 @@
   		</checkstyle>
 	</target>
 
-	<target name="test" depends="ejecutar.tests, alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
+	<target name="test" depends="ejecutar.tests, coverage-report, checkstyle" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
 
 	<target name="compilar.paquete" depends="test">
 		<javac srcdir="src" destdir="${build}/classes" debug="no"></javac>
