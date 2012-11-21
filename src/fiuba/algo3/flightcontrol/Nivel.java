@@ -1,6 +1,7 @@
 package fiuba.algo3.flightcontrol;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import java.util.List;
 
@@ -156,5 +157,10 @@ private List<Vector> generarPosicionesPistaLarga(){
 		return this.pistas.get(indiceDePista + 1);
 		
 	}
+	
+ public Iterator<Pista> getPistas(){
+	 
+	 return pistas.iterator();
+ }
 	
 }

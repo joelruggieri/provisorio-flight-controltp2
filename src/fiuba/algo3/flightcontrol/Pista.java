@@ -56,7 +56,7 @@ public abstract class Pista {
 		this.direccionesDeIngreso = direcciones;
 	}
 	
-	public void recibirAterrizajeDeAvionSimple(AvionSimple simple) {
+	public void recibirAterrizajeDeObjetoVolador(AvionSimple simple) {
 		
 		boolean posicionesIguales, direccionesIguales;
 		Vector miEntrada, miPosicion;
@@ -72,10 +72,10 @@ public abstract class Pista {
 		}
 	}
 	
-	 public void recibirAterrizajeDeHelicoptero(Helicoptero helicoptero) {
+	 public void recibirAterrizajeDeObjetoVolador(Helicoptero helicoptero) {
 	 }
 	
-	 public void recibirAterrizajeDeComputarizado(AvionComputarizado ac) {
+	 public void recibirAterrizajeDeObjetoVolador(AvionComputarizado ac) {
 		 
 		boolean posicionesIguales, direccionesIguales;
 		Vector miEntrada, miPosicion;
@@ -91,7 +91,7 @@ public abstract class Pista {
 		}
 	 }
 	
-	 public void recibirAterrizajeDeAvionPesado(AvionPesado pesado) {
+	 public void recibirAterrizajeDeObjetoVolador(AvionPesado pesado) {
 	}
 	 
 	
