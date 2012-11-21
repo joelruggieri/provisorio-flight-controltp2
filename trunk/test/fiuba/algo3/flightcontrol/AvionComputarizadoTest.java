@@ -16,7 +16,7 @@ public class AvionComputarizadoTest extends TestCase {
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		velocidad = 1;
+		velocidad = 10;
 		limite = 768;
 		unNivel = new Nivel(velocidad, limite);
 				

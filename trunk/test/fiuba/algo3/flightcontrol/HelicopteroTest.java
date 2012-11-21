@@ -16,7 +16,7 @@ public class HelicopteroTest extends TestCase {
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		velocidad = 1;
+		velocidad = 10;
 		limite = 768;
 		unNivel = new Nivel(velocidad, limite);
 		unHelicoptero = new Helicoptero( velocidad, unNivel);
@@ -57,5 +57,43 @@ public class HelicopteroTest extends TestCase {
 		//assert
 		assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));
 	}
+	
+	public void testVivirDeUnHelicopteroLuegoDeHaberTerminadoLaTrayectoriaIndicadaDeberiaQuedarEnUltimaPosicion() 
+			throws PosicionFueraDeLasDimensionesEstablecidasException{
+
+			//arrange		
+			Vector primeraPosicion = posicionActual.sumar(new Vector(0,1));
+			Vector segundaPosicion = posicionActual.sumar(new Vector(0,2));
+			
+			posicionesDestino.add(primeraPosicion);
+			posicionesDestino.add(segundaPosicion);
+			
+			unHelicoptero.setTrayectoria(unaTrayectoria);
+				
+			//act
+			unHelicoptero.vivir();
+			unHelicoptero.vivir();
+			
+			unHelicoptero.vivir();
+			
+			//assert
+			assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));
+		}
+	
+	
+	public void testVivirDeUnHelicopteroRecienGeneradoQueNoTieneTrayectoriaDeberiaMoverseEnCualquierPosicionRandom(){
+		
+		
+		Vector posicionDeSalida = unHelicoptero.getPosicion();
+		unHelicoptero.vivir();
+		
+		assertTrue(!unHelicoptero.getPosicion().esIgual(posicionDeSalida));
+		
+		
+		
+		
+	}
+	
+	
 	
 }

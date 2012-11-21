@@ -8,13 +8,13 @@ public abstract class ObjetoVolador {
 	private boolean aterrizado; 
 	private Trayectoria trayectoria;
 	protected Nivel nivel;
-	private int velocidad, contadorDeTurnos, limite;
+	protected int velocidad, contadorDeTurnos;
+	protected static int velocidadMaxima = 10;
 	
 	public ObjetoVolador(int velocidad, Nivel unNivel) {
 						
 		this.nivel = unNivel;
-		limite = this.nivel.getLimite();
-		posicionActual = generarPosicionDeSalidaAleatoria(limite - 1);
+		posicionActual = generarPosicionDeSalidaAleatoria(unNivel.getLimite() - 1);
 		
 		this.direccion = new Vector(1, 1);
 		this.aterrizado = false;
@@ -85,7 +85,7 @@ public abstract class ObjetoVolador {
     	boolean tocaUnBorde;
         contadorDeTurnos++;
                       
-        if (contadorDeTurnos == this.velocidad) {
+        if (contadorDeTurnos == (velocidadMaxima/velocidad)) {
         	
 	    	contadorDeTurnos = 0;
 	        		    	
