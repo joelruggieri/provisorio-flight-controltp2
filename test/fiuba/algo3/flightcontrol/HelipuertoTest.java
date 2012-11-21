@@ -26,7 +26,7 @@ public class HelipuertoTest extends TestCase {
 		posicionesDestino = new ArrayList <Vector>();
 		posicionesDeLaPista = new ArrayList <Vector>();
 		
-		velocidad = 1;
+		velocidad = 10;
 		dimension = 768;
 		unNivel = new Nivel(velocidad, dimension);
 				

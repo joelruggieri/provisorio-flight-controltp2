@@ -16,7 +16,7 @@ public class AvionSimpleTest extends TestCase {
 	protected void setUp () throws Exception {
 		super.setUp();
 		
-		velocidad = 1;
+		velocidad = 10;
 		limite = 768;
 		unNivel = new Nivel (velocidad,limite);
 		unAvion = new AvionSimple (velocidad,unNivel);
@@ -61,7 +61,56 @@ public class AvionSimpleTest extends TestCase {
 		//assert
 		assertTrue (estaEnUnBorde);
 	}
-
+	
+	public void testVivirDeUnAvionSimpleQueRecienFueGeneradoDeberiaMoverseDeAcuerdoASuDireccionDeSalida(){
+		
+		Vector posicionInicial = unAvion.getPosicion();
+		Vector direccionInicial = new Vector(1,1);
+		
+		unAvion.vivir();
+		
+		assertTrue(unAvion.getPosicion().restar(posicionInicial).esIgual(direccionInicial));
+	}
+	
+	public void testVivirDeUnAvionSimpleConVelocidad2DeberiaTardar5TunosParaMoverseUnaPosicion(){
+		
+		int otraVelocidad = 2;
+		AvionSimple simple = new AvionSimple(otraVelocidad,unNivel);
+		Vector posicionDeSalida = simple.getPosicion();
+		Vector direccionDeSalida = new Vector(1,1);
+		
+		
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		
+		assertTrue(simple.getPosicion().restar(posicionDeSalida).esIgual(direccionDeSalida));
+	}
+	
+public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverseUnaPosicion(){
+		
+		int otraVelocidad = 1;
+		AvionSimple simple = new AvionSimple(otraVelocidad,unNivel);
+		Vector posicionDeSalida = simple.getPosicion();
+		Vector direccionDeSalida = new Vector(1,1);
+		
+		
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		simple.vivir();
+		
+		assertTrue(simple.getPosicion().restar(posicionDeSalida).esIgual(direccionDeSalida));
+	}
+	
 	public void testMoverDeberiamoverALaPosicionIndicada (){
 		
 		//arrange

@@ -2,6 +2,7 @@ package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 public class Helicoptero extends ObjetoVolador {
 
@@ -9,6 +10,8 @@ public class Helicoptero extends ObjetoVolador {
 		
 		super(velocidad, unNivel);
 		List<Vector> listaDePosiciones = new ArrayList<Vector>();
+		Vector destinoInicial = generarPrimerDestino(unNivel);
+		listaDePosiciones.add(destinoInicial);
 		this.setTrayectoria(new Trayectoria(listaDePosiciones));
 		
 	}
@@ -33,5 +36,17 @@ public class Helicoptero extends ObjetoVolador {
 	    	it.next().recibirAterrizajeDeObjetoVolador(this);
 	    }
 	    	
+	}
+	
+	private Vector generarPrimerDestino(Nivel unNivel){
+		
+		Random generadorDeRandoms = new Random();
+		
+		int posicionX = generadorDeRandoms.nextInt(unNivel.getLimite());
+		int posicionY = generadorDeRandoms.nextInt(unNivel.getLimite());
+		
+		Vector posicion = new Vector(posicionX, posicionY);
+		
+		return posicion;
 	}
 }
