@@ -32,10 +32,9 @@ public class AvionSimple extends ObjetoVolador {
 		}
 		
 		super.vivir();
-	    this.aterrizarSiHayPistaDeAterrizajeCompatible();
 	}
 	
-    private void aterrizarSiHayPistaDeAterrizajeCompatible(){
+    protected void aterrizarSiHayPistaDeAterrizajeCompatible(){
     	
     	Iterator< Pista > it = this.nivel.getPistas();
     	

@@ -26,7 +26,10 @@ public abstract class ObjetoVolador {
 	
 	public void vivir() {
 		this.mover();
+		this.aterrizarSiHayPistaDeAterrizajeCompatible();
 	}
+	
+	abstract void aterrizarSiHayPistaDeAterrizajeCompatible();
 	
 	private Vector generarPosicionDeSalidaAleatoria(int limite) {
 		/* Genera una posicion random de salida de un avion. 
@@ -169,5 +172,17 @@ public abstract class ObjetoVolador {
 		this.trayectoria = unaTrayectoria;
 	}
 	
+	public boolean chocar(){
+		
+		boolean choco = false;
+		
+		Iterator<ObjetoVolador> it = this.nivel.getObjetosVoladores();
+		
+		while (it.hasNext() && !choco){
+			choco = (it.next().getPosicion().esIgual(this.getPosicion()));
+		}
+		
+		return choco;
+	}
 }
 	
