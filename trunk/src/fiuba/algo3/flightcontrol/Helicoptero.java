@@ -27,18 +27,18 @@ public class Helicoptero extends ObjetoVolador {
 		}
 	}
 	
-	protected void aterrizarSiHayPistaDeAterrizajeCompatible(){
+	public void aterrizarSiHayPistaDeAterrizajeCompatible() {
 	    	
-		Iterator< Pista > it = this.nivel.getPistas();
+		Iterator<Pista> it = this.getNivel().getPistas();
 	    	
-	    while (it.hasNext() && !this.aterrizo()){
+	    while (it.hasNext() && !this.aterrizo()) {
 	    		
 	    	it.next().recibirAterrizajeDeObjetoVolador(this);
 	    }
 	    	
 	}
 	
-	private Vector generarPrimerDestino(Nivel unNivel){
+	private Vector generarPrimerDestino(Nivel unNivel) {
 		
 		Random generadorDeRandoms = new Random();
 		

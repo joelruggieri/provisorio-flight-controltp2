@@ -7,14 +7,16 @@ public abstract class ObjetoVolador {
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
 	private Trayectoria trayectoria;
-	protected Nivel nivel;
-	protected int velocidad, contadorDeTurnos;
-	protected static int velocidadMaxima = 10;
+	private Nivel nivel;
+	private int velocidad;
+	private int contadorDeTurnos;
+	private static int velocidadMaxima = 10;
 	
 	public ObjetoVolador(int velocidad, Nivel unNivel) {
 						
 		this.nivel = unNivel;
-		posicionActual = generarPosicionDeSalidaAleatoria(unNivel.getLimite() - 1);
+		int limite = unNivel.getLimite() - 1;
+		posicionActual = generarSalidaAleatoria(limite);
 		
 		this.direccion = new Vector(1, 1);
 		this.aterrizado = false;
@@ -24,6 +26,11 @@ public abstract class ObjetoVolador {
 		
 	}
 	
+	public Nivel getNivel() {
+		
+		return nivel;
+	}
+	
 	public void vivir() {
 		this.mover();
 		this.aterrizarSiHayPistaDeAterrizajeCompatible();
@@ -31,7 +38,7 @@ public abstract class ObjetoVolador {
 	
 	abstract void aterrizarSiHayPistaDeAterrizajeCompatible();
 	
-	private Vector generarPosicionDeSalidaAleatoria(int limite) {
+	private Vector generarSalidaAleatoria(int limite) {
 		/* Genera una posicion random de salida de un avion. 
 		 * Esta posicion se da siempre en alguno de los cuatro bordes */
 				
@@ -85,7 +92,7 @@ public abstract class ObjetoVolador {
     	boolean tocaUnBorde;
         contadorDeTurnos++;
                       
-        if (contadorDeTurnos == (velocidadMaxima/velocidad)) {
+        if (contadorDeTurnos == (velocidadMaxima / velocidad)) {
         	
 	    	contadorDeTurnos = 0;
 	        		    	
@@ -122,7 +129,7 @@ public abstract class ObjetoVolador {
 		int x = posicion.getPosicionX();
 		int y = posicion.getPosicionY();
 		
-		int limite = this.nivel.getLimite();
+		int limite = this.getNivel().getLimite();
 		
 		return (x == 0 || y == 0 || x == limite || y == limite);
 	}
@@ -132,7 +139,7 @@ public abstract class ObjetoVolador {
 		 * actualizando su direccion y su posicion */
 		
 		Vector nuevaDireccion;
-		int dimension = this.nivel.getLimite();
+		int dimension = this.getNivel().getLimite();
 		
 		int x = this.getDireccion().getPosicionX();
 		int y = this.getDireccion().getPosicionY();
@@ -172,13 +179,13 @@ public abstract class ObjetoVolador {
 		this.trayectoria = unaTrayectoria;
 	}
 	
-	public boolean chocar(){
+	public boolean chocar() {
 		
 		boolean choco = false;
 		
-		Iterator<ObjetoVolador> it = this.nivel.getObjetosVoladores();
+		Iterator<ObjetoVolador> it = this.getNivel().getObjetosVoladores();
 		
-		while (it.hasNext() && !choco){
+		while (it.hasNext() && !choco) {
 			choco = (it.next().getPosicion().esIgual(this.getPosicion()));
 		}
 		

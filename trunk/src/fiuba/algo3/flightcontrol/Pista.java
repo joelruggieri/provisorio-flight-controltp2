@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class Pista {
 
-	protected List<Vector> posiciones;
-	protected List<Vector> direccionesDeIngreso;
+	private List<Vector> posiciones;
+	private List<Vector> direccionesDeIngreso;
 
 	
 	public Pista(List<Vector> unasEntradas) {
@@ -29,6 +29,21 @@ public abstract class Pista {
 		
 		this.direccionesDeIngreso = new ArrayList<Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
+	}
+	
+	public List<Vector> getPosiciones() {
+		
+		return posiciones;
+	}
+	
+	public List<Vector> getDireccionesDeIngreso() {
+		
+		return direccionesDeIngreso;
+	}
+	
+	public void setDireccionesDeIngreso(List<Vector> direcciones) {
+		
+		direccionesDeIngreso = direcciones;
 	}
 		
 	public Vector getPosicionDeEntrada() {
