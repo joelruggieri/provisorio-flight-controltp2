@@ -51,8 +51,8 @@ public class HelicopteroTest extends TestCase {
 		unHelicoptero.setTrayectoria(unaTrayectoria);
 			
 		//act
-		unHelicoptero.mover();
-		unHelicoptero.mover();
+		unHelicoptero.vivir();
+		unHelicoptero.vivir();
 		
 		//assert
 		assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));

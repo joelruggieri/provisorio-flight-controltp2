@@ -7,7 +7,7 @@ public abstract class ObjetoVolador {
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
 	private Trayectoria trayectoria;
-	private Nivel nivel;
+	protected Nivel nivel;
 	private int velocidad, contadorDeTurnos, limite;
 	
 	public ObjetoVolador(int velocidad, Nivel unNivel) {
@@ -168,17 +168,6 @@ public abstract class ObjetoVolador {
 	
 		this.trayectoria = unaTrayectoria;
 	}
-	
-    private void aterrizarSiHayPistaDeAterrizajeCompatible(ObjetoVolador unObjetoVolador){
-    	
-    	Iterator< Pista > it = this.nivel.getPistas();
-    	
-    	while (it.hasNext() && !this.aterrizo()){
-    		
-    		it.next().recibirAterrizajeDeObjetoVolador(this);
-    	}
-    	
-    }
 	
 }
 	

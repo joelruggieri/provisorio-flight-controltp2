@@ -280,7 +280,7 @@ public class PistaDobleEntradaTest extends TestCase {
 		this.moverAvion(helicoptero,posicion2);
 		this.moverAvion(helicoptero,posicion1);
 		//act
-		helicoptero.mover();
+		helicoptero.vivir();
 		
 		/*creo las Vectores de la pista*/
 		Vector VectorDeEntrada = new Vector(1,1);
