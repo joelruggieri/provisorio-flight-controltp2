@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class Pista {
 
-	private List<Vector> posiciones;
-	private List<Vector> direccionesDeIngreso;
+	protected List<Vector> posiciones;
+	protected List<Vector> direccionesDeIngreso;
 
 	
 	public Pista(List<Vector> unasEntradas) {
@@ -36,24 +36,9 @@ public abstract class Pista {
 		return this.posiciones.get(0);
 	}
 	
-	protected List<Vector> getListaDePosicionesDeEntrada() {
-		
-		return this.posiciones;
-	}
-	
 	public Vector getDireccionDeEntrada() {
 		
 		return this.direccionesDeIngreso.get(0);
-	}
-	
-	protected List<Vector> getListaDeDireccionesDeEntrada() {
-		
-		return this.direccionesDeIngreso;
-	}
-	
-	protected void agregarDireccionesDeIngreso(List<Vector> direcciones) {
-		
-		this.direccionesDeIngreso = direcciones;
 	}
 	
 	public void recibirAterrizajeDeObjetoVolador(AvionSimple simple) {

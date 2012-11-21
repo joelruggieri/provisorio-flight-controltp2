@@ -28,13 +28,18 @@ public class PistaDobleEntrada extends Pista {
 	
 	private Vector getPosicionDeSegundaEntrada() {
 		
-	int indiceUltimaPosicion = this.getListaDePosicionesDeEntrada().size() - 1;	
-	return this.getListaDePosicionesDeEntrada().get(indiceUltimaPosicion);
+		int indiceUltimaPosicion = this.posiciones.size() - 1;	
+		return this.posiciones.get(indiceUltimaPosicion);
+	}
+	
+	protected void agregarDireccionesDeIngreso(List<Vector> direcciones) {
+		
+		this.direccionesDeIngreso = direcciones;
 	}
 
 	private Vector getDireccionDeSegundaEntrada() {
 	
-	return this.getListaDeDireccionesDeEntrada().get(1);
+		return this.direccionesDeIngreso.get(1);
 	}
 	
 	private boolean validarPrimeraEntradaYDireccion(ObjetoVolador avion) {
