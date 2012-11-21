@@ -28,5 +28,6 @@ public class Helipuerto extends Pista {
 	
 	public void recibirAterrizajeDeComputarizado(AvionComputarizado avion) {
 	}
-
+	
+	
 }

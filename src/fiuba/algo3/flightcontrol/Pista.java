@@ -93,4 +93,6 @@ public abstract class Pista {
 	
 	 public void recibirAterrizajeDeAvionPesado(AvionPesado pesado) {
 	}
+	 
+	
 }
