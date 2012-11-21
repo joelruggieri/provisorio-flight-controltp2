@@ -158,9 +158,13 @@ private List<Vector> generarPosicionesPistaLarga(){
 		
 	}
 	
- public Iterator<Pista> getPistas(){
+	public Iterator<Pista> getPistas(){
 	 
-	 return pistas.iterator();
- }
+		return pistas.iterator();
+	}
 	
+	public Iterator<ObjetoVolador> getObjetosVoladores(){
+		
+		return avionesEnJuego.iterator();
+	}
 }

@@ -21,11 +21,10 @@ public class Helicoptero extends ObjetoVolador {
 		
 		if (this.getTrayectoria().hayTrayectoria()) {
 			super.vivir();
-		    this.aterrizarSiHayPistaDeAterrizajeCompatible();
 		}
 	}
 	
-	private void aterrizarSiHayPistaDeAterrizajeCompatible(){
+	protected void aterrizarSiHayPistaDeAterrizajeCompatible(){
 	    	
 		Iterator< Pista > it = this.nivel.getPistas();
 	    	

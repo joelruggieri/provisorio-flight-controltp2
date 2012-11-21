@@ -35,12 +35,8 @@ public class AvionComputarizado extends ObjetoVolador {
 		return trayectoriaDefinida;
 	}
 
-	public void vivir() {
-		super.vivir();
-	    this.aterrizarSiHayPistaDeAterrizajeCompatible();
-	}
 	
-    private void aterrizarSiHayPistaDeAterrizajeCompatible(){
+    protected void aterrizarSiHayPistaDeAterrizajeCompatible(){
     	
     	Iterator< Pista > it = this.nivel.getPistas();
     	
