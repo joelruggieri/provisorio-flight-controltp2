@@ -1,5 +1,6 @@
 package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Helicoptero extends ObjetoVolador {
@@ -12,7 +13,7 @@ public class Helicoptero extends ObjetoVolador {
 		
 	}
 	
-	public void mover() {
+	public void vivir() {
 		/* Mueve el helicoptero siguiendo la trayectoria, y si no hay
 		 * trayectoria definida se queda en el lugar */
 		/* post: cambia el valor de la posicion actual, 
@@ -20,7 +21,18 @@ public class Helicoptero extends ObjetoVolador {
 		
 		if (this.getTrayectoria().hayTrayectoria()) {
 			super.vivir();
+		    this.aterrizarSiHayPistaDeAterrizajeCompatible();
 		}
 	}
 	
+	private void aterrizarSiHayPistaDeAterrizajeCompatible(){
+	    	
+		Iterator< Pista > it = this.nivel.getPistas();
+	    	
+	    while (it.hasNext() && !this.aterrizo()){
+	    		
+	    	it.next().recibirAterrizajeDeObjetoVolador(this);
+	    }
+	    	
+	}
 }

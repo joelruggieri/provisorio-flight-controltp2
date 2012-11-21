@@ -1,5 +1,6 @@
 package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ public class AvionPesado extends ObjetoVolador {
 		this.setTrayectoria(new Trayectoria(listaDePosiciones));
 	}
 		
-	public void mover() {
+	public void vivir() {
 		/* Mueve el avion siguiendo la trayectoria o en el sentido
 		 * de la direccion si no hay trayectoria definida */
 		/* post: cambia el valor de la posicion actual,
@@ -31,6 +32,17 @@ public class AvionPesado extends ObjetoVolador {
 		}
 		
 		super.vivir();
+	    this.aterrizarSiHayPistaDeAterrizajeCompatible();
 	}
-
+	
+    private void aterrizarSiHayPistaDeAterrizajeCompatible(){
+    	
+    	Iterator< Pista > it = this.nivel.getPistas();
+    	
+    	while (it.hasNext() && !this.aterrizo()){
+    		
+    		it.next().recibirAterrizajeDeObjetoVolador(this);
+    	}
+    	
+    }
 }
