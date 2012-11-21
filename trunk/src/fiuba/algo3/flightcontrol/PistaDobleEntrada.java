@@ -25,6 +25,18 @@ public class PistaDobleEntrada extends Pista {
 		this.agregarDireccionesDeIngreso(direccionesDeIngreso);
 	}
 	
+	
+	private Vector getPosicionDeSegundaEntrada() {
+		
+	int indiceUltimaPosicion = this.getListaDePosicionesDeEntrada().size();	
+	return this.getListaDePosicionesDeEntrada().get(indiceUltimaPosicion);
+	}
+
+	private Vector getDireccionDeSegundaEntrada() {
+	
+	return this.getListaDeDireccionesDeEntrada().get(1);
+	}
+	
 	private boolean validarPrimeraEntradaYDireccion(ObjetoVolador avion) {
 		
 		boolean ingresoPorDireccion, ingresoPorPosicion;
@@ -32,10 +44,10 @@ public class PistaDobleEntrada extends Pista {
 		Vector posDeIngreso, miPosicion;
 		
 		miPosicion = avion.getPosicion();
-		posDeIngreso = this.getListaDePosicionesDeEntrada().get(0);
+		posDeIngreso = this.getPosicionDeEntrada();
 		
 		miDireccion = avion.getDireccion();
-		direcDeIngreso = this.getListaDeDireccionesDeEntrada().get(0);
+		direcDeIngreso = this.getDireccionDeEntrada();
 		
 		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
 		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
@@ -48,13 +60,13 @@ public class PistaDobleEntrada extends Pista {
 		boolean ingresoPorDireccion, ingresoPorPosicion;
 		Vector direcDeIngreso, miDireccion;
 		Vector posDeIngreso, miPosicion;
-		int pos = this.getListaDePosicionesDeEntrada().size() - 1;
+		
 		
 		miPosicion = avion.getPosicion();
-		posDeIngreso = this.getListaDePosicionesDeEntrada().get(pos);
+		posDeIngreso = this.getPosicionDeSegundaEntrada();
 		
 		miDireccion = avion.getDireccion();
-		direcDeIngreso = this.getListaDeDireccionesDeEntrada().get(1);
+		direcDeIngreso = this.getDireccionDeSegundaEntrada();
 		
 		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
 		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);

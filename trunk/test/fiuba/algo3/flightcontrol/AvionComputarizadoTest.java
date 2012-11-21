@@ -32,22 +32,15 @@ public class AvionComputarizadoTest extends TestCase {
 		}
 	}
 	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaHorizontalDeIzquierdaADerecha(){
+	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEncualquieraDeLasPistasValidas(){
 	
 		//arrange
-		destino = new Vector(4,3);
-		Vector posicionDePista = new Vector(5,3);
-		List<Vector> posicionesDeLaPista = new ArrayList<Vector>();
-		posicionesDeLaPista.add(destino);
-		posicionesDeLaPista.add(posicionDePista);
-		
-		Pista unaPista = new PistaSimple(posicionesDeLaPista);
+
 		unAvionComputarizado = new AvionComputarizado (velocidad, unNivel);
 		
 		//act
 		this.moverAvion(unAvionComputarizado);
 		
-		unaPista.recibirAterrizajeDeComputarizado (unAvionComputarizado);
 		
 		//assert
 		assertTrue(unAvionComputarizado.aterrizo());
