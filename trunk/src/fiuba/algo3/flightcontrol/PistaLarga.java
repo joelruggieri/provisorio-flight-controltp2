@@ -8,7 +8,7 @@ public class PistaLarga extends Pista {
 		super(unasEntradas);
 	}
 	
-	public void recibirAterrizajeDeAvionPesado(AvionPesado pesado) {
+	public void recibirAterrizajeDeObjetoVolador(AvionPesado pesado) {
 		
 		boolean posicionesIguales, direccionesIguales;
 		Vector miEntrada, miPosicion;

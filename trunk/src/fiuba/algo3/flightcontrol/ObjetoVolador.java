@@ -1,4 +1,5 @@
 package fiuba.algo3.flightcontrol;
+import java.util.Iterator;
 import java.util.Random;
 
 public abstract class ObjetoVolador {
@@ -167,6 +168,17 @@ public abstract class ObjetoVolador {
 	
 		this.trayectoria = unaTrayectoria;
 	}
+	
+    private void aterrizarSiHayPistaDeAterrizajeCompatible(ObjetoVolador unObjetoVolador){
+    	
+    	Iterator< Pista > it = this.nivel.getPistas();
+    	
+    	while (it.hasNext() && !this.aterrizo()){
+    		
+    		it.next().recibirAterrizajeDeObjetoVolador(this);
+    	}
+    	
+    }
 	
 }
 	

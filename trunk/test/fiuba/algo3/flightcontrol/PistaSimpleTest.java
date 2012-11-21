@@ -15,6 +15,7 @@ public class PistaSimpleTest extends TestCase {
 	private Helicoptero helicoptero;
 	private AvionPesado avionPesado;
 	
+	
 	protected void setUp () throws Exception {
 		super.setUp();
 		
@@ -32,6 +33,7 @@ public class PistaSimpleTest extends TestCase {
 		avion = new AvionSimple(velocidad, unNivel);
 		helicoptero = new Helicoptero(velocidad, unNivel);
 		avionPesado = new AvionPesado(velocidad, unNivel);
+		
 		
 	}
 	
@@ -148,7 +150,7 @@ public class PistaSimpleTest extends TestCase {
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeAvionSimple(avion);
+		pista.recibirAterrizajeDeObjetoVolador(avion);
 	
 		//assert
 		assertTrue(avion.aterrizo());
@@ -176,7 +178,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeAvionSimple(avion);
+		pista.recibirAterrizajeDeObjetoVolador(avion);
 		
 		//assert
 		assertTrue(!avion.aterrizo());
@@ -204,7 +206,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeAvionSimple(avion);
+		pista.recibirAterrizajeDeObjetoVolador(avion);
 	
 		//assert
 		assertTrue(!avion.aterrizo());
@@ -233,7 +235,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 	
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 	
-		pista.recibirAterrizajeDeHelicoptero(helicoptero);
+		pista.recibirAterrizajeDeObjetoVolador(helicoptero);
 		
 		//assert
 		assertTrue(!helicoptero.aterrizo());
@@ -263,7 +265,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeHelicoptero(helicoptero);
+		pista.recibirAterrizajeDeObjetoVolador(helicoptero);
 	
 		//assert
 		assertTrue(!helicoptero.aterrizo());
@@ -291,7 +293,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeHelicoptero (helicoptero);
+		pista.recibirAterrizajeDeObjetoVolador (helicoptero);
 	
 		//assert
 		assertTrue(!helicoptero.aterrizo());
@@ -320,7 +322,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 	
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 	
-		pista.recibirAterrizajeDeAvionPesado (avionPesado);
+		pista.recibirAterrizajeDeObjetoVolador (avionPesado);
 	
 		//assert
 		assertTrue(!avionPesado.aterrizo());
@@ -349,7 +351,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeAvionPesado (avionPesado);
+		pista.recibirAterrizajeDeObjetoVolador (avionPesado);
 			
 		//assert
 		assertTrue(!avionPesado.aterrizo());
@@ -377,11 +379,11 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		
 		PistaSimple pista = new PistaSimple(posicionesDeLaPista);
 		
-		pista.recibirAterrizajeDeAvionPesado(avionPesado);
+		pista.recibirAterrizajeDeObjetoVolador (avionPesado);
 			
 		//assert
 		assertTrue(!avionPesado.aterrizo());
 	}
-			
-
+	
+	
 }

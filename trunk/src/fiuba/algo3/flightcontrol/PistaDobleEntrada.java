@@ -28,7 +28,7 @@ public class PistaDobleEntrada extends Pista {
 	
 	private Vector getPosicionDeSegundaEntrada() {
 		
-	int indiceUltimaPosicion = this.getListaDePosicionesDeEntrada().size();	
+	int indiceUltimaPosicion = this.getListaDePosicionesDeEntrada().size() - 1;	
 	return this.getListaDePosicionesDeEntrada().get(indiceUltimaPosicion);
 	}
 
@@ -85,7 +85,7 @@ public class PistaDobleEntrada extends Pista {
 	}
 	
 	
-	public void recibirAterrizajeDeAvionSimple(AvionSimple simple) {
+	public void recibirAterrizajeDeObjetoVolador(AvionSimple simple) {
 		
 		if (this.validarEntradaYDireccion(simple)) {
 			simple.aterrizar();
@@ -93,7 +93,7 @@ public class PistaDobleEntrada extends Pista {
 		
 	}
 		
-	public void recibirAterrizajeDeComputarizado(AvionComputarizado avion) {
+	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avion) {
 		
 		if (this.validarEntradaYDireccion(avion)) {
 			avion.aterrizar();
