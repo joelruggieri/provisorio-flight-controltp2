@@ -18,57 +18,63 @@ public class Nivel {
 	
 	
 	
-	public Nivel(int numeroDeNivel, int limite){
+	public Nivel(int numeroDeNivel, int limite) {
 		
 		this.velocidadDelNivel = numeroDeNivel;
-		this.avionesEnJuego = new ArrayList < ObjetoVolador > ();
-		this.pistas = new ArrayList < Pista > ();
-		this.cantidadDeAviones = this.velocidadDelNivel * 10;
+		this.avionesEnJuego = new ArrayList<ObjetoVolador>();
+		this.pistas = new ArrayList<Pista>();
+		int maximo = 10;
+		this.cantidadDeAviones = this.velocidadDelNivel * maximo;
 		this.limite = limite;
 		this.generarPistas();
 		//faltan inicializar la frecuancia 
 	}
 	
-	public int getLimite(){
+	public int getLimite() {
 		
 		return this.limite;
 	}
 	
 	public void generarObjetoVolador() {
 		
-		if ( this.avionesEnJuego.size() < this.cantidadDeAviones) {
+		if (this.avionesEnJuego.size() < this.cantidadDeAviones) {
 			Random generadorDeRandoms = new Random();
 			
 			int codigoDeAvion = generadorDeRandoms.nextInt(4);
 			
-			switch ( codigoDeAvion ) {
-			case 0 : AvionSimple simple = new AvionSimple( this.velocidadDelNivel , this );
+			int vel = this.velocidadDelNivel;
+			switch (codigoDeAvion) {
+			case 0 : AvionSimple simple = new AvionSimple(vel, this);
 					 this.avionesEnJuego.add(simple);
 					 
-			case 1 : AvionPesado pesado = new AvionPesado( this.velocidadDelNivel , this );
+			case 1 : AvionPesado pesado = new AvionPesado(vel, this);
 					 this.avionesEnJuego.add(pesado);
 				
-			case 2 : Helicoptero helicoptero = new Helicoptero( this.velocidadDelNivel , this );
-			 		 this.avionesEnJuego.add(helicoptero);		 
+			case 2 : Helicoptero helicoptero = new Helicoptero(vel, this);
+			 		 this.avionesEnJuego.add(helicoptero);		
 			 		 
-			case 3 : AvionComputarizado computarizado = new AvionComputarizado( this.velocidadDelNivel , this );
-			 		 this.avionesEnJuego.add(computarizado);
+			case 3 : AvionComputarizado comp = new AvionComputarizado(vel, this);
+			 		 this.avionesEnJuego.add(comp);
 					 
 			}
 			
-		} else throw new YaFueronGeneradosUnTotalDeAvionesIgualAlLimitePermitidoPorElNivelException();
+		} else throw new EstanTodosLosOVDelNivelException();
 		
 	}
 	
-	private List<Vector> generarPosicionesPistaSimple(){
+	private List<Vector> generarPosicionesPistaSimple() {
 		
-		Vector posicionEntrada = new Vector(limite/2 , limite/2);
-		Vector otraPosicion = new Vector(limite/2 , (limite/2) + 1);
-		Vector otraPosicion2 = new Vector(limite/2 , (limite/2) + 2);
+		int posicion = limite / 2;
+		int corrido = 0;
+		Vector posEntrada = new Vector(posicion, posicion + corrido);
+		corrido++;
+		Vector otraPosicion = new Vector(posicion, posicion + corrido);
+		corrido++;
+		Vector otraPosicion2 = new Vector(posicion, posicion + corrido);
 		
-		List<Vector> listaPosicionesPista = new ArrayList<Vector> ();
+		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
 		
-		listaPosicionesPista.add(posicionEntrada);
+		listaPosicionesPista.add(posEntrada);
 		listaPosicionesPista.add(otraPosicion);
 		listaPosicionesPista.add(otraPosicion2);
 		
@@ -76,11 +82,14 @@ public class Nivel {
 		
 	}
 	
-	private List<Vector> generarPosicionHelipuerto(){
+	private List<Vector> generarPosicionHelipuerto() {
 		
-		Vector posicionDelHelipuerto = new Vector(limite/2 , limite/5);
+		int pos1 = limite / 2;
+		int pos2 = limite / 5;
 		
-		List<Vector> listaPosicionHelipuerto = new ArrayList<Vector> ();
+		Vector posicionDelHelipuerto = new Vector(pos1, pos2);
+		
+		List<Vector> listaPosicionHelipuerto = new ArrayList<Vector>();
 		
 		listaPosicionHelipuerto.add(posicionDelHelipuerto);
 		
@@ -88,13 +97,18 @@ public class Nivel {
 		
 	}
 	
-	private List<Vector> generarPosicionesPistaDobleEntrada(){
+	private List<Vector> generarPosicionesPistaDobleEntrada() {
 		
-		Vector posicionEntrada1 = new Vector(limite/3 , limite/3);
-		Vector otraPosicion = new Vector((limite/3) + 1  , (limite/3) + 1);
-		Vector posicionEntrada2 = new Vector((limite/3) + 2 , (limite/3) + 2);
+		int pos = limite / 3;
+		int corrido = 0;
 		
-		List<Vector> listaPosicionesPista = new ArrayList<Vector> ();
+		Vector posicionEntrada1 = new Vector(pos + corrido, pos + corrido);
+		corrido++;
+		Vector otraPosicion = new Vector(pos + corrido, pos + corrido);
+		corrido++;
+		Vector posicionEntrada2 = new Vector(pos + corrido, pos + corrido);
+		
+		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
 		
 		listaPosicionesPista.add(posicionEntrada1);
 		listaPosicionesPista.add(otraPosicion);
@@ -104,17 +118,24 @@ public class Nivel {
 		
 	}
 	
-private List<Vector> generarPosicionesPistaLarga(){
+	private List<Vector> generarPosicionesPistaLarga() {
 		
-		Vector posicionEntrada1 = new Vector(limite/4 , limite/4);
-		Vector otraPosicion = new Vector((limite/4) + 1  , limite/4);
-		Vector otraPosicion1 = new Vector((limite/4) + 2 , limite/4);
-		Vector otraPosicion2 = new Vector((limite/4) + 3 , limite/4);
-		Vector otraPosicion3 = new Vector((limite/4) + 4 , limite/4);
+		int pos = limite / 4;
+		int corrido = 0;
 		
-		List<Vector> listaPosicionesPista = new ArrayList<Vector> ();
+		Vector posEntrada1 = new Vector(pos + corrido, pos + corrido);
+		corrido++;
+		Vector otraPosicion = new Vector(pos + corrido, pos);
+		corrido++;
+		Vector otraPosicion1 = new Vector(pos + corrido, pos);
+		corrido++;
+		Vector otraPosicion2 = new Vector(pos + corrido, pos);
+		corrido++;
+		Vector otraPosicion3 = new Vector(pos + corrido, pos);
 		
-		listaPosicionesPista.add(posicionEntrada1);
+		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
+		
+		listaPosicionesPista.add(posEntrada1);
 		listaPosicionesPista.add(otraPosicion);
 		listaPosicionesPista.add(otraPosicion1);
 		listaPosicionesPista.add(otraPosicion2);
@@ -129,27 +150,27 @@ private List<Vector> generarPosicionesPistaLarga(){
 	
 	private void generarPistas() {
 		
-		List<Vector> posicionesPista = this.generarPosicionHelipuerto();
-		Helipuerto helipuerto = new Helipuerto(posicionesPista);
+		List<Vector> posPista = this.generarPosicionHelipuerto();
+		Helipuerto helipuerto = new Helipuerto(posPista);
 		this.pistas.add(helipuerto);
 		
-		posicionesPista = this.generarPosicionesPistaSimple();
-		PistaSimple simple = new PistaSimple(posicionesPista);
+		posPista = this.generarPosicionesPistaSimple();
+		PistaSimple simple = new PistaSimple(posPista);
 		this.pistas.add(simple);
 		
-		posicionesPista = this.generarPosicionesPistaDobleEntrada();
-		PistaDobleEntrada dobleEntrada = new PistaDobleEntrada(posicionesPista);
+		posPista = this.generarPosicionesPistaDobleEntrada();
+		PistaDobleEntrada dobleEntrada = new PistaDobleEntrada(posPista);
 		this.pistas.add(dobleEntrada);
 		
-		posicionesPista = this.generarPosicionesPistaLarga();
-		PistaLarga pistaLarga = new PistaLarga(posicionesPista);
+		posPista = this.generarPosicionesPistaLarga();
+		PistaLarga pistaLarga = new PistaLarga(posPista);
 		this.pistas.add(pistaLarga);
 	
 	}
 	
 	
 	
-	public Pista getUnaPistaValida(){
+	public Pista getUnaPistaValida() {
 		
 		Random generadorDeRandoms = new Random();
 		int indiceDePista = generadorDeRandoms.nextInt(3);
@@ -158,12 +179,12 @@ private List<Vector> generarPosicionesPistaLarga(){
 		
 	}
 	
-	public Iterator<Pista> getPistas(){
+	public Iterator<Pista> getPistas() {
 	 
 		return pistas.iterator();
 	}
 	
-	public Iterator<ObjetoVolador> getObjetosVoladores(){
+	public Iterator<ObjetoVolador> getObjetosVoladores() {
 		
 		return avionesEnJuego.iterator();
 	}
