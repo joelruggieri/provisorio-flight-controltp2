@@ -20,10 +20,12 @@ public class Nivel {
 	
 	public Nivel(int numeroDeNivel, int limite) {
 		
+		final int maximo = 10;
+		
 		this.velocidadDelNivel = numeroDeNivel;
 		this.avionesEnJuego = new ArrayList<ObjetoVolador>();
 		this.pistas = new ArrayList<Pista>();
-		int maximo = 10;
+		
 		this.cantidadDeAviones = this.velocidadDelNivel * maximo;
 		this.limite = limite;
 		this.generarPistas();
@@ -38,23 +40,32 @@ public class Nivel {
 	public void generarObjetoVolador() {
 		
 		if (this.avionesEnJuego.size() < this.cantidadDeAviones) {
+			
 			Random generadorDeRandoms = new Random();
+			int vel, codigoDeAvion;
+			final int cantidad = 4;
 			
-			int codigoDeAvion = generadorDeRandoms.nextInt(4);
-			
-			int vel = this.velocidadDelNivel;
+			vel = this.velocidadDelNivel;
+			codigoDeAvion = generadorDeRandoms.nextInt(cantidad);
+						
 			switch (codigoDeAvion) {
-			case 0 : AvionSimple simple = new AvionSimple(vel, this);
-					 this.avionesEnJuego.add(simple);
+			case 0 : 
+				AvionSimple simple = new AvionSimple(vel, this);
+				this.avionesEnJuego.add(simple);
 					 
-			case 1 : AvionPesado pesado = new AvionPesado(vel, this);
-					 this.avionesEnJuego.add(pesado);
+			case 1 : 
+				AvionPesado pesado = new AvionPesado(vel, this);
+				this.avionesEnJuego.add(pesado);
 				
-			case 2 : Helicoptero helicoptero = new Helicoptero(vel, this);
-			 		 this.avionesEnJuego.add(helicoptero);		
+			case 2 : 
+				Helicoptero helicoptero;
+				helicoptero = new Helicoptero(vel, this);
+			 	this.avionesEnJuego.add(helicoptero);		
 			 		 
-			case 3 : AvionComputarizado comp = new AvionComputarizado(vel, this);
-			 		 this.avionesEnJuego.add(comp);
+			default : 
+				AvionComputarizado avionComp;
+				avionComp = new AvionComputarizado(vel, this);
+			 	this.avionesEnJuego.add(avionComp);
 					 
 			}
 			
@@ -64,7 +75,8 @@ public class Nivel {
 	
 	private List<Vector> generarPosicionesPistaSimple() {
 		
-		int posicion = limite / 2;
+		final int numeroPredeterminado = 2;
+		int posicion = limite / numeroPredeterminado;
 		int corrido = 0;
 		Vector posEntrada = new Vector(posicion, posicion + corrido);
 		corrido++;
@@ -84,8 +96,11 @@ public class Nivel {
 	
 	private List<Vector> generarPosicionHelipuerto() {
 		
-		int pos1 = limite / 2;
-		int pos2 = limite / 5;
+		final int numeroPredeterminado1 = 2;
+		int pos1 = limite / numeroPredeterminado1;
+		
+		final int numeroPredeterminado2 = 5;
+		int pos2 = limite / numeroPredeterminado2;
 		
 		Vector posicionDelHelipuerto = new Vector(pos1, pos2);
 		
@@ -99,14 +114,17 @@ public class Nivel {
 	
 	private List<Vector> generarPosicionesPistaDobleEntrada() {
 		
-		int pos = limite / 3;
+		final int numeroPredeterminado = 3;
+		int pos = limite / numeroPredeterminado;
 		int corrido = 0;
 		
-		Vector posicionEntrada1 = new Vector(pos + corrido, pos + corrido);
+		Vector posicionEntrada1;
+		posicionEntrada1 = new Vector(pos + corrido, pos + corrido);
 		corrido++;
 		Vector otraPosicion = new Vector(pos + corrido, pos + corrido);
 		corrido++;
-		Vector posicionEntrada2 = new Vector(pos + corrido, pos + corrido);
+		Vector posicionEntrada2;
+		posicionEntrada2 = new Vector(pos + corrido, pos + corrido);
 		
 		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
 		
@@ -120,7 +138,8 @@ public class Nivel {
 	
 	private List<Vector> generarPosicionesPistaLarga() {
 		
-		int pos = limite / 4;
+		final int numeroPredeterminado = 4;
+		int pos = limite / numeroPredeterminado;
 		int corrido = 0;
 		
 		Vector posEntrada1 = new Vector(pos + corrido, pos + corrido);
@@ -143,10 +162,7 @@ public class Nivel {
 		
 		
 		return listaPosicionesPista;
-		
 	}
-	
-
 	
 	private void generarPistas() {
 		
@@ -159,24 +175,23 @@ public class Nivel {
 		this.pistas.add(simple);
 		
 		posPista = this.generarPosicionesPistaDobleEntrada();
-		PistaDobleEntrada dobleEntrada = new PistaDobleEntrada(posPista);
+		PistaDobleEntrada dobleEntrada;
+		dobleEntrada = new PistaDobleEntrada(posPista);
 		this.pistas.add(dobleEntrada);
 		
 		posPista = this.generarPosicionesPistaLarga();
 		PistaLarga pistaLarga = new PistaLarga(posPista);
 		this.pistas.add(pistaLarga);
-	
 	}
-	
-	
 	
 	public Pista getUnaPistaValida() {
 		
+		final int cantidadDePistas = 3;
+		int indiceDePista;
 		Random generadorDeRandoms = new Random();
-		int indiceDePista = generadorDeRandoms.nextInt(3);
+		indiceDePista = generadorDeRandoms.nextInt(cantidadDePistas);
 		
 		return this.pistas.get(indiceDePista + 1);
-		
 	}
 	
 	public Iterator<Pista> getPistas() {
@@ -188,4 +203,5 @@ public class Nivel {
 		
 		return avionesEnJuego.iterator();
 	}
+	
 }

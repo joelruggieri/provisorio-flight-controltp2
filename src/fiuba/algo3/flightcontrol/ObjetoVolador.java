@@ -10,7 +10,7 @@ public abstract class ObjetoVolador {
 	private Nivel nivel;
 	private int velocidad;
 	private int contadorDeTurnos;
-	private static int velocidadMaxima = 10;
+	private final int velocidadMaxima = 10;
 	
 	public ObjetoVolador(int velocidad, Nivel unNivel) {
 						
@@ -182,14 +182,18 @@ public abstract class ObjetoVolador {
 	public boolean chocar() {
 		
 		boolean choco = false;
+		Iterator<ObjetoVolador> it;
+		Vector otraPosicion;
 		
-		Iterator<ObjetoVolador> it = this.getNivel().getObjetosVoladores();
+		it = this.getNivel().getObjetosVoladores();
 		
 		while (it.hasNext() && !choco) {
-			choco = (it.next().getPosicion().esIgual(this.getPosicion()));
+			
+			otraPosicion = it.next().getPosicion();
+			choco = otraPosicion.esIgual(this.getPosicion());
 		}
 		
 		return choco;
 	}
-}
 	
+}
