@@ -3,6 +3,9 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
+import fiuba.algo3.flightcontrol.modelo.Vector;
+
 public class TrayectoriaTest extends TestCase {
 	
 	private Vector destino, primerPunto, segundoPunto,proximaPosicion;

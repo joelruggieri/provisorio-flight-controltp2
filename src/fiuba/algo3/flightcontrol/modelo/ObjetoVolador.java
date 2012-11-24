@@ -1,8 +1,10 @@
-package fiuba.algo3.flightcontrol;
+package fiuba.algo3.flightcontrol.modelo;
 import java.util.Iterator;
 import java.util.Random;
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
+import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public abstract class ObjetoVolador {
+public abstract class ObjetoVolador implements ObjetoVivo, ObjetoPosicionable {
 	
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
@@ -24,6 +26,16 @@ public abstract class ObjetoVolador {
 		this.velocidad = velocidad;
 		contadorDeTurnos = 0;
 		
+	}
+	
+	public int getX() {
+		
+		return this.posicionActual.getPosicionX();
+	}
+	
+	public int getY() {
+		
+		return this.posicionActual.getPosicionY();
 	}
 	
 	public Nivel getNivel() {
@@ -182,6 +194,7 @@ public abstract class ObjetoVolador {
 	public boolean chocar() {
 		
 		boolean choco = false;
+		double distanciaDeChoque = 2; //O sea, radio de cada ObjetoVolador es de 1
 		Iterator<ObjetoVolador> it;
 		Vector otraPosicion;
 		
@@ -190,7 +203,7 @@ public abstract class ObjetoVolador {
 		while (it.hasNext() && !choco) {
 			
 			otraPosicion = it.next().getPosicion();
-			choco = otraPosicion.esIgual(this.getPosicion());
+			choco = (otraPosicion.distancia(this.getPosicion()) <= distanciaDeChoque);
 		}
 		
 		return choco;
