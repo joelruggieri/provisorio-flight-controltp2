@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +19,12 @@ import javax.swing.JPanel;
 
 import fiuba.algo3.flightcontrol.modelo.AvionSimple;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.Pista;
+import fiuba.algo3.flightcontrol.modelo.PistaSimple;
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
+import fiuba.algo3.flightcontrol.modelo.Vector;
 import fiuba.algo3.titiritero.dibujables.Circulo;
+import fiuba.algo3.titiritero.dibujables.Cuadrado;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
@@ -86,19 +93,23 @@ public class VentanaPrincipal {
 	}
 
 	private void inicializarModelo() {
-		Nivel unNivel = new Nivel(10,200);
-		AvionSimple unAvion = new AvionSimple(10,unNivel);
-		this.gameLoop.agregar(unAvion);
-		Circulo circulo = new VistaObjetoVolador(unAvion);
-		this.gameLoop.agregar(circulo);
+		Nivel unNivel = new Nivel(10,350);
+		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop);
+		unNivel.addObserver(observadorDeNivel);
+		this.gameLoop.agregar(unNivel);
 		
-		
+		Iterator<Pista> it = unNivel.getPistas();
+		while (it.hasNext()) {
+			Cuadrado cuadrado = new VistaPista(it.next());
+			this.gameLoop.agregar(cuadrado);
+		}		
 	}
 
 	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
+		
 	}
 
 	private void addKeyListener() {
@@ -128,7 +139,9 @@ public class VentanaPrincipal {
 					
 			@Override
 			public void mouseClicked(MouseEvent arg0) {	
-				
+
+				//unaLista.add(new Vector(100, 100));
+
 			}});
 	}
 

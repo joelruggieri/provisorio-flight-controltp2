@@ -1,8 +1,9 @@
 package fiuba.algo3.flightcontrol.modelo;
 import java.util.ArrayList;
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import java.util.List;
 
-public abstract class Pista {
+public abstract class Pista implements ObjetoPosicionable{
 
 	private List<Vector> posiciones;
 	private List<Vector> direccionesDeIngreso;
@@ -29,6 +30,16 @@ public abstract class Pista {
 		
 		this.direccionesDeIngreso = new ArrayList<Vector>();
 		this.direccionesDeIngreso.add(direccionDeEntrada);
+	}
+	
+	public int getX() {
+		
+		return this.getPosicionDeEntrada().getPosicionX();
+	}
+	
+	public int getY() {
+		
+		return this.getPosicionDeEntrada().getPosicionY();
 	}
 	
 	public List<Vector> getPosiciones() {

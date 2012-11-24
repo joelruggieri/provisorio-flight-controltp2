@@ -46,4 +46,11 @@ public class AvionComputarizado extends ObjetoVolador {
     	}
     	
     }
+    
+	public void vivir() {
+
+		if (this.getTrayectoria().hayTrayectoria()) {
+			super.vivir();
+		}
+	}
 }
