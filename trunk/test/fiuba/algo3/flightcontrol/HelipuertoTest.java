@@ -4,6 +4,16 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.AvionPesado;
+import fiuba.algo3.flightcontrol.modelo.AvionSimple;
+import fiuba.algo3.flightcontrol.modelo.Helicoptero;
+import fiuba.algo3.flightcontrol.modelo.Helipuerto;
+import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.NoTieneUnaDireccionDeEntradaException;
+import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
+import fiuba.algo3.flightcontrol.modelo.Vector;
+
 public class HelipuertoTest extends TestCase {
 	
 	private List <Vector> posicionesDestino,posicionesDeLaPista;

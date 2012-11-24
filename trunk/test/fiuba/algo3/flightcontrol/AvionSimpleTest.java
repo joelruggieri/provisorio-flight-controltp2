@@ -2,6 +2,12 @@ package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.AvionSimple;
+import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
+import fiuba.algo3.flightcontrol.modelo.Vector;
+
 import junit.framework.TestCase;
 
 public class AvionSimpleTest extends TestCase {
@@ -39,6 +45,39 @@ public class AvionSimpleTest extends TestCase {
 			unAvion.vivir();
 		}
 		
+	}
+	
+	private void moverAvion (ObjetoVolador unAvion){
+		/* Mueve un avion hasta el destino */
+		/* pre: Se debe ingresar el avion a mover y una posicion */
+		/* post: El avion se movio */
+		
+		while ( unAvion.hayTrayectoria()){
+			unAvion.vivir();
+		}
+	}
+	
+	
+	public void test2AvionesDeRadio1SiSeJuntanAUnaDistanciaIgualA2DeberianChocar() {
+		
+		//arrange
+		listaDePuntos.add(new Vector(10, 10));
+		unaTrayectoria = new Trayectoria (listaDePuntos);
+		unAvion.setTrayectoria(unaTrayectoria);
+		
+		List<Vector> otraListaDePuntos = new ArrayList<Vector>();
+		otraListaDePuntos.add(new Vector(10, 12));
+		Trayectoria otraTrayectoria = new Trayectoria(otraListaDePuntos);
+		unNivel.generarObjetoVolador();
+		ObjetoVolador otroAvion = unNivel.getObjetosVoladores().next();
+		otroAvion.setTrayectoria(otraTrayectoria);
+		
+		//act
+		this.moverAvion(unAvion);
+		this.moverAvion(otroAvion);
+		
+		//assert
+		assertTrue(unAvion.chocar());
 	}
 	
 	public void testCrearAvionSeDeberiaCrearEnUnaPosicionLimite (){
@@ -535,4 +574,5 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		//assert
 		assertTrue (pasoCorrecto);
 	}
+
 }

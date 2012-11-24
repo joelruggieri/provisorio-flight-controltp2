@@ -4,6 +4,11 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.AvionComputarizado;
+import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
+import fiuba.algo3.flightcontrol.modelo.Vector;
+
 public class AvionComputarizadoTest extends TestCase {
 
 	private AvionComputarizado unAvionComputarizado;

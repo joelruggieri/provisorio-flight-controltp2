@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.Helipuerto;
+import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.Pista;
+import fiuba.algo3.flightcontrol.modelo.PistaDobleEntrada;
+import fiuba.algo3.flightcontrol.modelo.PistaLarga;
+import fiuba.algo3.flightcontrol.modelo.PistaSimple;
+
 public class NivelTest extends TestCase {
 	
 	public void testConstructorDelNivelDeberiaGenerarUnaPistaDeCadaTipo(){

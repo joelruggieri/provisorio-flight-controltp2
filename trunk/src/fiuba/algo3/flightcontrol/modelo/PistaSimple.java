@@ -1,4 +1,4 @@
-package fiuba.algo3.flightcontrol;
+package fiuba.algo3.flightcontrol.modelo;
 import java.util.List;
 
 	public class PistaSimple extends Pista {
