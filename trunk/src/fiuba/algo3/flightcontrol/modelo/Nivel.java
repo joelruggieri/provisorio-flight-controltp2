@@ -35,7 +35,6 @@ public class Nivel extends Observable implements ObjetoVivo {
 		this.cantidadDeAviones = this.velocidadDelNivel * maximo;
 		this.limite = limite;
 		this.generarPistas();
-		//faltan inicializar la frecuancia 
 	}
 	
 	public int getLimite() {
@@ -61,27 +60,46 @@ public class Nivel extends Observable implements ObjetoVivo {
 				
 				vel = this.velocidadDelNivel;
 				codigoDeAvion = generadorDeRandoms.nextInt(cantidad);
-							
-				switch (codigoDeAvion) {
+				
+				System.out.println(codigoDeAvion);
+				
+				/*switch (codigoDeAvion) {
 				case 0 : 
 					AvionSimple simple = new AvionSimple(vel, this);
 					this.avionesEnJuego.add(simple);
-						 
+					break;
 				case 1 : 
 					AvionPesado pesado = new AvionPesado(vel, this);
 					this.avionesEnJuego.add(pesado);
-					
+					break;
 				case 2 : 
 					Helicoptero helicoptero;
 					helicoptero = new Helicoptero(vel, this);
 				 	this.avionesEnJuego.add(helicoptero);		
-				 		 
+				 	break;
 				default : 
 					AvionComputarizado avionComp;
 					avionComp = new AvionComputarizado(vel, this);
 				 	this.avionesEnJuego.add(avionComp);
 						 
+				}*/
+				
+				if (codigoDeAvion == 0){
+					AvionSimple simple = new AvionSimple(vel, this);
+					this.avionesEnJuego.add(simple);
+				}else if (codigoDeAvion == 1){
+					AvionPesado pesado = new AvionPesado(vel, this);
+					this.avionesEnJuego.add(pesado);
+				}else if (codigoDeAvion == 2){
+					Helicoptero helicoptero;
+					helicoptero = new Helicoptero(vel, this);
+				 	this.avionesEnJuego.add(helicoptero);	
+				}else{
+					AvionComputarizado avionComp;
+					avionComp = new AvionComputarizado(vel, this);
+				 	this.avionesEnJuego.add(avionComp);
 				}
+				
 				
 				this.setChanged();
 			} else throw new EstanTodosLosOVDelNivelException();
