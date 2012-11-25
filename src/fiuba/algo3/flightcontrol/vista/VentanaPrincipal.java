@@ -9,21 +9,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-import fiuba.algo3.flightcontrol.modelo.AvionSimple;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.Pista;
-import fiuba.algo3.flightcontrol.modelo.PistaSimple;
-import fiuba.algo3.flightcontrol.modelo.Trayectoria;
-import fiuba.algo3.flightcontrol.modelo.Vector;
-import fiuba.algo3.titiritero.dibujables.Circulo;
+
 import fiuba.algo3.titiritero.dibujables.Cuadrado;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
