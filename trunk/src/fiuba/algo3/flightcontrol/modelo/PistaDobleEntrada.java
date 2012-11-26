@@ -94,14 +94,18 @@ public class PistaDobleEntrada extends Pista {
 		
 		if (this.validarEntradaYDireccion(simple)) {
 			simple.aterrizar();
+			this.setChanged();
+			this.notifyObservers(simple);
 		}
 		
 	}
 		
-	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avion) {
+	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avionComputarizado) {
 		
-		if (this.validarEntradaYDireccion(avion)) {
-			avion.aterrizar();
+		if (this.validarEntradaYDireccion(avionComputarizado)) {
+			avionComputarizado.aterrizar();
+			this.setChanged();
+			this.notifyObservers(avionComputarizado);
 		}
 		
 	}

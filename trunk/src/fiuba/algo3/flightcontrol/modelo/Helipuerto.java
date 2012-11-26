@@ -22,6 +22,8 @@ public class Helipuerto extends Pista {
 		if (helicoptero.getPosicion().esIgual(getPosicionDeEntrada())) {
 			
 			helicoptero.aterrizar();
+			this.setChanged();
+			this.notifyObservers(helicoptero);
 		}
 		
 	}
