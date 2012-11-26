@@ -24,7 +24,7 @@ public class VistaObjetoVolador extends Circulo {
 		}else if (modelo.getClass() == AvionComputarizado.class){
 			color = Color.RED;
 		}else if (modelo.getClass() == AvionPesado.class){
-			color = Color.ORANGE;
+			color = Color.CYAN;
 		}
 		
 	return color;
