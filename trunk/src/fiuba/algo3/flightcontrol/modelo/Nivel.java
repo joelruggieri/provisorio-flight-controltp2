@@ -206,13 +206,13 @@ public class Nivel extends Observable implements ObjetoVivo {
 	
 	private void generarPistas() {
 		
-		List<Vector> posPista = this.generarPosicionesPistaSimple();
-		PistaSimple simple = new PistaSimple(posPista);
-		this.pistas.add(simple);
-		
-		posPista = this.generarPosicionHelipuerto();
+		List<Vector> posPista = this.generarPosicionHelipuerto();
 		Helipuerto helipuerto = new Helipuerto(posPista);
 		this.pistas.add(helipuerto);
+		
+		posPista = this.generarPosicionesPistaSimple();
+		PistaSimple simple = new PistaSimple(posPista);
+		this.pistas.add(simple);
 		
 		posPista = this.generarPosicionesPistaDobleEntrada();
 		PistaDobleEntrada dobleEntrada;

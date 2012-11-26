@@ -21,7 +21,7 @@ public class NivelTest extends TestCase {
 		
 		Nivel unNivel = new Nivel(velocidad,dimension);
 		
-		Iterator iterador = unNivel.getPistas();
+		Iterator<Pista> iterador = unNivel.getPistas();
 		assertTrue(iterador.next().getClass() == Helipuerto.class);
 		assertTrue(iterador.next().getClass() == PistaSimple.class);
 		assertTrue(iterador.next().getClass() == PistaDobleEntrada.class);
@@ -30,7 +30,7 @@ public class NivelTest extends TestCase {
 		
 	}
 	
-	public void testGetPistaValidanNuncaDeberiaRetornarUnHelipuerto(){
+	public void testGetPistaValidaNuncaDeberiaRetornarUnHelipuerto(){
 		
 		int velocidad = 1;
 		int dimension = 768;
