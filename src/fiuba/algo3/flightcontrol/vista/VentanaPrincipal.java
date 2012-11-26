@@ -94,7 +94,10 @@ public class VentanaPrincipal {
 		
 		Iterator<Pista> it = unNivel.getPistas();
 		while (it.hasNext()) {
-			Cuadrado cuadrado = new VistaPista(it.next());
+			Pista unaPista = it.next();
+			ObservadorDePista observadorDePista = new ObservadorDePista(gameLoop);
+			unaPista.addObserver(observadorDePista);
+			Cuadrado cuadrado = new VistaPista(unaPista);
 			this.gameLoop.agregar(cuadrado);
 		}		
 	}
