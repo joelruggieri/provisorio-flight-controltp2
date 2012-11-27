@@ -68,7 +68,7 @@ public class AvionSimpleTest extends TestCase {
 		List<Vector> otraListaDePuntos = new ArrayList<Vector>();
 		otraListaDePuntos.add(new Vector(10, 12));
 		Trayectoria otraTrayectoria = new Trayectoria(otraListaDePuntos);
-		unNivel.generarObjetoVolador();
+		unNivel.vivir();
 		ObjetoVolador otroAvion = unNivel.getObjetosVoladores().next();
 		otroAvion.setTrayectoria(otraTrayectoria);
 		
