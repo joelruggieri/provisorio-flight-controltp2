@@ -27,7 +27,7 @@ public class AvionComputarizado extends ObjetoVolador {
 		Vector direccionDeEntrada = unaPista.getDireccionDeEntrada();
 		
 		Vector posPreAterrizaje;
-		posPreAterrizaje = posicionDeEntrada.restar(direccionDeEntrada);
+		posPreAterrizaje = posicionDeEntrada.restar(direccionDeEntrada.multiplicar(30));
 				
 		trayectoriaDefinida.add(posPreAterrizaje);
 		trayectoriaDefinida.add(unaPista.getPosicionDeEntrada());

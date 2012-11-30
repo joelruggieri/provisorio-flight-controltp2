@@ -54,7 +54,7 @@ public class PistaDobleEntrada extends Pista {
 		miDireccion = avion.getDireccion();
 		direcDeIngreso = this.getDireccionDeEntrada();
 		
-		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
+		ingresoPorPosicion = (miPosicion.distancia(posDeIngreso) <= 20);
 		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
 		
 		return (ingresoPorPosicion && ingresoPorDireccion);
@@ -73,7 +73,7 @@ public class PistaDobleEntrada extends Pista {
 		miDireccion = avion.getDireccion();
 		direcDeIngreso = this.getDireccionDeSegundaEntrada();
 		
-		ingresoPorPosicion = miPosicion.esIgual(posDeIngreso);
+		ingresoPorPosicion = (miPosicion.distancia(posDeIngreso) <= 20);
 		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
 		
 		return (ingresoPorPosicion && ingresoPorDireccion);
@@ -94,8 +94,6 @@ public class PistaDobleEntrada extends Pista {
 		
 		if (this.validarEntradaYDireccion(simple)) {
 			simple.aterrizar();
-			this.setChanged();
-			this.notifyObservers(simple);
 		}
 		
 	}
@@ -104,8 +102,7 @@ public class PistaDobleEntrada extends Pista {
 		
 		if (this.validarEntradaYDireccion(avionComputarizado)) {
 			avionComputarizado.aterrizar();
-			this.setChanged();
-			this.notifyObservers(avionComputarizado);
+
 		}
 		
 	}

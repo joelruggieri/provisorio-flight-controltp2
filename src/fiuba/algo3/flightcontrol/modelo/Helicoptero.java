@@ -21,10 +21,13 @@ public class Helicoptero extends ObjetoVolador {
 		 * trayectoria definida se queda en el lugar */
 		/* post: cambia el valor de la posicion actual, 
 		 * buscando el movimiento mas optimo posible */
+		List<Vector> listaDePosiciones = new ArrayList<Vector>();
 		
-		if (this.getTrayectoria().hayTrayectoria()) {
-			super.vivir();
+		if (!this.getTrayectoria().hayTrayectoria()) {
+			listaDePosiciones.add(this.getPosicion());
+			this.setTrayectoria(new Trayectoria(listaDePosiciones));
 		}
+		super.vivir();
 	}
 	
 	public void aterrizarSiHayPistaDeAterrizajeCompatible() {

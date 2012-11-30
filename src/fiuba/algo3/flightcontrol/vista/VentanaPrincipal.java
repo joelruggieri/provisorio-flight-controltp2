@@ -76,7 +76,7 @@ public class VentanaPrincipal {
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
-		this.inicializarModelo();
+		this.inicializarModelo((SuperficieDeDibujo) panel);
 		
 		this.addMouseListener(panel);
 		
@@ -86,17 +86,15 @@ public class VentanaPrincipal {
 
 	}
 
-	private void inicializarModelo() {
+	private void inicializarModelo(SuperficieDeDibujo unPanel) {
 		Nivel unNivel = new Nivel(10,350);
-		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop);
+		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
 		this.gameLoop.agregar(unNivel);
-		
+	
 		Iterator<Pista> it = unNivel.getPistas();
 		while (it.hasNext()) {
 			Pista unaPista = it.next();
-			ObservadorDePista observadorDePista = new ObservadorDePista(gameLoop);
-			unaPista.addObserver(observadorDePista);
 			Cuadrado cuadrado = new VistaPista(unaPista);
 			this.gameLoop.agregar(cuadrado);
 		}		
