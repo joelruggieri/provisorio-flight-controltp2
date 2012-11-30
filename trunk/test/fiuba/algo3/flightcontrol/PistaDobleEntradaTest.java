@@ -223,33 +223,33 @@ public class PistaDobleEntradaTest extends TestCase {
 		assertTrue(!avion.aterrizo());
 	}
 
-	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
-		
-		//arrange
-		this.moverAvion(avion,posicion2);
-			
-		//act	
-		
-		/*creo las Vectores de la pista*/
-		Vector VectorDeEntrada = new Vector(1,2);
-		Vector otraVectorDeLaPista = new Vector(2,2);
-		Vector otraVectorDeLaPista1 = new Vector(3,2);
-		Vector otraVectorDeLaPista2 = new Vector(4,2);
-		Vector ultimaVectorDeLaPista = new Vector(5,2);
-		
-		listaDePosiciones.add(VectorDeEntrada);
-		listaDePosiciones.add(otraVectorDeLaPista);
-		listaDePosiciones.add(otraVectorDeLaPista1);
-		listaDePosiciones.add(otraVectorDeLaPista2);
-		listaDePosiciones.add(ultimaVectorDeLaPista);
-		
-		PistaDobleEntrada pista = new PistaDobleEntrada(listaDePosiciones);
-		
-		pista.recibirAterrizajeDeObjetoVolador(avion);
-	
-		//assert
-		assertTrue(!avion.aterrizo());
-	}
+//	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaVectorQueNoEsLaDeEntradaPeroEstaEnELRangoDeberiaAterrizar(){
+//		
+//		//arrange
+//		this.moverAvion(avion,posicion2);
+//			
+//		//act	
+//		
+//		/*creo las Vectores de la pista*/
+//		Vector VectorDeEntrada = new Vector(1,2);
+//		Vector otraVectorDeLaPista = new Vector(2,2);
+//		Vector otraVectorDeLaPista1 = new Vector(3,2);
+//		Vector otraVectorDeLaPista2 = new Vector(4,2);
+//		Vector ultimaVectorDeLaPista = new Vector(5,2);
+//		
+//		listaDePosiciones.add(VectorDeEntrada);
+//		listaDePosiciones.add(otraVectorDeLaPista);
+//		listaDePosiciones.add(otraVectorDeLaPista1);
+//		listaDePosiciones.add(otraVectorDeLaPista2);
+//		listaDePosiciones.add(ultimaVectorDeLaPista);
+//		
+//		PistaDobleEntrada pista = new PistaDobleEntrada(listaDePosiciones);
+//		
+//		pista.recibirAterrizajeDeObjetoVolador(avion);
+//	
+//		//assert
+//		assertTrue(avion.aterrizo());
+//	}
 
 
 	public void testLlegadaDeUnHelicopteroALaPistaDobleEntradaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaNoDeberiaAterrizar(){

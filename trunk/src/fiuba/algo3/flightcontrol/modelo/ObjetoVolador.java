@@ -1,10 +1,11 @@
 package fiuba.algo3.flightcontrol.modelo;
 import java.util.Iterator;
+import java.util.Observable;
 import java.util.Random;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public abstract class ObjetoVolador implements ObjetoVivo, ObjetoPosicionable {
+public abstract class ObjetoVolador extends Observable implements ObjetoVivo, ObjetoPosicionable {
 	
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
@@ -46,6 +47,8 @@ public abstract class ObjetoVolador implements ObjetoVivo, ObjetoPosicionable {
 	public void vivir() {
 		this.mover();
 		this.aterrizarSiHayPistaDeAterrizajeCompatible();
+		this.setChanged();
+		this.notifyObservers(this.aterrizado);
 	}
 	
 	abstract void aterrizarSiHayPistaDeAterrizajeCompatible();
@@ -194,16 +197,18 @@ public abstract class ObjetoVolador implements ObjetoVivo, ObjetoPosicionable {
 	public boolean chocar() {
 		
 		boolean choco = false;
-		double distanciaDeChoque = 2; //O sea, radio de cada ObjetoVolador es de 1
+		double distanciaDeChoque = 20; //O sea, radio de cada ObjetoVolador es de 20
 		Iterator<ObjetoVolador> it;
 		Vector otraPosicion;
 		
 		it = this.getNivel().getObjetosVoladores();
 		
 		while (it.hasNext() && !choco) {
-			
-			otraPosicion = it.next().getPosicion();
-			choco = (otraPosicion.distancia(this.getPosicion()) <= distanciaDeChoque);
+			ObjetoVolador unObjetoVolador = it.next();
+			if (unObjetoVolador.getPosicion() != this.getPosicion()) {
+				otraPosicion = unObjetoVolador.getPosicion();
+				choco = (otraPosicion.distancia(this.getPosicion()) <= distanciaDeChoque);
+			}
 		}
 		
 		return choco;
