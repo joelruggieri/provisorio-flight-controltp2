@@ -22,14 +22,16 @@ public class VistaPista extends Cuadrado {
 	
 	private Color pintar (Pista modelo){
 		
-		Color color = Color.GREEN;;
+		Color color;
 		
 		if (modelo.getClass() == Helipuerto.class){
-			color = Color.YELLOW;
+			color = new Color (150,150,150);
 		}else if (modelo.getClass() == PistaLarga.class){
-			color = Color.CYAN;
+			color = new Color (100,100,100);
 		}else if (modelo.getClass() == PistaDobleEntrada.class){
-			color = Color.BLUE;
+			color = new Color (50,50,50);
+		}else{
+			color = new Color (0,0,0);
 		}
 		
 	return color;

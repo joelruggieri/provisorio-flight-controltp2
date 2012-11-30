@@ -1,7 +1,9 @@
 package fiuba.algo3.flightcontrol.vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,6 +29,7 @@ public class VentanaPrincipal {
 
 	private JFrame frame;
 	private GameLoop gameLoop;
+	private Dimension tamano;
 
 	/**
 	 * Launch the application.
@@ -49,6 +52,10 @@ public class VentanaPrincipal {
 	 */
 	public VentanaPrincipal() {
 		try {
+			
+			Toolkit tk = Toolkit.getDefaultToolkit();
+			tamano = tk.getScreenSize();
+			
 			initialize();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -61,9 +68,12 @@ public class VentanaPrincipal {
 	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
+		
+		
+		
 		frame = new JFrame();
 		frame.setForeground(new Color(0, 0, 0));
-		frame.setBounds(700, 300, 470, 470);
+		frame.setBounds(0, 0, tamano.width, tamano.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Flight Control by Key");
@@ -87,7 +97,7 @@ public class VentanaPrincipal {
 	}
 
 	private void inicializarModelo(SuperficieDeDibujo unPanel) {
-		Nivel unNivel = new Nivel(10,350);
+		Nivel unNivel = new Nivel(10,tamano.height-60);
 		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
 		this.gameLoop.agregar(unNivel);
@@ -142,8 +152,10 @@ public class VentanaPrincipal {
 
 	private JPanel addSuperficiePanel() {
 		JPanel panel = new SuperficiePanel();
-		panel.setBackground(new Color(0, 0, 0));
-		panel.setBounds(42, 53, 370, 370);
+		panel.setBackground(new Color(0, 150, 0));
+		System.out.println(tamano.width);
+		System.out.println(tamano.height);
+		panel.setBounds(350, 5, tamano.height-40, tamano.height-40);
 		frame.getContentPane().add(panel);
 		return panel;
 	}
@@ -155,7 +167,7 @@ public class VentanaPrincipal {
 				gameLoop.detenerEjecucion();
 			}
 		});
-		btnDetener.setBounds(325, 16, 92, 25);
+		btnDetener.setBounds(200, 16, 92, 25);
 		frame.getContentPane().add(btnDetener);
 		return btnDetener;
 	}
