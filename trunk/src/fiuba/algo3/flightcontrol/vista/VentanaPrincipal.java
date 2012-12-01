@@ -177,7 +177,7 @@ public class VentanaPrincipal {
 		Iterator<Pista> it = unNivel.getPistas();
 		while (it.hasNext()) {
 			Pista unaPista = it.next();
-			Cuadrado cuadrado = new VistaPista(unaPista);
+			Rectangulo cuadrado = new VistaPista(unaPista);
 			this.gameLoop.agregar(cuadrado);
 		}		
 	}
