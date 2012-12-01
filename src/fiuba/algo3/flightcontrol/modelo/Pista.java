@@ -9,13 +9,13 @@ public abstract class Pista implements ObjetoPosicionable{
 
 	private List<Vector> posiciones;
 	private List<Vector> direccionesDeIngreso;
-
+	private int largo;
 	
 	public Pista(List<Vector> unasEntradas) {
 		/* Constructor de una pista */
 		
 		this.posiciones = unasEntradas;
-		
+		this.largo = unasEntradas.size();
 		/* Se toman los dos extremos de la pista para conocer la 
 		 * direccion en que deben entrar los
 		 * objetos voladores por el extremo de entrada*/
@@ -108,5 +108,14 @@ public abstract class Pista implements ObjetoPosicionable{
 	 public void recibirAterrizajeDeObjetoVolador(AvionPesado pesado) {
 	}
 	 
+	 public int getLargo(){
+		 
+		 return largo;
+	 }
+	 
+	 public Vector getPosicionFinal(){
+		 
+		 return this.posiciones.get(this.posiciones.size()-1);
+	 }
 	
 }

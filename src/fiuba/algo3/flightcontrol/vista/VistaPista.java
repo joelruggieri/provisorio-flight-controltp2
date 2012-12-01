@@ -13,10 +13,11 @@ import fiuba.algo3.flightcontrol.modelo.PistaLarga;
 import fiuba.algo3.titiritero.dibujables.Cuadrado;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
-public class VistaPista extends Cuadrado {
-	
+public class VistaPista extends Rectangulo {
+	private Rectangulo dibujo;
+		
 	public VistaPista(Pista modelo) {
-		super(20, 20, modelo);
+		super(modelo.getPosicionFinal().getPosicionX(),modelo.getPosicionFinal().getPosicionY() , modelo);
 		this.setColor (this.pintar(modelo));
 	}
 	
