@@ -11,7 +11,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import javax.swing.JPanel;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.flightcontrol.modelo.Pista;
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
 import fiuba.algo3.flightcontrol.modelo.Vector;
 
 import fiuba.algo3.titiritero.dibujables.Cuadrado;
@@ -32,6 +35,8 @@ public class VentanaPrincipal {
 	private JFrame frame;
 	private GameLoop gameLoop;
 	private Dimension tamano;
+	
+
 
 	/**
 	 * Launch the application.
@@ -82,39 +87,63 @@ public class VentanaPrincipal {
 		
 		JButton btnDetener = this.addBotonDetener();
 		
+		JButton btnSetTrayectoria = this.addBotonSetTrayectoria();
+		
 		JPanel panel = this.addSuperficiePanel();
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
 		final Nivel unNivel = new Nivel(10,tamano.height-60);
+		final List<Vector> unaLista = new ArrayList<Vector>(); 
 		
 		this.inicializarModelo((SuperficieDeDibujo) panel, unNivel);
 				
 		this.addKeyListener();
 
-		this.setComponentsFocus(btnIniciar, btnDetener);
+		this.setComponentsFocus(btnIniciar, btnDetener, btnSetTrayectoria);
 
 		
 				
 		panel.addMouseListener(new MouseAdapter() {
-					
+				
+			private ObjetoVolador unAvion;
+			private List<Vector> unaLista = new ArrayList<Vector>();
+			
 			@Override
 			public void mouseClicked(MouseEvent click) {	
-					
+				
 				//System.out.println("x = " + arg0.getX());
 				//System.out.println("y = " + arg0.getY());
 				//unaLista.add(new Vector(100, 100));
 				
-				ObjetoVolador unAvion = this.obtenerAvion (click);
-				
-				if (unAvion != null){
+				if (click.isAltDown()) {
+					if (this.unAvion == null) {
 					
-					//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+						this.unAvion = this.obtenerAvion(click);
+						System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
 					
+					} else {
+						
+						Vector posicionClick = new Vector (click.getX(),click.getY());
+						unaLista.add(posicionClick);
+						System.out.println("BBBBBBBBBBBBBBBBBBBBBB");
+						
+					}
 					
+				} else {
+						
+					if (this.unAvion != null) {
+						Trayectoria unaTrayectoria = new Trayectoria(unaLista);
+						this.unAvion.setTrayectoria(unaTrayectoria);
+						this.unAvion = null;
+						this.unaLista.clear();
+						System.out.println("CCCCCCCCCCCCCCCCCCCCCCC");
+					}
+						
 				}
-				
+					
 			}
+		
 
 			private ObjetoVolador obtenerAvion(MouseEvent click) {
 				boolean encontrado = false;
@@ -137,9 +166,7 @@ public class VentanaPrincipal {
 				
 				return avionEncontrado;
 			}});
-		
-		
-	}
+		}
 
 	private void inicializarModelo(SuperficieDeDibujo unPanel, Nivel unNivel) {
 		
@@ -155,10 +182,11 @@ public class VentanaPrincipal {
 		}		
 	}
 
-	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener) {
+	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnSetTrayectoria) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
+		btnSetTrayectoria.setFocusable(false);
 		
 	}
 
@@ -168,7 +196,8 @@ public class VentanaPrincipal {
 			
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				System.out.println("Key pressed");
+				//System.out.println("Key pressed");
+
 			}
 			
 			@Override
@@ -177,7 +206,7 @@ public class VentanaPrincipal {
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				System.out.println("Ping");
+				//System.out.println("Ping");
 			}  
 			 	
 		});
@@ -192,6 +221,18 @@ public class VentanaPrincipal {
 		frame.getContentPane().add(panel);
 		return panel;
 	}
+	
+	private JButton addBotonIniciar() {
+		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gameLoop.iniciarEjecucion();
+			}
+		});
+		btnIniciar.setBounds(50, 20, 77, 25);
+		frame.getContentPane().add(btnIniciar);
+		return btnIniciar;
+	}
 
 	private JButton addBotonDetener() {
 		JButton btnDetener = new JButton("Detener");
@@ -200,20 +241,15 @@ public class VentanaPrincipal {
 				gameLoop.detenerEjecucion();
 			}
 		});
-		btnDetener.setBounds(200, 16, 92, 25);
+		btnDetener.setBounds(50, 50, 92, 25);
 		frame.getContentPane().add(btnDetener);
 		return btnDetener;
 	}
-
-	private JButton addBotonIniciar() {
-		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				gameLoop.iniciarEjecucion();
-			}
-		});
-		btnIniciar.setBounds(42, 16, 77, 25);
-		frame.getContentPane().add(btnIniciar);
-		return btnIniciar;
+	
+	private JButton addBotonSetTrayectoria() {
+		JButton btnSetTrayectoria = new JButton("Set Trayectoria");
+		btnSetTrayectoria.setBounds(50, 110, 130, 25);
+		frame.getContentPane().add(btnSetTrayectoria);
+		return btnSetTrayectoria;
 	}
 }
