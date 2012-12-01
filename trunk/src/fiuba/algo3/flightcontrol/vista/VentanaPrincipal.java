@@ -18,7 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import fiuba.algo3.flightcontrol.modelo.Nivel;
+import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.flightcontrol.modelo.Pista;
+import fiuba.algo3.flightcontrol.modelo.Vector;
 
 import fiuba.algo3.titiritero.dibujables.Cuadrado;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
@@ -68,15 +70,13 @@ public class VentanaPrincipal {
 	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
-		
-		
-		
+				
 		frame = new JFrame();
 		frame.setForeground(new Color(0, 0, 0));
 		frame.setBounds(0, 0, tamano.width, tamano.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setTitle("Flight Control by Key");
+		frame.setTitle("Flight Control");
 		
 		JButton btnIniciar = this.addBotonIniciar();
 		
@@ -86,18 +86,63 @@ public class VentanaPrincipal {
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
-		this.inicializarModelo((SuperficieDeDibujo) panel);
+		final Nivel unNivel = new Nivel(10,tamano.height-60);
 		
-		this.addMouseListener(panel);
-		
+		this.inicializarModelo((SuperficieDeDibujo) panel, unNivel);
+				
 		this.addKeyListener();
 
 		this.setComponentsFocus(btnIniciar, btnDetener);
 
+		
+				
+		panel.addMouseListener(new MouseAdapter() {
+					
+			@Override
+			public void mouseClicked(MouseEvent click) {	
+					
+				//System.out.println("x = " + arg0.getX());
+				//System.out.println("y = " + arg0.getY());
+				//unaLista.add(new Vector(100, 100));
+				
+				ObjetoVolador unAvion = this.obtenerAvion (click);
+				
+				if (unAvion != null){
+					
+					//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+					
+					
+				}
+				
+			}
+
+			private ObjetoVolador obtenerAvion(MouseEvent click) {
+				boolean encontrado = false;
+				ObjetoVolador unAvion, avionEncontrado = null;
+				Vector posicionClick = new Vector (click.getX(),click.getY());
+				Vector posicionDeAvion;
+				double diferencia;
+				
+				Iterator<ObjetoVolador> it = unNivel.getObjetosVoladores();
+				while (it.hasNext() && !encontrado) {
+					unAvion = it.next();
+					posicionDeAvion = unAvion.getPosicion();
+					diferencia =  posicionClick.distancia(posicionDeAvion);
+					encontrado = (diferencia <= 20);
+					
+					if (encontrado){ 
+						avionEncontrado = unAvion;
+					}
+				}
+				
+				return avionEncontrado;
+			}});
+		
+		
 	}
 
-	private void inicializarModelo(SuperficieDeDibujo unPanel) {
-		Nivel unNivel = new Nivel(10,tamano.height-60);
+	private void inicializarModelo(SuperficieDeDibujo unPanel, Nivel unNivel) {
+		
 		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
 		this.gameLoop.agregar(unNivel);
@@ -137,19 +182,7 @@ public class VentanaPrincipal {
 			 	
 		});
 	}
-
-	private void addMouseListener(JPanel panel) {
-		
-		panel.addMouseListener(new MouseAdapter() {
-					
-			@Override
-			public void mouseClicked(MouseEvent arg0) {	
-
-				//unaLista.add(new Vector(100, 100));
-
-			}});
-	}
-
+	
 	private JPanel addSuperficiePanel() {
 		JPanel panel = new SuperficiePanel();
 		panel.setBackground(new Color(0, 150, 0));
