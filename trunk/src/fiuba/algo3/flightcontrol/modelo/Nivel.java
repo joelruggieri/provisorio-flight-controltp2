@@ -20,17 +20,19 @@ public class Nivel extends Observable implements ObjetoVivo {
 	private int cantidadDeAviones;
 	private int velocidadDelNivel;
 	private int limite;
+	private int numeroDeAvionesGenerados;
+	static int maximo;
 	
 	public Nivel(int numeroDeNivel, int limite) {
 		
-		final int maximo = 10;
-		
+		this.maximo = 100;
+		this.numeroDeAvionesGenerados = 0;
 		this.velocidadDelNivel = numeroDeNivel;
 		this.avionesEnJuego = new ArrayList<ObjetoVolador>();
 		this.pistas = new ArrayList<Pista>();
-		this.frecuenciaDeSalida = 60;
-		this.contadorDeTurnos = 60;
-		this.cantidadDeAviones = this.velocidadDelNivel * maximo;
+		this.frecuenciaDeSalida = 100;
+		this.contadorDeTurnos = 100;
+		this.cantidadDeAviones = this.velocidadDelNivel + 10;
 		this.limite = limite;
 		this.generarPistas();
 		
@@ -43,10 +45,23 @@ public class Nivel extends Observable implements ObjetoVivo {
 	
 	public void vivir() {
 		
+		this.validarActualizacionDeNivel();
 		this.generarObjetoVolador();
 		this.actualizarListaDeAvionesEnJuego();
 	}
 	
+	private void validarActualizacionDeNivel() {
+		if(velocidadDelNivel < maximo){
+			
+			if((this.numeroDeAvionesGenerados == this.cantidadDeAviones) && (this.avionesEnJuego.isEmpty())){
+				this.velocidadDelNivel =+ 10;
+				this.frecuenciaDeSalida =-10;
+				this.contadorDeTurnos = this.frecuenciaDeSalida;
+				}
+		}
+		
+	}
+
 	private void actualizarListaDeAvionesEnJuego() {
 		
 		Iterator<ObjetoVolador> it = this.getObjetosVoladores();
@@ -62,7 +77,7 @@ public class Nivel extends Observable implements ObjetoVivo {
 		if (contadorDeTurnos == frecuenciaDeSalida)	{
 			contadorDeTurnos = 0;
 		
-			if (this.avionesEnJuego.size() < this.cantidadDeAviones) {
+			if (this.numeroDeAvionesGenerados < this.cantidadDeAviones) {
 				
 				Random generadorDeRandoms = new Random();
 				int vel, codigoDeAvion;
@@ -90,9 +105,9 @@ public class Nivel extends Observable implements ObjetoVivo {
 				 	this.avionesEnJuego.add(avionComp);
 				}
 				
-				
+				numeroDeAvionesGenerados ++;
 				this.setChanged();
-			} else throw new EstanTodosLosOVDelNivelException();
+			} 
 			
 			this.notifyObservers(this.getUltimoObjetoVolador());	
 		}
@@ -109,17 +124,13 @@ public class Nivel extends Observable implements ObjetoVivo {
 		final int numeroPredeterminado = 2;
 		int posicion = limite / numeroPredeterminado;
 		int corrido = 0;
-		Vector posEntrada = new Vector(posicion, posicion + corrido);
-		corrido++;
-		Vector otraPosicion = new Vector(posicion, posicion + corrido);
-		corrido++;
-		Vector otraPosicion2 = new Vector(posicion, posicion + corrido);
-		
 		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
-		
-		listaPosicionesPista.add(posEntrada);
-		listaPosicionesPista.add(otraPosicion);
-		listaPosicionesPista.add(otraPosicion2);
+		Vector posicionPista;
+		for(int i = 0; i < 50 ; i++){
+			posicionPista = new Vector(posicion, posicion + corrido);
+			corrido++;
+			listaPosicionesPista.add(posicionPista);
+		}
 		
 		return listaPosicionesPista;
 		
@@ -148,20 +159,14 @@ public class Nivel extends Observable implements ObjetoVivo {
 		final int numeroPredeterminado = 3;
 		int pos = limite / numeroPredeterminado;
 		int corrido = 0;
-		
-		Vector posicionEntrada1;
-		posicionEntrada1 = new Vector(pos + corrido, pos + corrido);
-		corrido++;
-		Vector otraPosicion = new Vector(pos + corrido, pos + corrido);
-		corrido++;
-		Vector posicionEntrada2;
-		posicionEntrada2 = new Vector(pos + corrido, pos + corrido);
-		
 		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
+		Vector posicionPista;
 		
-		listaPosicionesPista.add(posicionEntrada1);
-		listaPosicionesPista.add(otraPosicion);
-		listaPosicionesPista.add(posicionEntrada2);
+		for(int i = 0; i < 50 ; i++){
+			posicionPista = new Vector(pos + corrido, pos);
+			corrido++;
+			listaPosicionesPista.add(posicionPista);
+		}
 		
 		return listaPosicionesPista;
 		
@@ -172,25 +177,15 @@ public class Nivel extends Observable implements ObjetoVivo {
 		final int numeroPredeterminado = 4;
 		int pos = limite / numeroPredeterminado;
 		int corrido = 0;
-		
-		Vector posEntrada1 = new Vector(pos + corrido, pos + corrido);
-		corrido++;
-		Vector otraPosicion = new Vector(pos + corrido, pos);
-		corrido++;
-		Vector otraPosicion1 = new Vector(pos + corrido, pos);
-		corrido++;
-		Vector otraPosicion2 = new Vector(pos + corrido, pos);
-		corrido++;
-		Vector otraPosicion3 = new Vector(pos + corrido, pos);
-		
 		List<Vector> listaPosicionesPista = new ArrayList<Vector>();
+		Vector posicionPista;
 		
-		listaPosicionesPista.add(posEntrada1);
-		listaPosicionesPista.add(otraPosicion);
-		listaPosicionesPista.add(otraPosicion1);
-		listaPosicionesPista.add(otraPosicion2);
-		listaPosicionesPista.add(otraPosicion3);
-		
+		for(int i = 0; i < 100 ; i++){
+			posicionPista = new Vector(pos + corrido, pos);
+			corrido++;
+			listaPosicionesPista.add(posicionPista);
+		}
+	
 		return listaPosicionesPista;
 	}
 	
@@ -234,4 +229,18 @@ public class Nivel extends Observable implements ObjetoVivo {
 		return avionesEnJuego.iterator();
 	}
 	
+	public int getContadorDeTurno(){
+		
+		return this.contadorDeTurnos;
+	}
+	
+	public int getFrecunciaDeSalida(){
+		
+		return this.frecuenciaDeSalida;
+	}
+	
+	public int getCantidadDeAvionesGenerados(){
+		
+		return this.numeroDeAvionesGenerados;
+	}
 }

@@ -20,12 +20,14 @@ public class NivelTest extends TestCase {
 	
 	private void pasarFrecuencia(Nivel unNivel){
 		
-		for (int i = 1 ; i < 30 ; i++){
+		while(unNivel.getContadorDeTurno() < unNivel.getFrecunciaDeSalida()){
 			
 			unNivel.vivir();
 			
 		}
 	}
+	
+	
 	
 	public void testConstructorDelNivelDeberiaGenerarUnaPistaDeCadaTipo(){
 		
@@ -60,7 +62,8 @@ public class NivelTest extends TestCase {
 	}
 	
 	
-	public void testGenerarObjetoVoladorMasVecesQueLaCantidadDeAvionesPermitidaEnElNivelDeberiaLanzarUnaExcepcion(){
+	
+	public void testGenerarObjetoVoladorMasVecesQueLaCantidadDeAvionesPermitidaEnElNivelDeberiaNoDeberiaAumentarLaCantidadDeAviones(){
 		int velocidad = 1;
 		int dimension = 768;
 		
@@ -88,11 +91,14 @@ public class NivelTest extends TestCase {
 		unNivel.vivir();
 		this.pasarFrecuencia(unNivel);
 		
-		try{
-			unNivel.vivir();
-		}catch(EstanTodosLosOVDelNivelException excepcion){
-
-		}
+		unNivel.vivir();
+		this.pasarFrecuencia(unNivel);
+		unNivel.vivir();
+		this.pasarFrecuencia(unNivel);
+		unNivel.vivir();
+		this.pasarFrecuencia(unNivel);
+		assertTrue(unNivel.getCantidadDeAvionesGenerados() == 11);
+		
 	
 	}
 	
