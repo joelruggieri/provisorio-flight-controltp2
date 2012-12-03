@@ -7,6 +7,7 @@ import java.util.List;
 import fiuba.algo3.flightcontrol.modelo.AvionComputarizado;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
+import fiuba.algo3.flightcontrol.modelo.Trayectoria;
 import fiuba.algo3.flightcontrol.modelo.Vector;
 
 public class AvionComputarizadoTest extends TestCase {
@@ -27,7 +28,7 @@ public class AvionComputarizadoTest extends TestCase {
 				
 	}
 	
-	private void moverAvion (ObjetoVolador unAvion){
+	private void moverAvion (AvionComputarizado unAvion){
 		/* Mueve un avion hasta el destino */
 		/* pre: Se debe ingresar el avion a mover y una posicion */
 		/* post: El avion se movio */
@@ -51,147 +52,5 @@ public class AvionComputarizadoTest extends TestCase {
 		assertTrue(unAvionComputarizado.aterrizo());
 	}
 	
-	/*
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaHorizontalDeDerechaAIzquierda(){
-		
-		//arrange
-		destino = new Vector(4,3);
-		Vector posicionDeLaPista = new Vector(3,3);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaDiagonalDelNorOesteHaciaSurEste(){
-		
-		//arrange
-		destino = new Vector(4,4);
-		Vector posicionDeLaPista = new Vector(5,5);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaDiagonalDelNorEsteHaciaSurOeste(){
-		
-		//arrange
-		destino = new Vector(4,4);
-		Vector posicionDeLaPista = new Vector(5,3);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaDiagonalDelSurOesteHaciaNorEste(){
-		
-		//arrange
-		destino = new Vector(4,4);
-		Vector posicionDeLaPista = new Vector(3,5);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaDiagonalDelSurEsteHaciaNorOeste(){
-		
-		//arrange
-		destino = new Vector(4,4);
-		Vector posicionDeLaPista = new Vector(3,3);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaVerticalDeArribaAAbajo(){
-		
-		//arrange
-		destino = new Vector(4,4);
-		Vector posicionDeLaPista = new Vector(4,5);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-	public void testUnAvionComputarizadoDeberiaEstacionarCorrectamenteEnSuPistaVerticalDeAbajoAArriba(){
-		
-		//arrange
-		destino = new Vector(4,5);
-		Vector posicionDeLaPista = new Vector(4,4);
-		List<Vector> posicionesDePista = new ArrayList<Vector>();
-		posicionesDePista.add(destino);
-		posicionesDePista.add(posicionDeLaPista);
-		
-		PistaSimple unaPista = new PistaSimple(escenario, posicionesDePista);
-		unAvionComputarizado = new AvionComputarizado (nivel,escenario, unaPista);
-			
-		//act
-		this.moverAvion(unAvionComputarizado);
-		unaPista.recibirAterrizajeDeComputarizado(unAvionComputarizado);
-			
-		//assert
-		assertTrue(unAvionComputarizado.aterrizo());
-	}
-	
-*/
 }
 

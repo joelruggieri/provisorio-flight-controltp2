@@ -7,6 +7,8 @@ import java.util.List;
 
 public class AvionComputarizado extends ObjetoVolador {
 	
+	
+
 	public AvionComputarizado(int velocidad, Nivel unNivel) {
 		
 		super(velocidad, unNivel);
@@ -16,6 +18,8 @@ public class AvionComputarizado extends ObjetoVolador {
 		listaDePuntos = calcularTrayectoriaHaciaUnaPista(unaPista);
 		this.setTrayectoria(new Trayectoria(listaDePuntos));
 	}
+
+	
 
 	private List<Vector> calcularTrayectoriaHaciaUnaPista(Pista unaPista) {
 		/* Determina una trayectoria de menor 
@@ -53,5 +57,14 @@ public class AvionComputarizado extends ObjetoVolador {
 			super.vivir();
 		}
 	}
+	
+	public void setTrayectoria (Trayectoria unaTrayectoria){
+		
+		if(!this.hayTrayectoria())
+			super.setTrayectoria(unaTrayectoria);
+	}
+		
+	
+	
 	
 }

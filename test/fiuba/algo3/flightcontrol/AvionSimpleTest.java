@@ -2,6 +2,7 @@ package fiuba.algo3.flightcontrol;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.flightcontrol.modelo.AvionComputarizado;
 import fiuba.algo3.flightcontrol.modelo.AvionSimple;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
@@ -57,6 +58,15 @@ public class AvionSimpleTest extends TestCase {
 		}
 	}
 	
+	private void generarAlgunAvionNoComputarizado(){
+		
+		unNivel.vivir();
+		
+		while(unNivel.getUltimoObjetoVolador().getClass() == AvionComputarizado.class){
+			
+			unNivel.vivir();
+		}
+	}
 	
 	public void test2AvionesDeRadio1SiSeJuntanAUnaDistanciaIgualA2DeberianChocar() {
 		
@@ -68,8 +78,8 @@ public class AvionSimpleTest extends TestCase {
 		List<Vector> otraListaDePuntos = new ArrayList<Vector>();
 		otraListaDePuntos.add(new Vector(10, 12));
 		Trayectoria otraTrayectoria = new Trayectoria(otraListaDePuntos);
-		unNivel.vivir();
-		ObjetoVolador otroAvion = unNivel.getObjetosVoladores().next();
+		this.generarAlgunAvionNoComputarizado();//unNivel.vivir();
+		ObjetoVolador otroAvion = unNivel.getUltimoObjetoVolador();
 		otroAvion.setTrayectoria(otraTrayectoria);
 		
 		//act

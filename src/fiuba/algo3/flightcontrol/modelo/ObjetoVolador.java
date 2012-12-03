@@ -1,4 +1,5 @@
 package fiuba.algo3.flightcontrol.modelo;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Random;
@@ -9,7 +10,7 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
 	
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
-	private Trayectoria trayectoria;
+	protected Trayectoria trayectoria;
 	private Nivel nivel;
 	private int velocidad;
 	private int contadorDeTurnos;
@@ -26,6 +27,7 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
 		
 		this.velocidad = velocidad;
 		contadorDeTurnos = 0;
+		this.trayectoria = new Trayectoria(new ArrayList<Vector>());
 		
 	}
 	
@@ -106,31 +108,34 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
         
     	boolean tocaUnBorde;
         contadorDeTurnos++;
-                      
-        if (contadorDeTurnos == (velocidadMaxima / velocidad)) {
+        
         	
-	    	contadorDeTurnos = 0;
-	        		    	
-	        Vector siguientePosicion = this.getProximaPosicion();
-	        this.actualizarDireccion(siguientePosicion);
-	        
-	        //Validar bordes
-	        tocaUnBorde = this.validarBordes(siguientePosicion);
-	               
-	        if (tocaUnBorde) {
-	        	
-	            this.invertirTrayectoria(siguientePosicion);
-	        }
-	        	        
-	        this.posicionActual = siguientePosicion;
-	        
-	        Vector proximoPuntoTrayectoria;
-	        proximoPuntoTrayectoria = this.trayectoria.getProximaPosicion();
-	        
-	        if (proximoPuntoTrayectoria.esIgual(this.posicionActual)) {
-				this.trayectoria.borrarPosicion();
-	        }
-        }
+        	if (contadorDeTurnos == (velocidadMaxima / velocidad)) {
+            	
+    	    	contadorDeTurnos = 0;
+    	        		    	
+    	        Vector siguientePosicion = this.getProximaPosicion();
+    	        this.actualizarDireccion(siguientePosicion);
+    	        
+    	        //Validar bordes
+    	        tocaUnBorde = this.validarBordes(siguientePosicion);
+    	               
+    	        if (tocaUnBorde) {
+    	        	
+    	            this.invertirTrayectoria(siguientePosicion);
+    	        }
+    	        	        
+    	        this.posicionActual = siguientePosicion;
+    	        
+    	        Vector proximoPuntoTrayectoria;
+    	        proximoPuntoTrayectoria = this.trayectoria.getProximaPosicion();
+    	        
+    	        if (proximoPuntoTrayectoria.esIgual(this.posicionActual)) {
+    				this.trayectoria.borrarPosicion();
+    	        }
+            }
+
+        
     }
 	
 	public boolean aterrizo() {
