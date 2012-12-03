@@ -3,6 +3,8 @@ package fiuba.algo3.flightcontrol.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +16,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
@@ -87,8 +95,6 @@ public class VentanaPrincipal {
 		
 		JButton btnDetener = this.addBotonDetener();
 		
-		JButton btnSetTrayectoria = this.addBotonSetTrayectoria();
-		
 		JPanel panel = this.addSuperficiePanel();
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
@@ -100,34 +106,44 @@ public class VentanaPrincipal {
 				
 		this.addKeyListener();
 
-		this.setComponentsFocus(btnIniciar, btnDetener, btnSetTrayectoria);
+		this.setComponentsFocus(btnIniciar, btnDetener);
 
 		
 				
 		panel.addMouseListener(new MouseAdapter() {
 				
 			private ObjetoVolador unAvion;
-			private List<Vector> unaLista = new ArrayList<Vector>();
+			private List<Vector> unaLista;
+			private JPanel panel;
 			
 			@Override
 			public void mouseClicked(MouseEvent click) {	
 				
-				//System.out.println("x = " + arg0.getX());
-				//System.out.println("y = " + arg0.getY());
-				//unaLista.add(new Vector(100, 100));
+				JTextArea textArea = new JTextArea();
+				textArea.setLineWrap(true);
+				JFrame frame = new JFrame("ATENCION");
+				frame.setBounds(50, 200, 200, 70);	
+				frame.getContentPane().add(textArea);
 				
 				if (click.isAltDown()) {
 					if (this.unAvion == null) {
 					
 						this.unAvion = this.obtenerAvion(click);
-						System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+						if (this.unAvion != null) {
+							unaLista = new ArrayList<Vector>();
+							
+							textArea.setText("Agarro un Objeto Volador");
+							frame.setVisible(true);
+							
+						}
 					
 					} else {
 						
 						Vector posicionClick = new Vector (click.getX(),click.getY());
 						unaLista.add(posicionClick);
-						System.out.println("BBBBBBBBBBBBBBBBBBBBBB");
 						
+						textArea.setText("Seteo una Posicion");
+						frame.setVisible(true);
 					}
 					
 				} else {
@@ -136,8 +152,9 @@ public class VentanaPrincipal {
 						Trayectoria unaTrayectoria = new Trayectoria(unaLista);
 						this.unAvion.setTrayectoria(unaTrayectoria);
 						this.unAvion = null;
-						this.unaLista.clear();
-						System.out.println("CCCCCCCCCCCCCCCCCCCCCCC");
+						
+						textArea.setText("Seteo una nueva Trayectoria");
+						frame.setVisible(true);
 					}
 						
 				}
@@ -184,11 +201,10 @@ public class VentanaPrincipal {
 		}		
 	}
 
-	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnSetTrayectoria) {
+	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
-		btnSetTrayectoria.setFocusable(false);
 		
 	}
 
@@ -248,10 +264,4 @@ public class VentanaPrincipal {
 		return btnDetener;
 	}
 	
-	private JButton addBotonSetTrayectoria() {
-		JButton btnSetTrayectoria = new JButton("Set Trayectoria");
-		btnSetTrayectoria.setBounds(50, 110, 130, 25);
-		frame.getContentPane().add(btnSetTrayectoria);
-		return btnSetTrayectoria;
-	}
 }
