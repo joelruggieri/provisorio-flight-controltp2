@@ -2,6 +2,7 @@ package fiuba.algo3.flightcontrol;
 
 import junit.framework.TestCase;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import fiuba.algo3.flightcontrol.modelo.AvionPesado;
@@ -10,6 +11,7 @@ import fiuba.algo3.flightcontrol.modelo.Helicoptero;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.flightcontrol.modelo.PistaDobleEntrada;
+import fiuba.algo3.flightcontrol.modelo.PosicionFueraDeLasDimensionesEstablecidasException;
 import fiuba.algo3.flightcontrol.modelo.Trayectoria;
 import fiuba.algo3.flightcontrol.modelo.Vector;
 
@@ -59,30 +61,19 @@ public class PistaDobleEntradaTest extends TestCase {
 		}
 		
 	}
+	
+private void removerLasPistasDelNivel(){
 		
-	
-	//public void testConstructorDeUnaPistaDobleEntradaLasVectoresDeLaPistaDeberianEstarOcupadasPorEsta() 
-		//throws PosicionFueraDeLasDimensionesEstablecidasException{
-	
-		//arrange
-			
-		/*creo las Vectores de la pista*/
-	
-	/*
-		Vector VectorDeEntrada = new Vector(4,1);
-		Vector otraVectorDeLaPista = new Vector(3,2);
-			
+		Iterator iterador = this.unNivel.getPistas();
 		
-		//act
-		listaDePosiciones.add(VectorDeEntrada);
-		listaDePosiciones.add(otraVectorDeLaPista);
-			
-		PistaDobleEntrada pista = new PistaDobleEntrada(unPlano,listaDePosiciones);
-			
-		//assert	
-		assertEquals(unPlano.getPosicion(VectorDeEntrada),"pista");
-		assertEquals(unPlano.getPosicion(otraVectorDeLaPista),"pista");
+		while(iterador.hasNext()){
+			iterador.next();
+			iterador.remove();
+		}
 	}
+		
+	
+	
 
 	public void testConstructorDeUnaPistaDobleEntradaDeberianQuedarDefinidasLasDosdireccionesDeEntrada() 
 		throws PosicionFueraDeLasDimensionesEstablecidasException{
@@ -97,16 +88,16 @@ public class PistaDobleEntradaTest extends TestCase {
 		listaDePosiciones.add(VectorDeEntrada);
 		listaDePosiciones.add(otraVectorDeLaPista);
 	
-		PistaDobleEntrada pista = new PistaDobleEntrada(unPlano,listaDePosiciones);
+		PistaDobleEntrada pista = new PistaDobleEntrada(listaDePosiciones);
 	
 		Vector direccionDePrimeraEntrada = new Vector(-1,1);
 		Vector direccionDeSegundaEntrada = new Vector(1,-1);
 			
 		//assert
-		assertTrue(pista.direccionesDeIngreso.get(0).esIgual(direccionDePrimeraEntrada));
-		assertTrue(pista.direccionesDeIngreso.get(1).esIgual(direccionDeSegundaEntrada));
+		assertTrue(pista.getDireccionesDeIngreso().get(0).esIgual(direccionDePrimeraEntrada));
+		assertTrue(pista.getDireccionesDeIngreso().get(1).esIgual(direccionDeSegundaEntrada));
 	}
-	*/
+	
 	public void testValidarEntradaYDireccionDeUnAvionQueSeEncuentreEnAlgunaDeLasVectoresDeEntradaYConLaDireccionAdecuadaDeberiaDarVerdadero(){
 		
 		//arrange
@@ -197,6 +188,9 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
+		//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+		//test
+		this.removerLasPistasDelNivel();
 		this.moverAvion(avion,posicion2);
 		this.moverAvion(avion,posicion1);
 		
@@ -223,38 +217,48 @@ public class PistaDobleEntradaTest extends TestCase {
 		assertTrue(!avion.aterrizo());
 	}
 
-//	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaVectorQueNoEsLaDeEntradaPeroEstaEnELRangoDeberiaAterrizar(){
-//		
-//		//arrange
-//		this.moverAvion(avion,posicion2);
-//			
-//		//act	
-//		
-//		/*creo las Vectores de la pista*/
-//		Vector VectorDeEntrada = new Vector(1,2);
-//		Vector otraVectorDeLaPista = new Vector(2,2);
-//		Vector otraVectorDeLaPista1 = new Vector(3,2);
-//		Vector otraVectorDeLaPista2 = new Vector(4,2);
-//		Vector ultimaVectorDeLaPista = new Vector(5,2);
-//		
-//		listaDePosiciones.add(VectorDeEntrada);
-//		listaDePosiciones.add(otraVectorDeLaPista);
-//		listaDePosiciones.add(otraVectorDeLaPista1);
-//		listaDePosiciones.add(otraVectorDeLaPista2);
-//		listaDePosiciones.add(ultimaVectorDeLaPista);
-//		
-//		PistaDobleEntrada pista = new PistaDobleEntrada(listaDePosiciones);
-//		
-//		pista.recibirAterrizajeDeObjetoVolador(avion);
-//	
-//		//assert
-//		assertTrue(avion.aterrizo());
-//	}
+	public void testLlegadaDeUnAvionSimpleALaPistaDobleEntradaEnUnaVectorQueNoEsLaDeEntradaPeroEstaEnELRangoNoDeberiaAterrizar(){
+		
+		//arrange
+		this.removerLasPistasDelNivel();
+		this.moverAvion(avion, posicion4);
+		this.moverAvion(avion, posicion2);
+			
+		//act	
+		
+		/*creo las Vectores de la pista*/
+		Vector VectorDeEntrada = new Vector(1,2);
+		Vector otraVectorDeLaPista = new Vector(2,2);
+		Vector otraVectorDeLaPista1 = new Vector(3,2);
+		Vector otraVectorDeLaPista2 = new Vector(4,2);
+		Vector ultimaVectorDeLaPista = new Vector(5,2);
+		
+		
+		
+		listaDePosiciones.add(VectorDeEntrada);
+		listaDePosiciones.add(otraVectorDeLaPista);
+		listaDePosiciones.add(otraVectorDeLaPista1);
+		listaDePosiciones.add(otraVectorDeLaPista2);
+		listaDePosiciones.add(ultimaVectorDeLaPista);
+	
+		PistaDobleEntrada pista = new PistaDobleEntrada(listaDePosiciones);
+	
+		pista.recibirAterrizajeDeObjetoVolador(avion);	
+		
+		assertTrue(!avion.aterrizo());
+	}
 
 
 	public void testLlegadaDeUnHelicopteroALaPistaDobleEntradaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaNoDeberiaAterrizar(){
 		
 		//arrange
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
 		
 		this.moverAvion(helicoptero,posicion0);
 		this.moverAvion(helicoptero,posicion1);
@@ -285,7 +289,14 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionHelicopteroALaPistaDobleEntradaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
+		
 		this.moverAvion(helicoptero,posicion2);
 		this.moverAvion(helicoptero,posicion1);
 		//act
@@ -312,6 +323,14 @@ public class PistaDobleEntradaTest extends TestCase {
 	}
 
 	public void testLlegadaDeUnAvionHelicopteroALaPistaDobleEntradaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
+		
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
 		
 		//arrange
 		this.moverAvion(helicoptero,posicion2);
@@ -342,7 +361,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionPesadoALaPistaDobleEntradaEnUnaVectorQueEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-
+		this.removerLasPistasDelNivel();
 		this.moverAvion(avionPesado,posicion0);
 		this.moverAvion(avionPesado,posicion1);
 		
@@ -373,7 +392,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionPesadoALaPistaDobleEntradaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-
+		this.removerLasPistasDelNivel();
 		this.moverAvion(avionPesado,posicion2);
 		this.moverAvion(avionPesado,posicion4);	
 	
@@ -403,6 +422,7 @@ public class PistaDobleEntradaTest extends TestCase {
 	public void testLlegadaDeUnAvionPesadoALaPistaDobleEntradaeEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
+		this.removerLasPistasDelNivel();
 		this.moverAvion(avionPesado,posicion2);
 	
 		//act

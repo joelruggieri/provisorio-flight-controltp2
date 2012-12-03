@@ -1,6 +1,7 @@
 package fiuba.algo3.flightcontrol;
 import junit.framework.TestCase;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import fiuba.algo3.flightcontrol.modelo.AvionPesado;
@@ -54,28 +55,19 @@ public class PistaLargaTest extends TestCase {
 		}
 		
 	}
+	
+	private void removerLasPistasDelNivel(){
+		
+		Iterator iterador = this.unNivel.getPistas();
+		
+		while(iterador.hasNext()){
+			iterador.next();
+			iterador.remove();
+		}
+	}
 
 	
-//	public void testConstructorDeUnaPistaLargaLasposicionesDeLaPistaDeberianEstarOcupadasPorEsta()
-//	throws PosicionFueraDeLasDimensionesEstablecidasException{
-		
-		//arrange
-			
-		/*creo las Vectores de la pista*/
-/*		Vector VectorDeEntrada = new Vector(4,1);
-		Vector otraVectorDeLaPista = new Vector(3,2);
-		
-		//act
-		posicionesDeLaPista.add(VectorDeEntrada);
-		posicionesDeLaPista.add(otraVectorDeLaPista);
-		
-		PistaLarga pista = new PistaLarga(unPlano,posicionesDeLaPista);
-		
-		//assert
-		assertEquals(unPlano.getPosicion(VectorDeEntrada),"pista");
-		assertEquals(unPlano.getPosicion(otraVectorDeLaPista),"pista");
-	}
-*/	
+
 	public void testConstructorDeUnaPistaLargaLaDireccionDeIngresoDeberiaQuedarDeterminadaSegunLaorientacionDeLaPista(){
 		
 		//arrange
@@ -183,7 +175,9 @@ public class PistaLargaTest extends TestCase {
 public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-		
+	//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+	//test
+	this.removerLasPistasDelNivel();
 		//act
 		this.moverAvion(avion,posicion2);
 		this.moverAvion(avion, posicion3);
@@ -211,8 +205,11 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 	
 		//arrange
-		
+		//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+		//test
+		this.removerLasPistasDelNivel();
 		//act
+		this.moverAvion(avion, posicion1);
 		this.moverAvion(avion, posicion2);
 		
 		/*creo las Vectores de la pista*/
@@ -237,10 +234,17 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	}
 
 
-	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaVectorQueEsLaDeEntradaYConDireccionApropiadaNoDeberiaAterrizarPeroSiAntesYaPasoPorUnHelipuertoDeberiaEstarEnLaPosicionDelHelipuerto(){
 		
 		//arrange
-	
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
+		
 		//act
 		this.moverAvion(helicoptero,posicion1);
 		this.moverAvion(helicoptero, posicion2);
@@ -268,7 +272,14 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-	
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
+		
 		//act
 		this.moverAvion(helicoptero, posicion3);
 		this.moverAvion(helicoptero, posicion1);
@@ -298,7 +309,14 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	public void testLlegadaDeUnAvionHelicopteroALaPistaLargaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 	
 		//arrange
-	
+		Iterator iterador = this.unNivel.getPistas();
+		// borramos el helipuerto para evitar que aterrice antes de llegar a la pista que queremos
+		iterador.next();
+		iterador.remove();
+		//act
+		
+		/*creo las Vectores de la pista*/
+		
 		//act
 		this.moverAvion(helicoptero, posicion2);
 		
@@ -355,7 +373,9 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	public void testLlegadaDeUnAvionPesadoALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-		
+		//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+		//test
+		this.removerLasPistasDelNivel();
 		//act
 		this.moverAvion(avionPesado, posicion3);
 		this.moverAvion(avionPesado, posicion1);
@@ -384,7 +404,9 @@ public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntr
 	public void testLlegadaDeUnAvionPesadoALaPistaLargaEnUnaVectorQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-	
+		//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+		//test
+		this.removerLasPistasDelNivel();
 		//act
 		this.moverAvion(avionPesado, posicion2);
 		
