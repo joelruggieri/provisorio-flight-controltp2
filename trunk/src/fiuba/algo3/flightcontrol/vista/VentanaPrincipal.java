@@ -172,6 +172,8 @@ public class VentanaPrincipal {
 		
 		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
+		ObservadorDeGameLoop observadorGameLoop = new ObservadorDeGameLoop(observadorDeNivel);
+		//this.gameLoop.agregarObservador(observadorGameLoop);
 		this.gameLoop.agregar(unNivel);
 	
 		Iterator<Pista> it = unNivel.getPistas();
