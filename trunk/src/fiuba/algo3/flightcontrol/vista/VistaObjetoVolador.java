@@ -12,18 +12,18 @@ public class VistaObjetoVolador extends Circulo {
 
 	public VistaObjetoVolador(ObjetoVolador modelo) {
 		super(20, modelo);
-		this.setColor (this.pintar(modelo));
+		this.setColor(this.pintar(modelo));
 	}
 	
-	private Color pintar (ObjetoVolador modelo){
+	private Color pintar (ObjetoVolador modelo) {
 		
 		Color color = Color.GREEN;;
 		
-		if (modelo.getClass() == Helicoptero.class){
+		if (modelo.getClass() == Helicoptero.class) {
 			color = Color.YELLOW;
-		}else if (modelo.getClass() == AvionComputarizado.class){
+		} else if (modelo.getClass() == AvionComputarizado.class) {
 			color = Color.RED;
-		}else if (modelo.getClass() == AvionPesado.class){
+		} else if (modelo.getClass() == AvionPesado.class) {
 			color = Color.CYAN;
 		}
 		

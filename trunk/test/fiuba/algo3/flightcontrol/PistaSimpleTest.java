@@ -180,7 +180,7 @@ public class PistaSimpleTest extends TestCase {
 		assertTrue(avion.aterrizo());
 	}
 	
-public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
 		// removemos las pistas del nivel para evitar que el avion pueda aterrizar antes de llegar a la pista creada
@@ -215,6 +215,7 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		// removemos las pistas del nivel para evitar que el avion pueda aterrizar antes de llegar a la pista creada
 		this.removerLasPistasDelNivel();
 		//act
+		this.moverAvion(avion,posicion1);
 		this.moverAvion(avion, posicion2);
 		
 		/*creo las Vectores de la pista*/
@@ -344,7 +345,6 @@ public void testLlegadaDeUnAvionSimpleALaPistaSimpleEnUnaDireccionQueNoEsLaDeEnt
 		assertTrue(!helicoptero.aterrizo());
 	}
 		
-
 	public void testLlegadaDeUnAvionPesadoALaPistaSimpleEnUnaVectorQueEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange

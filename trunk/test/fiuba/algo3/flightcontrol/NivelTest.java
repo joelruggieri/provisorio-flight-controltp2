@@ -1,11 +1,8 @@
 package fiuba.algo3.flightcontrol;
 
 import junit.framework.TestCase;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-import fiuba.algo3.flightcontrol.modelo.EstanTodosLosOVDelNivelException;
 import fiuba.algo3.flightcontrol.modelo.Helipuerto;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;

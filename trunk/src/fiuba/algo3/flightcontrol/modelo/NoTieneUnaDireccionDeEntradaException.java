@@ -6,5 +6,4 @@ extends RuntimeException {
 	public NoTieneUnaDireccionDeEntradaException() {
 		super();
 	}
-
 }

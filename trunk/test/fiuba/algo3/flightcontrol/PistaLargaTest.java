@@ -172,12 +172,12 @@ public class PistaLargaTest extends TestCase {
 		assertTrue(avion.aterrizo());
 	}
 	
-public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALaPistaLargaEnUnaDireccionQueNoEsLaDeEntradaNoDeberiaAterrizar(){
 		
 		//arrange
-	//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
-	//test
-	this.removerLasPistasDelNivel();
+		//borramos las pistas del nivel para evitar que el avion aterrice antes en una de ellas antes de llegar a la pista creada en el
+		//test
+		this.removerLasPistasDelNivel();
 		//act
 		this.moverAvion(avion,posicion2);
 		this.moverAvion(avion, posicion3);

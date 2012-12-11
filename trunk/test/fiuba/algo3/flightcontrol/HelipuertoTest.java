@@ -163,7 +163,7 @@ public class HelipuertoTest extends TestCase {
 		assertTrue(!avion.aterrizo());
 	}
 	
-public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -207,7 +207,7 @@ public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionOesteNoDeberiaAterr
 	}
 	
 	
-public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionNoroesteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionNoroesteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -270,7 +270,7 @@ public void testLlegadaDeUnAvionSimpleALHelipuertoEnDireccionNoroesteNoDeberiaAt
 		assertTrue(!avion.aterrizo());
 	}
 	
-public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNorteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNorteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -334,7 +334,7 @@ public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNorteNoDeberiaAterr
 		assertTrue(!avionPesado.aterrizo());
 	}
 	
-public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -378,7 +378,7 @@ public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionOesteNoDeberiaAterr
 	}
 	
 	
-public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNoroesteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNoroesteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -441,7 +441,7 @@ public void testLlegadaDeUnAvionPesadoALHelipuertoEnDireccionNoroesteNoDeberiaAt
 		assertTrue(!avionPesado.aterrizo());
 	}
 	
-public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionNorteDeberiaAterrizar(){
+	public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionNorteDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -505,7 +505,7 @@ public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionNorteDeberiaAterriz
 		assertTrue(helicoptero.aterrizo());
 	}
 	
-public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
+	public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionOesteNoDeberiaAterrizar(){
 		
 		//arrange
 		
@@ -529,23 +529,23 @@ public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionOesteNoDeberiaAterr
 
 	public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionNoresteNoDeberiaAterrizar(){
 	
-	//arrange
+		//arrange
+		
+		//act	
+		this.moverAvion (helicoptero,posicion4);
+		this.moverAvion(helicoptero,posicion3);
+		
+		/*creo las Vectores de la pista*/
+		
+		Vector posicionDeEntrada = new Vector(1,2);
+		posicionesDeLaPista.add(posicionDeEntrada);
+		
+		Helipuerto pista = new Helipuerto(posicionesDeLaPista);
+		
+		pista.recibirAterrizajeDeObjetoVolador(helicoptero);
 	
-	//act	
-	this.moverAvion (helicoptero,posicion4);
-	this.moverAvion(helicoptero,posicion3);
-	
-	/*creo las Vectores de la pista*/
-	
-	Vector posicionDeEntrada = new Vector(1,2);
-	posicionesDeLaPista.add(posicionDeEntrada);
-	
-	Helipuerto pista = new Helipuerto(posicionesDeLaPista);
-	
-	pista.recibirAterrizajeDeObjetoVolador(helicoptero);
-
-	//assert
-	assertTrue(helicoptero.aterrizo());
+		//assert
+		assertTrue(helicoptero.aterrizo());
 	}
 	
 	
@@ -572,23 +572,23 @@ public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionNoroesteNoDeberiaAt
 
 	public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionSuresteNoDeberiaAterrizar(){
 	
-	//arrange
+		//arrange
 	
-	//act	
-	this.moverAvion (helicoptero,posicion1);
-	this.moverAvion(helicoptero,posicion4);
+		//act	
+		this.moverAvion (helicoptero,posicion1);
+		this.moverAvion(helicoptero,posicion4);
 	
-	/*creo las Vectores de la pista*/
+		/*creo las Vectores de la pista*/
+		
+		Vector posicionDeEntrada = new Vector(2,1);
+		posicionesDeLaPista.add(posicionDeEntrada);
 	
-	Vector posicionDeEntrada = new Vector(2,1);
-	posicionesDeLaPista.add(posicionDeEntrada);
+		Helipuerto pista = new Helipuerto(posicionesDeLaPista);
 	
-	Helipuerto pista = new Helipuerto(posicionesDeLaPista);
-	
-	pista.recibirAterrizajeDeObjetoVolador(helicoptero);
+		pista.recibirAterrizajeDeObjetoVolador(helicoptero);
 
-	//assert
-	assertTrue(helicoptero.aterrizo());
+		//assert
+		assertTrue(helicoptero.aterrizo());
 	}
 	
 	public void testLlegadaDeUnHelicopteroALHelipuertoEnDireccionSuroesteNoDeberiaAterrizar(){

@@ -3,8 +3,6 @@ package fiuba.algo3.flightcontrol.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,28 +14,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 import fiuba.algo3.flightcontrol.modelo.Nivel;
 import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.flightcontrol.modelo.Pista;
 import fiuba.algo3.flightcontrol.modelo.Trayectoria;
 import fiuba.algo3.flightcontrol.modelo.Vector;
+import fiuba.algo3.flightcontrol.vista.ObservadorGameLoop;
 
-import fiuba.algo3.titiritero.dibujables.Cuadrado;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
-
+import fiuba.algo3.titiritero.modelo.ObservadorDeGameLoop;
 public class VentanaPrincipal {
 
 	private JFrame frame;
@@ -99,12 +92,9 @@ public class VentanaPrincipal {
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
-		final Nivel unNivel = new Nivel(10,tamano.height-60);
-		final List<Vector> unaLista = new ArrayList<Vector>(); 
+		final Nivel unNivel = new Nivel(10, tamano.height - 60);
 		
 		this.inicializarModelo((SuperficieDeDibujo) panel, unNivel);
-				
-		this.addKeyListener();
 
 		this.setComponentsFocus(btnIniciar, btnDetener);
 
@@ -114,17 +104,18 @@ public class VentanaPrincipal {
 				
 			private ObjetoVolador unAvion;
 			private List<Vector> unaLista;
-			private JPanel panel;
+			JFrame frame;
 			
 			@Override
 			public void mouseClicked(MouseEvent click) {	
 				
 				JTextArea textArea = new JTextArea();
 				textArea.setLineWrap(true);
-				JFrame frame = new JFrame("ATENCION");
-				frame.setBounds(50, 200, 200, 70);	
-				frame.getContentPane().add(textArea);
-				
+				if (frame == null) {
+					frame = new JFrame("ATENCION");
+					frame.setBounds(50, 200, 200, 70);	
+				}
+
 				if (click.isAltDown()) {
 					if (this.unAvion == null) {
 					
@@ -133,16 +124,18 @@ public class VentanaPrincipal {
 							unaLista = new ArrayList<Vector>();
 							
 							textArea.setText("Agarro un Objeto Volador");
+							frame.getContentPane().add(textArea);
 							frame.setVisible(true);
-							
+
 						}
 					
 					} else {
 						
-						Vector posicionClick = new Vector (click.getX(),click.getY());
+						Vector posicionClick = new Vector (click.getX(), click.getY());
 						unaLista.add(posicionClick);
 						
 						textArea.setText("Seteo una Posicion");
+						frame.getContentPane().add(textArea);
 						frame.setVisible(true);
 					}
 					
@@ -154,6 +147,7 @@ public class VentanaPrincipal {
 						this.unAvion = null;
 						
 						textArea.setText("Seteo una nueva Trayectoria");
+						frame.getContentPane().add(textArea);
 						frame.setVisible(true);
 					}
 						
@@ -165,7 +159,7 @@ public class VentanaPrincipal {
 			private ObjetoVolador obtenerAvion(MouseEvent click) {
 				boolean encontrado = false;
 				ObjetoVolador unAvion, avionEncontrado = null;
-				Vector posicionClick = new Vector (click.getX(),click.getY());
+				Vector posicionClick = new Vector (click.getX(), click.getY());
 				Vector posicionDeAvion;
 				double diferencia;
 				
@@ -189,8 +183,9 @@ public class VentanaPrincipal {
 		
 		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
-		ObservadorDeGameLoop observadorGameLoop = new ObservadorDeGameLoop(observadorDeNivel);
-		//this.gameLoop.agregarObservador(observadorGameLoop);
+		ObservadorDeGameLoop observadorGameLoop = new ObservadorGameLoop(observadorDeNivel, gameLoop, (SuperficieDeDibujo)unPanel );
+		//guardo el observador del gameLoop
+		this.gameLoop.agregarObservador(observadorGameLoop);
 		this.gameLoop.agregar(unNivel);
 	
 		Iterator<Pista> it = unNivel.getPistas();
@@ -205,29 +200,7 @@ public class VentanaPrincipal {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
-		
-	}
-
-	private void addKeyListener() {
-		frame.addKeyListener(new KeyListener(
-				) {
-			
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				//System.out.println("Key pressed");
-
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				//System.out.println("Ping");
-			}  
-			 	
-		});
+	
 	}
 	
 	private JPanel addSuperficiePanel() {
@@ -235,7 +208,7 @@ public class VentanaPrincipal {
 		panel.setBackground(new Color(0, 150, 0));
 		System.out.println(tamano.width);
 		System.out.println(tamano.height);
-		panel.setBounds(350, 5, tamano.height-40, tamano.height-40);
+		panel.setBounds(350, 5, tamano.height - 40, tamano.height - 40);
 		frame.getContentPane().add(panel);
 		return panel;
 	}
