@@ -57,7 +57,7 @@ public class AvionComputarizado extends ObjetoVolador {
     
 	public void vivir() {
 
-		if (this.getTrayectoria().noEstaVacia()) {
+		if (this.getTrayectoria().contienePuntos()) {
 			super.vivir();
 		}
 	}

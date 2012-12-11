@@ -57,7 +57,7 @@ public class TrayectoriaTest extends TestCase {
 		//act
 
 		//assert
-		assertFalse (trayectoria.noEstaVacia());
+		assertFalse (trayectoria.contienePuntos());
 	}
 	
 	public void testCuandoHayPuntosASeguirDeberiaDevolverQueHayTrayectoria (){
@@ -70,7 +70,7 @@ public class TrayectoriaTest extends TestCase {
 		//act
 	
 		//assert
-		assertTrue (trayectoria.noEstaVacia());
+		assertTrue (trayectoria.contienePuntos());
 	}
 
 }
