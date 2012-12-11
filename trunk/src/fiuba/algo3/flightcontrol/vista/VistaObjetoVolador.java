@@ -9,15 +9,17 @@ import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.titiritero.dibujables.Circulo;
 
 public class VistaObjetoVolador extends Circulo {
-
+		
+	
 	public VistaObjetoVolador(ObjetoVolador modelo) {
+				
 		super(20, modelo);
 		this.setColor(this.pintar(modelo));
 	}
 	
-	private Color pintar (ObjetoVolador modelo) {
+	private Color pintar(ObjetoVolador modelo) {
 		
-		Color color = Color.GREEN;;
+		Color color = Color.GREEN;
 		
 		if (modelo.getClass() == Helicoptero.class) {
 			color = Color.YELLOW;

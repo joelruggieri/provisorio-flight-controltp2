@@ -12,12 +12,16 @@ public class PistaLarga extends Pista {
 		
 		boolean posicionesIguales, direccionesIguales;
 		Vector miEntrada, miPosicion;
+		final int tamano = 20;
+		double distancia;
 		
 		miPosicion = this.getPosicionDeEntrada();
 		miEntrada = this.getDireccionDeEntrada();
 		
-		posicionesIguales = (pesado.getPosicion().distancia(miPosicion) <= 20);
-		direccionesIguales = pesado.getDireccion().esIgual(miEntrada);
+		distancia = pesado.getPosicion().distancia(miPosicion);
+		
+		posicionesIguales = distancia <= tamano;
+		direccionesIguales = pesado.getDireccion().equals(miEntrada);
 		
 		if (posicionesIguales && direccionesIguales) {
 			pesado.aterrizar();

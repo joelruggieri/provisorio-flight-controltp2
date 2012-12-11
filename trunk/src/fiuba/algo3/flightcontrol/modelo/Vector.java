@@ -28,7 +28,7 @@ public class Vector {
 		return this.y;
 	}
 	
-	public boolean esIgual(Vector otraPosicion) {
+	public boolean equals(Vector otraPosicion) {
 		/* Devuelve si la Posicion es igual a la 
 		 * posicion pasada por parametro */
 		
@@ -84,12 +84,14 @@ public class Vector {
 		
 		double distancia;
 		Vector unVector;
-		int valorDentroDeLaRaiz;
+		int valorDentroDeLaRaiz, x , y;
 		
 		unVector = this.restar(otraPosicion);
 		unVector = unVector.alCuadrado();
 		
-		valorDentroDeLaRaiz = unVector.getPosicionX() + unVector.getPosicionY();
+		x = unVector.getPosicionX();
+		y = unVector.getPosicionY();
+		valorDentroDeLaRaiz = x + y;
 		distancia = Math.sqrt(valorDentroDeLaRaiz);
 		
 		return distancia;

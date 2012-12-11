@@ -6,11 +6,12 @@ import java.util.Random;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public abstract class ObjetoVolador extends Observable implements ObjetoVivo, ObjetoPosicionable {
+public abstract class ObjetoVolador extends Observable 
+implements ObjetoVivo, ObjetoPosicionable {
 	
 	private Vector posicionActual, direccion;
 	private boolean aterrizado; 
-	protected Trayectoria trayectoria;
+	private Trayectoria trayectoria;
 	private Nivel nivel;
 	private int velocidad;
 	private int contadorDeTurnos;
@@ -81,7 +82,7 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
 	
 	public boolean hayTrayectoria() {
 		
-		return (this.trayectoria.hayTrayectoria());	
+		return (this.trayectoria.noEstaVacia());	
 	}
 	
 	public void aterrizar() {
@@ -130,7 +131,7 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
     	        Vector proximoPuntoTrayectoria;
     	        proximoPuntoTrayectoria = this.trayectoria.getProximaPosicion();
     	        
-    	        if (proximoPuntoTrayectoria.esIgual(this.posicionActual)) {
+    	        if (proximoPuntoTrayectoria.equals(this.posicionActual)) {
     				this.trayectoria.borrarPosicion();
     	        }
             }
@@ -202,17 +203,24 @@ public abstract class ObjetoVolador extends Observable implements ObjetoVivo, Ob
 	public boolean chocar() {
 		
 		boolean choco = false;
-		double distanciaDeChoque = 20; //O sea, radio de cada ObjetoVolador es de 20
+		final double distanciaDeChoque = 20;
 		Iterator<ObjetoVolador> it;
-		Vector otraPosicion;
+		Vector otraPosicion, miPosicion;
+		double distancia;
+		
+		miPosicion = this.getPosicion();
 		
 		it = this.getNivel().getObjetosVoladores();
 		
 		while (it.hasNext() && !choco) {
+			
 			ObjetoVolador unObjetoVolador = it.next();
-			if (unObjetoVolador.getPosicion() != this.getPosicion()) {
-				otraPosicion = unObjetoVolador.getPosicion();
-				choco = (otraPosicion.distancia(this.getPosicion()) <= distanciaDeChoque);
+			otraPosicion = unObjetoVolador.getPosicion();
+			
+			if (otraPosicion != miPosicion) {
+				
+				distancia = otraPosicion.distancia(miPosicion);
+				choco = distancia <= distanciaDeChoque;
 			}
 		}
 		

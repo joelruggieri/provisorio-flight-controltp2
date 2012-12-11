@@ -31,7 +31,7 @@ public class TrayectoriaTest extends TestCase {
 		proximaPosicion = trayectoria.getProximaPosicion();
 		
 		//assert
-		assertTrue (proximaPosicion.esIgual(primerPunto));
+		assertTrue (proximaPosicion.equals(primerPunto));
 	}
 	
 	public void testObtenerLaProximaPosicionDespuesDeBorrarDeberiaDevolverLaSegundaPosicionDeLaTrayectoria (){
@@ -46,7 +46,7 @@ public class TrayectoriaTest extends TestCase {
 		proximaPosicion = trayectoria.getProximaPosicion();
 		
 		//assert
-		assertTrue (proximaPosicion.esIgual(segundoPunto));
+		assertTrue (proximaPosicion.equals(segundoPunto));
 	}
 	
 	public void testCuandoNoHayPuntosASeguirDeberiaDevolverQueNoHayTrayectoria (){
@@ -57,7 +57,7 @@ public class TrayectoriaTest extends TestCase {
 		//act
 
 		//assert
-		assertFalse (trayectoria.hayTrayectoria());
+		assertFalse (trayectoria.noEstaVacia());
 	}
 	
 	public void testCuandoHayPuntosASeguirDeberiaDevolverQueHayTrayectoria (){
@@ -70,7 +70,7 @@ public class TrayectoriaTest extends TestCase {
 		//act
 	
 		//assert
-		assertTrue (trayectoria.hayTrayectoria());
+		assertTrue (trayectoria.noEstaVacia());
 	}
 
 }

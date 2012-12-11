@@ -17,12 +17,12 @@ public class Trayectoria {
 		
 	public void borrarPosicion() {
 		
-		if (this.hayTrayectoria()) {
+		if (this.noEstaVacia()) {
 			this.listaDePosiciones.remove(0);
 		}
 	}
 		
-	public boolean hayTrayectoria() {
+	public boolean noEstaVacia() {
 		
 		return (!this.listaDePosiciones.isEmpty());
 	}

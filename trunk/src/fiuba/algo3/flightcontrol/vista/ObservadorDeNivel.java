@@ -13,7 +13,8 @@ public class ObservadorDeNivel implements Observer {
 	private Nivel nivel;
 	private ObjetoVolador objetoVolador;
 	
-	public ObservadorDeNivel(GameLoop unGameLoop, SuperficieDeDibujo unaSuperficie, Nivel unNivel) {
+	public ObservadorDeNivel(GameLoop unGameLoop, 
+			SuperficieDeDibujo unaSuperficie, Nivel unNivel) {
 
 		this.nivel = unNivel;
 	}

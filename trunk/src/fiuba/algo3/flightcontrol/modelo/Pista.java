@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import java.util.List;
 
-public abstract class Pista implements ObjetoPosicionable{
+public abstract class Pista implements ObjetoPosicionable {
 
 	private List<Vector> posiciones;
 	private List<Vector> direccionesDeIngreso;
@@ -73,12 +73,16 @@ public abstract class Pista implements ObjetoPosicionable{
 		
 		boolean posicionesIguales, direccionesIguales;
 		Vector miEntrada, miPosicion;
+		final int tamano = 20;
+		double distancia;
 		
 		miPosicion = this.getPosicionDeEntrada();
 		miEntrada = this.getDireccionDeEntrada();
 		
-		posicionesIguales = (simple.getPosicion().distancia(miPosicion) <= 20);
-		direccionesIguales = simple.getDireccion().esIgual(miEntrada);
+		distancia = simple.getPosicion().distancia(miPosicion);
+		
+		posicionesIguales = distancia <= tamano;
+		direccionesIguales = simple.getDireccion().equals(miEntrada);
 		
 		if (posicionesIguales && direccionesIguales) {
 			simple.aterrizar();
@@ -89,19 +93,25 @@ public abstract class Pista implements ObjetoPosicionable{
 	 public void recibirAterrizajeDeObjetoVolador(Helicoptero helicoptero) {
 	 }
 	
-	 public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avionComputarizado) {
+	 public void recibirAterrizajeDeObjetoVolador(AvionComputarizado 
+			 computarizado) {
 		 
 		boolean posicionesIguales, direccionesIguales;
-		Vector miEntrada, miPosicion;
+		Vector miEntrada, miPosicion, direccionDeAvion;
+		final int tamano = 20;
+		double distancia;
 		
 		miPosicion = this.getPosicionDeEntrada();
 		miEntrada = this.getDireccionDeEntrada();
 		
-		posicionesIguales = (avionComputarizado.getPosicion().distancia(miPosicion) <= 20);
-		direccionesIguales = avionComputarizado.getDireccion().esIgual(miEntrada);
+		distancia = computarizado.getPosicion().distancia(miPosicion);
+		direccionDeAvion = computarizado.getDireccion();
+		
+		posicionesIguales = distancia <= tamano;
+		direccionesIguales = direccionDeAvion.equals(miEntrada);
 		
 		if (posicionesIguales && direccionesIguales) {
-			avionComputarizado.aterrizar();
+			computarizado.aterrizar();
 		}
 	 }
 	

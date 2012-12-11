@@ -41,7 +41,7 @@ public class AvionSimpleTest extends TestCase {
 		unAvion.setTrayectoria(this.unaTrayectoria);
 		
 		
-		while (!unAvion.getPosicion().esIgual(destino)){
+		while (!unAvion.getPosicion().equals(destino)){
 		
 			unAvion.vivir();
 		}
@@ -118,7 +118,7 @@ public class AvionSimpleTest extends TestCase {
 		
 		unAvion.vivir();
 		
-		assertTrue(unAvion.getPosicion().restar(posicionInicial).esIgual(direccionInicial));
+		assertTrue(unAvion.getPosicion().restar(posicionInicial).equals(direccionInicial));
 	}
 	
 	public void testVivirDeUnAvionSimpleConVelocidad2DeberiaTardar5TunosParaMoverseUnaPosicion(){
@@ -135,7 +135,7 @@ public class AvionSimpleTest extends TestCase {
 		simple.vivir();
 		simple.vivir();
 		
-		assertTrue(simple.getPosicion().restar(posicionDeSalida).esIgual(direccionDeSalida));
+		assertTrue(simple.getPosicion().restar(posicionDeSalida).equals(direccionDeSalida));
 	}
 	
 public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverseUnaPosicion(){
@@ -157,7 +157,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		simple.vivir();
 		simple.vivir();
 		
-		assertTrue(simple.getPosicion().restar(posicionDeSalida).esIgual(direccionDeSalida));
+		assertTrue(simple.getPosicion().restar(posicionDeSalida).equals(direccionDeSalida));
 	}
 	
 	public void testMoverDeberiamoverALaPosicionIndicada (){
@@ -171,7 +171,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		posicionFinal = unAvion.getPosicion();
 				
 		//assert
-		assertTrue (destino.esIgual(posicionFinal));		
+		assertTrue (destino.equals(posicionFinal));		
 		
 	}
 
@@ -192,7 +192,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 	}
 	
 
@@ -212,7 +212,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 			
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -233,7 +233,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 	}
 
 	public void testVolarEnDiagonalArribaAUnaVectorLateralIzquierdaFueraDelLimiteDeberiaRebotarCorrectamente (){
@@ -252,7 +252,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 				
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -272,7 +272,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -292,7 +292,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 	
@@ -312,7 +312,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 	
@@ -333,7 +333,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 	
@@ -353,7 +353,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 				
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -373,7 +373,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -393,7 +393,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -413,7 +413,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 	
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -433,7 +433,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 			
 	}
 
@@ -453,7 +453,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 
@@ -473,7 +473,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 	
@@ -493,7 +493,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccionDespuesDemover = unAvion.getDireccion();
 		
 		//assert
-		assertTrue (direccionNueva.esIgual(direccionDespuesDemover));
+		assertTrue (direccionNueva.equals(direccionDespuesDemover));
 		
 	}
 	
@@ -538,7 +538,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.esIgual(proximoPaso);
+			pasoCorrecto = actual.equals(proximoPaso);
 		}
 		
 		//Luego se mueve en linea recta
@@ -551,7 +551,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.esIgual(proximoPaso);
+			pasoCorrecto = actual.equals(proximoPaso);
 		}
 		
 		//Luego se mueve en diagonal, hasta el intermedio2
@@ -564,7 +564,7 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.esIgual(proximoPaso);
+			pasoCorrecto = actual.equals(proximoPaso);
 		}
 		
 		
@@ -573,12 +573,12 @@ public void testVivirDeUnAvionSimpleConVelocidad1DeberiaTardar10TunosParaMoverse
 		direccion = new Vector (-1,-1);
 		pasoCorrecto = true;
 		
-		while (pasoCorrecto && ! proximoPaso.esIgual(destino)){
+		while (pasoCorrecto && ! proximoPaso.equals(destino)){
 			
 			proximoPaso = actual.sumar(direccion);
 			unAvion.vivir();
 			actual = unAvion.getPosicion();
-			pasoCorrecto = actual.esIgual(proximoPaso);
+			pasoCorrecto = actual.equals(proximoPaso);
 		}
 		
 		//assert

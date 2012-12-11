@@ -36,7 +36,7 @@ public class VectorTest extends TestCase {
 		Vector Vector = new Vector (1,2);
 	
 		//act
-		sonIguales = unaPosicion.esIgual(Vector);
+		sonIguales = unaPosicion.equals(Vector);
 	
 		//assert
 		assertTrue (sonIguales);
@@ -49,7 +49,7 @@ public class VectorTest extends TestCase {
 		boolean sonIguales;
 	
 		//act
-		sonIguales = unaPosicion.esIgual(otraPosicion);
+		sonIguales = unaPosicion.equals(otraPosicion);
 	
 		//assert
 		assertFalse (sonIguales);
@@ -66,7 +66,7 @@ public class VectorTest extends TestCase {
 		suma = unaPosicion.sumar (otraPosicion);
 	
 		//assert
-		assertTrue (suma.esIgual(adicion));
+		assertTrue (suma.equals(adicion));
 		
 	}
 	
@@ -80,7 +80,7 @@ public class VectorTest extends TestCase {
 		resta = unaPosicion.restar (otraPosicion);
 	
 		//assert
-		assertTrue (resta.esIgual(sustraccion));
+		assertTrue (resta.equals(sustraccion));
 
 	}
 	
@@ -95,7 +95,7 @@ public class VectorTest extends TestCase {
 		producto = unaPosicion.multiplicar(escalar);
 	
 		//assert
-		assertTrue (producto.esIgual(productoFinal));
+		assertTrue (producto.equals(productoFinal));
 	}
 	
 	public void testUnVectorAlCualdradoDeberiaDarmeSuXeYAlCuadrado() {
@@ -108,7 +108,7 @@ public class VectorTest extends TestCase {
 		alCuadrado = unaPosicion.alCuadrado();
 		
 		//assert
-		assertTrue (alCuadrado.esIgual(resultadoEsperado));
+		assertTrue (alCuadrado.equals(resultadoEsperado));
 	}
 	
 	public void testLaDistanciaEntreUnVectorYOtroDeberiaSerSuNorma() {

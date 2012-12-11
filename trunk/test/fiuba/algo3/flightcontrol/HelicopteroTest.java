@@ -49,7 +49,7 @@ public class HelicopteroTest extends TestCase {
 		unHelicoptero.vivir();
 		
 		//assert
-		assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));
+		assertTrue(unHelicoptero.getPosicion().equals(segundaPosicion));
 	}
 	
 	public void testVivirDeUnHelicopteroLuegoDeHaberTerminadoLaTrayectoriaIndicadaDeberiaQuedarEnUltimaPosicion() 
@@ -71,7 +71,7 @@ public class HelicopteroTest extends TestCase {
 			unHelicoptero.vivir();
 			
 			//assert
-			assertTrue(unHelicoptero.getPosicion().esIgual(segundaPosicion));
+			assertTrue(unHelicoptero.getPosicion().equals(segundaPosicion));
 		}
 	
 	
@@ -81,7 +81,7 @@ public class HelicopteroTest extends TestCase {
 		Vector posicionDeSalida = unHelicoptero.getPosicion();
 		unHelicoptero.vivir();
 		
-		assertTrue(!unHelicoptero.getPosicion().esIgual(posicionDeSalida));
+		assertTrue(!unHelicoptero.getPosicion().equals(posicionDeSalida));
 		
 		
 		
