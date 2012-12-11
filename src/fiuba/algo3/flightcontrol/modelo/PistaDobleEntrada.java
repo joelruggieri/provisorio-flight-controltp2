@@ -47,6 +47,8 @@ public class PistaDobleEntrada extends Pista {
 		boolean ingresoPorDireccion, ingresoPorPosicion;
 		Vector direcDeIngreso, miDireccion;
 		Vector posDeIngreso, miPosicion;
+		final int tamano = 20;
+		double distancia;
 		
 		miPosicion = avion.getPosicion();
 		posDeIngreso = this.getPosicionDeEntrada();
@@ -54,8 +56,10 @@ public class PistaDobleEntrada extends Pista {
 		miDireccion = avion.getDireccion();
 		direcDeIngreso = this.getDireccionDeEntrada();
 		
-		ingresoPorPosicion = (miPosicion.distancia(posDeIngreso) <= 20);
-		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
+		distancia = miPosicion.distancia(posDeIngreso);
+		
+		ingresoPorPosicion = distancia <= tamano;
+		ingresoPorDireccion = miDireccion.equals(direcDeIngreso);
 		
 		return (ingresoPorPosicion && ingresoPorDireccion);
 	}
@@ -65,7 +69,8 @@ public class PistaDobleEntrada extends Pista {
 		boolean ingresoPorDireccion, ingresoPorPosicion;
 		Vector direcDeIngreso, miDireccion;
 		Vector posDeIngreso, miPosicion;
-		
+		final int tamano = 20;
+		double distancia;
 		
 		miPosicion = avion.getPosicion();
 		posDeIngreso = this.getPosicionDeSegundaEntrada();
@@ -73,8 +78,10 @@ public class PistaDobleEntrada extends Pista {
 		miDireccion = avion.getDireccion();
 		direcDeIngreso = this.getDireccionDeSegundaEntrada();
 		
-		ingresoPorPosicion = (miPosicion.distancia(posDeIngreso) <= 20);
-		ingresoPorDireccion = miDireccion.esIgual(direcDeIngreso);
+		distancia = miPosicion.distancia(posDeIngreso);
+		
+		ingresoPorPosicion = distancia <= tamano;
+		ingresoPorDireccion = miDireccion.equals(direcDeIngreso);
 		
 		return (ingresoPorPosicion && ingresoPorDireccion);
 	}
@@ -98,7 +105,8 @@ public class PistaDobleEntrada extends Pista {
 		
 	}
 		
-	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avionComputarizado) {
+	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado 
+			avionComputarizado) {
 		
 		if (this.validarEntradaYDireccion(avionComputarizado)) {
 			avionComputarizado.aterrizar();

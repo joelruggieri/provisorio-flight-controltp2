@@ -55,7 +55,7 @@ public class HelipuertoTest extends TestCase {
 		unaTrayectoria = new Trayectoria (posicionesDestino);
 		unAvion.setTrayectoria(unaTrayectoria);
 		
-		while (!unAvion.getPosicion().esIgual(destino)){
+		while (!unAvion.getPosicion().equals(destino)){
 			unAvion.vivir();
 		}
 		

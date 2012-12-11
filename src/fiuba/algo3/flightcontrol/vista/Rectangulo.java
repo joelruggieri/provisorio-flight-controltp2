@@ -14,7 +14,8 @@ public class Rectangulo  extends Figura {
 	private int extremoX;
 	private int extremoY;
 	
-	public Rectangulo (int ultimaPosicionX, int ultimaPosicionY, ObjetoPosicionable objetoPosicionable) {
+	public Rectangulo(int ultimaPosicionX, int ultimaPosicionY, 
+			ObjetoPosicionable objetoPosicionable) {
 		
 		super(objetoPosicionable);
 		extremoX = ultimaPosicionX;
@@ -22,42 +23,54 @@ public class Rectangulo  extends Figura {
 		
 	}
 
-
 	public void dibujar(SuperficieDeDibujo superficie) {
 	
-		Graphics grafico = ((SuperficiePanel)superficie).getBuffer();
+		final int tamano = 20;
+		final int uno = 1;
+		final int cero = 0;
+		int x, y, largo;
+		
+		Graphics grafico = ((SuperficiePanel) superficie).getBuffer();
 		grafico.setColor(this.getColor());
 		Pista objeto = (Pista) getPosicionable();
-		 Vector direccionSur = new Vector(0, 1);
-		 Vector direccionOeste = new Vector(1, 0);
+		Vector direccionSur = new Vector(cero, uno);
+		Vector direccionOeste = new Vector(uno, cero);
+		
+		x = objeto.getX();
+		y = objeto.getY();
+		largo = objeto.getLargo();
+		
+		try {
+		 Vector direccion = objeto.getDireccionDeEntrada();
+		
+		} catch (NoTieneUnaDireccionDeEntradaException e) {
 		 
-		 try{
-			 Vector direccion = objeto.getDireccionDeEntrada();
-		 
-		 } catch(NoTieneUnaDireccionDeEntradaException e) {
-			 
-			 grafico.fillRect(objeto.getX(), objeto.getY(), 20, 20);
-			 grafico.fillOval(objeto.getX(), objeto.getY(), 20, 20);
-			 return;
-		 }
-		 
-		 if (objeto.getDireccionDeEntrada().esIgual(direccionSur)) {
-			 grafico.fillRect(objeto.getX(), objeto.getY(), 20, objeto.getLargo());
-			 grafico.fillOval(objeto.getX(), objeto.getY(), 20, 20);
-		 
-		 } else if (objeto.getDireccionDeEntrada().esIgual(direccionSur.invertirDireccion())) {
-			 grafico.fillRect(extremoX, extremoY, 20, objeto.getLargo());
-			 grafico.fillOval(objeto.getX(), objeto.getY(), 20, 20);
-		 
-		 } else if (objeto.getDireccionDeEntrada().esIgual(direccionOeste)){
-			 grafico.fillRect(objeto.getX(), objeto.getY(), objeto.getLargo(), 20);
-			 grafico.fillOval(objeto.getX(), objeto.getY(), 20, 20);
-		 
-		 } else /*if(objeto.getDireccionDeEntrada().esIgual(direccionOeste.invertirDireccion()))*/{
-			 grafico.fillRect(extremoX, extremoY, objeto.getLargo(), 20);
-			 grafico.fillOval(objeto.getX(), objeto.getY(), 20, 20);
-		 
-		 }
+			grafico.fillRect(x, y, tamano, tamano);
+			grafico.fillOval(x, y, tamano, tamano);
+			return;
+		}
+		
+		if (objeto.getDireccionDeEntrada().equals(direccionSur)) {
+			grafico.fillRect(x, y, tamano, objeto.getLargo());
+			grafico.fillOval(x, y, tamano, tamano);
+		
+		} else if (objeto.getDireccionDeEntrada().
+				equals(direccionSur.invertirDireccion())) {
+			
+			grafico.fillRect(extremoX, extremoY, tamano, largo);
+			grafico.fillOval(x, y, tamano, tamano);
+		
+		} else if (objeto.getDireccionDeEntrada().
+				equals(direccionOeste)) {
+			
+			grafico.fillRect(x, y, largo, tamano);
+			grafico.fillOval(x, y, tamano, tamano);
+		
+		} else {
+			grafico.fillRect(extremoX, extremoY, largo, tamano);
+			grafico.fillOval(x, y, tamano, tamano);
+			
+		}
 	}
 }
 	

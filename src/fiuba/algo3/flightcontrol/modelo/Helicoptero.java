@@ -23,7 +23,7 @@ public class Helicoptero extends ObjetoVolador {
 		 * buscando el movimiento mas optimo posible */
 		List<Vector> listaDePosiciones = new ArrayList<Vector>();
 		
-		if (!this.getTrayectoria().hayTrayectoria()) {
+		if (!this.getTrayectoria().noEstaVacia()) {
 			listaDePosiciones.add(this.getPosicion());
 			this.setTrayectoria(new Trayectoria(listaDePosiciones));
 		}

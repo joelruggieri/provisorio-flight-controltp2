@@ -9,13 +9,14 @@ import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import fiuba.algo3.titiritero.modelo.ObservadorDeGameLoop;
 
-public class ObservadorGameLoop implements ObservadorDeGameLoop{
+public class ObservadorGameLoop implements ObservadorDeGameLoop {
 	
 	private SuperficieDeDibujo unaSuperficie;
 	private ObservadorDeNivel observadorNivel;
 	private GameLoop gameLoop;
 	
-	public ObservadorGameLoop(ObservadorDeNivel observadorNivel ,GameLoop gameLoop, SuperficieDeDibujo unaSuperficie) {
+	public ObservadorGameLoop(ObservadorDeNivel observadorNivel, 
+			GameLoop gameLoop, SuperficieDeDibujo unaSuperficie) {
 		
 		this.gameLoop = gameLoop;
 		this.observadorNivel = observadorNivel;
@@ -27,9 +28,13 @@ public class ObservadorGameLoop implements ObservadorDeGameLoop{
 	public void notificarCicloFinalizado() {
 		ObjetoVolador avion = this.observadorNivel.getNave();
 		this.gameLoop.agregar(avion);
-		Circulo circulo = new VistaObjetoVolador((ObjetoVolador)avion);
+		Circulo circulo = new VistaObjetoVolador((ObjetoVolador) avion);
 		
-		ObservadorDeObjetoVolador unObservador = new ObservadorDeObjetoVolador(gameLoop, circulo, unaSuperficie, avion);
+		ObservadorDeObjetoVolador unObservador;
+		
+		unObservador = new ObservadorDeObjetoVolador(gameLoop, 
+					circulo, unaSuperficie, avion);
+		
 	    avion.addObserver(unObservador);
 		
 	    this.removerAvionesAterrizados();
@@ -39,14 +44,20 @@ public class ObservadorGameLoop implements ObservadorDeGameLoop{
 	private void removerAvionesAterrizados() {
 		
 		Nivel unNivel = this.observadorNivel.getNivel();
-		Iterator iteradorDeObjetosVoladores = unNivel.getObjetosVoladores();
-		while (iteradorDeObjetosVoladores.hasNext()) {
-			ObjetoVolador unAvion = (ObjetoVolador) iteradorDeObjetosVoladores.next();
-			if (unAvion.aterrizo()) {
-				this.gameLoop.remover(unAvion); 
-			}		
+		Iterator iteradorObjetosVoladores;
+		ObjetoVolador avion;
+		
+		iteradorObjetosVoladores = unNivel.getObjetosVoladores();
+		
+		while (iteradorObjetosVoladores.hasNext()) {
+			
+			avion = (ObjetoVolador) iteradorObjetosVoladores.next();
+			
+			if (avion.aterrizo()) {
+				this.gameLoop.remover(avion); 
+			}
 		}
 	}
-		
+	
 }
 

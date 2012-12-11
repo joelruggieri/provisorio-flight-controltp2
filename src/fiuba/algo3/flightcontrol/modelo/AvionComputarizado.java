@@ -25,13 +25,17 @@ public class AvionComputarizado extends ObjetoVolador {
 		/* Determina una trayectoria de menor 
 		 * distancia hacia una pista */
 		
+		final int fijo = 30;
+		
 		List<Vector> trayectoriaDefinida = new ArrayList<Vector>();
 		
 		Vector posicionDeEntrada = unaPista.getPosicionDeEntrada();
 		Vector direccionDeEntrada = unaPista.getDireccionDeEntrada();
 		
-		Vector posPreAterrizaje;
-		posPreAterrizaje = posicionDeEntrada.restar(direccionDeEntrada.multiplicar(30));
+		Vector posPreAterrizaje, direcDeEntrada;
+		
+		direcDeEntrada = direccionDeEntrada.multiplicar(fijo);
+		posPreAterrizaje = posicionDeEntrada.restar(direcDeEntrada);
 				
 		trayectoriaDefinida.add(posPreAterrizaje);
 		trayectoriaDefinida.add(unaPista.getPosicionDeEntrada());
@@ -53,14 +57,14 @@ public class AvionComputarizado extends ObjetoVolador {
     
 	public void vivir() {
 
-		if (this.getTrayectoria().hayTrayectoria()) {
+		if (this.getTrayectoria().noEstaVacia()) {
 			super.vivir();
 		}
 	}
 	
-	public void setTrayectoria (Trayectoria unaTrayectoria){
+	public void setTrayectoria(Trayectoria unaTrayectoria) {
 		
-		if(!this.hayTrayectoria())
+		if (!this.hayTrayectoria())
 			super.setTrayectoria(unaTrayectoria);
 	}
 		

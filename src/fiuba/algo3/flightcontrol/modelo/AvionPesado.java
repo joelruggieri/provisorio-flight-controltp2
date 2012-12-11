@@ -19,7 +19,7 @@ public class AvionPesado extends ObjetoVolador {
 		/* post: cambia el valor de la posicion actual,
 		 * buscando el movimiento mas optimo posible */
 		
-		if (!this.getTrayectoria().hayTrayectoria()) {
+		if (!this.getTrayectoria().noEstaVacia()) {
 			
 			Vector direccion = this.getDireccion();
 			Vector posicionSiguiente;

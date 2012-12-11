@@ -9,25 +9,31 @@ import fiuba.algo3.flightcontrol.modelo.PistaLarga;
 
 
 public class VistaPista extends Rectangulo {
+	//hay que sacarlo
 	private Rectangulo dibujo;
 		
 	public VistaPista(Pista modelo) {
-		super (modelo.getPosicionFinal().getPosicionX(), modelo.getPosicionFinal().getPosicionY(), modelo);
+		super(modelo.getPosicionFinal().getPosicionX(), 
+			modelo.getPosicionFinal().getPosicionY(), modelo);
 		this.setColor(this.pintar(modelo));
 	}
 	
 	private Color pintar(Pista modelo) {
 		
 		Color color;
+		final int color0 = 0;
+		final int color50 = 50;
+		final int color100 = 100;
+		final int color150 = 150;
 		
 		if (modelo.getClass() == Helipuerto.class) {
-			color = new Color(150, 150, 150);
+			color = new Color(color150, color150, color150);
 		} else if (modelo.getClass() == PistaLarga.class) {
-			color = new Color(100, 100, 100);
+			color = new Color(color100, color100, color100);
 		} else if (modelo.getClass() == PistaDobleEntrada.class) {
-			color = new Color(50, 50, 50);
+			color = new Color(color50, color50, color50);
 		} else {
-			color = new Color(0, 0, 0);
+			color = new Color(color0, color0, color0);
 		}
 		
 	return color;

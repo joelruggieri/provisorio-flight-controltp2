@@ -50,7 +50,7 @@ public class PistaLargaTest extends TestCase {
 		unaTrayectoria = new Trayectoria (listaDePuntos);
 		unAvion.setTrayectoria(unaTrayectoria);
 		
-		while (!unAvion.getPosicion().esIgual(destino)){
+		while (!unAvion.getPosicion().equals(destino)){
 			unAvion.vivir();
 		}
 		

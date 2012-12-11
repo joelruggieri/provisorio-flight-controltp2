@@ -15,7 +15,9 @@ public class ObservadorDeObjetoVolador implements Observer {
 	private ObjetoVolador unObjetoVolador;
 	private GameLoop unGameLoop;
 	
-	public ObservadorDeObjetoVolador(GameLoop unGameLoop, Circulo unaVista, SuperficieDeDibujo unPanel, ObjetoVolador unObjetoVolador) {
+	public ObservadorDeObjetoVolador(GameLoop unGameLoop, 
+			Circulo unaVista, SuperficieDeDibujo unPanel, 
+			ObjetoVolador unObjetoVolador) {
 		
 		this.unaVista = unaVista;
 		this.unaSuperficie = unPanel;
