@@ -82,7 +82,7 @@ implements ObjetoVivo, ObjetoPosicionable {
 	
 	public boolean hayTrayectoria() {
 		
-		return (this.trayectoria.noEstaVacia());	
+		return (this.trayectoria.contienePuntos());	
 	}
 	
 	public void aterrizar() {
