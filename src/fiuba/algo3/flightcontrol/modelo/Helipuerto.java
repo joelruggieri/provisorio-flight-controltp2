@@ -23,12 +23,10 @@ public class Helipuerto extends Pista {
 			
 			helicoptero.aterrizar();
 
-		}
-		
+		}	
 	}
 	
 	public void recibirAterrizajeDeObjetoVolador(AvionComputarizado avion) {
 	}
-	
 	
 }

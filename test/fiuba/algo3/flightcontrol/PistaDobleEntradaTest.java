@@ -62,7 +62,7 @@ public class PistaDobleEntradaTest extends TestCase {
 		
 	}
 	
-private void removerLasPistasDelNivel(){
+	private void removerLasPistasDelNivel(){
 		
 		Iterator iterador = this.unNivel.getPistas();
 		

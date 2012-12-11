@@ -1,6 +1,6 @@
 package fiuba.algo3.flightcontrol.modelo;
 import java.util.ArrayList;
-import java.util.Observable;
+
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import java.util.List;
@@ -108,14 +108,14 @@ public abstract class Pista implements ObjetoPosicionable{
 	 public void recibirAterrizajeDeObjetoVolador(AvionPesado pesado) {
 	}
 	 
-	 public int getLargo(){
+	 public int getLargo() {
 		 
 		 return largo;
 	 }
 	 
-	 public Vector getPosicionFinal(){
+	 public Vector getPosicionFinal() {
 		 
-		 return this.posiciones.get(this.posiciones.size()-1);
+		 return this.posiciones.get(this.posiciones.size() - 1);
 	 }
 	
 }

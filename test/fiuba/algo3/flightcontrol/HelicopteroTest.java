@@ -31,19 +31,7 @@ public class HelicopteroTest extends TestCase {
 		unaTrayectoria = new Trayectoria (posicionesDestino);
 		
 	}
-/*	
-	public void testCrearUnHelicopteroEnUnaVectorYNoDarleUnaTrayectoriaDeberiaDejarloQuieto() 
-		throws PosicionFueraDeLasDimensionesEstablecidasException{
-		
-		//arrange
-		
-		//act
-		unHelicoptero.mover();
-			
-		//assert	
-		assertEquals(unEscenario.getPosicion(posicionActual),"objetoVolador");
-	}
-*/	
+
 	public void testMoverUnHelicopteroPor2PuntosDeberiaTerminarEnElUltimoPuntoEnAlgunMomento() 
 		throws PosicionFueraDeLasDimensionesEstablecidasException{
 
