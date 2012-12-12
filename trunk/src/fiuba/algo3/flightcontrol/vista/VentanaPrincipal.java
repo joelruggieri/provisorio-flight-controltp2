@@ -6,32 +6,22 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import fiuba.algo3.flightcontrol.controlador.Mouse;
 import fiuba.algo3.flightcontrol.modelo.Nivel;
-import fiuba.algo3.flightcontrol.modelo.ObjetoVolador;
 import fiuba.algo3.flightcontrol.modelo.Pista;
-import fiuba.algo3.flightcontrol.modelo.Trayectoria;
-import fiuba.algo3.flightcontrol.modelo.Vector;
-import fiuba.algo3.flightcontrol.vista.ObservadorGameLoop;
 
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import fiuba.algo3.titiritero.modelo.ObservadorDeGameLoop;
+
 public class VentanaPrincipal {
 
 	private JFrame frame;
@@ -47,7 +37,8 @@ public class VentanaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal window = new VentanaPrincipal();
+					VentanaPrincipal window;
+					window = new VentanaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,10 +68,15 @@ public class VentanaPrincipal {
 	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
-				
+		
+		final int tono = 0;
+		final int lado = 0;
+		final int nivel = 10;
+		final int resto = 60;
+		
 		frame = new JFrame();
-		frame.setForeground(new Color(0, 0, 0));
-		frame.setBounds(0, 0, tamano.width, tamano.height);
+		frame.setForeground(new Color(tono, tono, tono));
+		frame.setBounds(lado, lado, tamano.width, tamano.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Flight Control");
@@ -93,7 +89,7 @@ public class VentanaPrincipal {
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
-		final Nivel unNivel = new Nivel(10, tamano.height - 60);
+		final Nivel unNivel = new Nivel(nivel, tamano.height - resto);
 		
 		this.inicializarModelo((SuperficieDeDibujo) panel, unNivel);
 
@@ -106,9 +102,9 @@ public class VentanaPrincipal {
 
 	private void inicializarModelo(SuperficieDeDibujo unPanel, Nivel unNivel) {
 		
-		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo)unPanel, unNivel);
+		ObservadorDeNivel observadorDeNivel = new ObservadorDeNivel(gameLoop, (SuperficieDeDibujo) unPanel, unNivel);
 		unNivel.addObserver(observadorDeNivel);
-		ObservadorDeGameLoop observadorGameLoop = new ObservadorGameLoop(observadorDeNivel, gameLoop, (SuperficieDeDibujo)unPanel );
+		ObservadorDeGameLoop observadorGameLoop = new ObservadorGameLoop(observadorDeNivel, gameLoop, (SuperficieDeDibujo) unPanel);
 		//guardo el observador del gameLoop
 		this.gameLoop.agregarObservador(observadorGameLoop);
 		this.gameLoop.agregar(unNivel);
@@ -129,11 +125,19 @@ public class VentanaPrincipal {
 	}
 	
 	private JPanel addSuperficiePanel() {
+		
+		final int tono1 = 0;
+		final int tono2 = 150;
+		
+		final int lado1 = 350;
+		final int lado2 = 5;
+		final int resto = 40;
+		
 		JPanel panel = new SuperficiePanel();
-		panel.setBackground(new Color(0, 150, 0));
+		panel.setBackground(new Color(tono1, tono2, tono1));
 		System.out.println(tamano.width);
 		System.out.println(tamano.height);
-		panel.setBounds(350, 5, tamano.height - 40, tamano.height - 40);
+		panel.setBounds(lado1, lado2, tamano.height - resto, tamano.height - resto);
 		frame.getContentPane().add(panel);
 		return panel;
 	}
@@ -145,7 +149,13 @@ public class VentanaPrincipal {
 				gameLoop.iniciarEjecucion();
 			}
 		});
-		btnIniciar.setBounds(50, 20, 77, 25);
+		
+		final int lado1 = 50;
+		final int lado2 = 20;
+		final int lado3 = 77;
+		final int lado4 = 25;
+		
+		btnIniciar.setBounds(lado1, lado2, lado3, lado4);
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
@@ -157,9 +167,16 @@ public class VentanaPrincipal {
 				gameLoop.detenerEjecucion();
 			}
 		});
-		btnDetener.setBounds(50, 50, 92, 25);
+		
+		final int lado1 = 50;
+		final int lado2 = 50;
+		final int lado3 = 92;
+		final int lado4 = 25;
+				
+		btnDetener.setBounds(lado1, lado2, lado3, lado4);
 		frame.getContentPane().add(btnDetener);
 		return btnDetener;
 	}
+	
 	
 }
