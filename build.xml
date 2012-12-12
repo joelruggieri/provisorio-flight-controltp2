@@ -36,7 +36,8 @@
 	</target>
 
 	<target name="compilar.aplicacion" depends="setup">
-		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" target="1.6">
+		<javac srcdir="src" destdir="${build}/classes" includeantruntime="false" debug="yes" target="1.6">
+		<classpath refid="classpath" />
 		</javac>
 	</target>
 	
@@ -85,6 +86,32 @@
 		</cobertura-instrument>
 	</target>
 
+	<target name="empaquetar" depends="compilar.aplicacion">
+		<unjar dest="${build}/classes">
+			<fileset dir="${libs}">
+				<include name="*.jar" />
+			</fileset>
+		</unjar>
+
+		<jar destfile="${build}/dist/FlightControl.jar" basedir="${build}/classes">
+		    <manifest>
+		      <attribute name="Main-Class"
+		            value="fiuba.algo3.flightcontrol.vista.VentanaPrincipal"/>
+		    </manifest>
+		</jar>
+	</target>
+
+
+	<target name="ejecutar.aplicacion" depends="empaquetar">
+		  <java jar="build/dist/FlightControl.jar" fork="true">
+		         <classpath>
+		           <pathelement location="${build}/dist/FlightControl.jar"/>
+		         	<pathelement location="libs/titiritero.jar"/>
+		         </classpath>
+		       </java>
+	</target>
+
+
 	<target name="init">
 		<mkdir dir="${instrumented.dir}" />
 		<mkdir dir="${reports.xml.dir}" />
@@ -125,10 +152,6 @@
 
 	<target name="compilar.paquete" depends="test">
 		<javac srcdir="src" destdir="${build}/classes" debug="no"></javac>
-	</target>
-
-	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes"/>
 	</target>
 
 	<target name="integracion-continua" depends="coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
