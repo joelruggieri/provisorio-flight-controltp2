@@ -32,22 +32,15 @@ public class Mouse {
 			
 			private ObjetoVolador unAvion;
 			private List<Vector> unaLista;
-			private JFrame frame;
+			JFrame frame;
 			
 			public void mouseClicked(MouseEvent click) {	
 				
 				JTextArea textArea = new JTextArea();
 				textArea.setLineWrap(true);
-						
 				if (frame == null) {
-					
-					final int lado1 = 50;
-					final int lado2 = 200;
-					final int lado3 = 200;
-					final int lado4 = 70;
-					
 					frame = new JFrame("ATENCION");
-					frame.setBounds(lado1, lado2, lado3, lado4);
+					frame.setBounds(50, 200, 200, 70);	
 				}
 	
 				if (click.isAltDown()) {
@@ -65,9 +58,8 @@ public class Mouse {
 					
 					} else {
 						
-						Vector posClick;
-						posClick = new Vector(click.getX(), click.getY());
-						unaLista.add(posClick);
+						Vector posicionClick = new Vector (click.getX(), click.getY());
+						unaLista.add(posicionClick);
 						
 						textArea.setText("Seteo una Posicion");
 						frame.getContentPane().add(textArea);
@@ -77,8 +69,7 @@ public class Mouse {
 				} else {
 						
 					if (this.unAvion != null) {
-						Trayectoria unaTrayectoria;
-						unaTrayectoria = new Trayectoria(unaLista);
+						Trayectoria unaTrayectoria = new Trayectoria(unaLista);
 						this.unAvion.setTrayectoria(unaTrayectoria);
 						this.unAvion = null;
 						
@@ -93,31 +84,25 @@ public class Mouse {
 		
 
 		private ObjetoVolador obtenerAvion(MouseEvent click) {
-			
 			boolean encontrado = false;
 			ObjetoVolador unAvion, avionEncontrado = null;
-			Vector posClick; 
+			Vector posicionClick = new Vector (click.getX(), click.getY());
 			Vector posicionDeAvion;
-			final int tamano = 20;
 			double diferencia;
-			Iterator<ObjetoVolador> it;
 			
-			posClick = new Vector(click.getX(), click.getY());
-			it = unNivel.getObjetosVoladores();
-			
+			Iterator<ObjetoVolador> it = unNivel.getObjetosVoladores();
 			while (it.hasNext() && !encontrado) {
-				
 				unAvion = it.next();
 				posicionDeAvion = unAvion.getPosicion();
-				diferencia =  posClick.distancia(posicionDeAvion);
-				encontrado = (diferencia <= tamano);
+				diferencia =  posicionClick.distancia(posicionDeAvion);
+				encontrado = (diferencia <= 20);
 				
-				if (encontrado) { 
+				if (encontrado){ 
 					avionEncontrado = unAvion;
 				}
 			}
 			
 			return avionEncontrado;
-		} });
+		}});
 	}
 }
